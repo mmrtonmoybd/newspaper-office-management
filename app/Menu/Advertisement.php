@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Menu;
+
+use Sebastienheyd\Boilerplate\Menu\Builder;
+use Sebastienheyd\Boilerplate\Menu\MenuItemInterface;
+
+class Advertisement implements MenuItemInterface
+{
+    public function make(Builder $menu)
+    {
+        $item = $menu->add('Advertisement', [
+            'permission' => 'an_permission|as_permission',
+            'active' => 'backend.ads.*',
+            'icon' => 'fa-ad',
+            'order' => 100,
+        ]);
+
+        $item->add('A/N', [
+            'permission' => 'an_permission',
+            'active' => 'backend.ads.an.*',
+            'route' => 'backend.ads.an.index',
+        ]);
+
+        $item->add('A/S', [
+            'permission' => 'as_permission',
+            'active' => 'backend.ads.as.*',
+            'route' => 'backend.ads.as.index',
+        ]);
+    }
+}
