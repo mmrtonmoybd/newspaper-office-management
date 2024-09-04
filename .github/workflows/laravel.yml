@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: shivammathur/setup-php@0b33ef444fd672ee683e20491b7798d937c69f8c
       with:
-        php-version: '8.0'
+        php-version: '8.2'
     - uses: actions/checkout@v2
       with:
          ref: ${{ github.head_ref }}
