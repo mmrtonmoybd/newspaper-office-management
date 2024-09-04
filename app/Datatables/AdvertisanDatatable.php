@@ -3,10 +3,10 @@
 namespace App\Datatables;
 
 use App\Models\AdAn;
+use Illuminate\Support\Str;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
-use Illuminate\Support\Str;
 
 class AdvertisanDatatable extends Datatable
 {
@@ -20,11 +20,11 @@ class AdvertisanDatatable extends Datatable
     public function setUp()
     {
         $this->order('id', 'desc')
-        ->setRowId('id')
-        ->buttons('filters', 'print', 'excel',  'csv', 'refresh')
-        ->pageLength(20)
-        ->condensed()
-        ->stateSave();
+            ->setRowId('id')
+            ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
+            ->pageLength(20)
+            ->condensed()
+            ->stateSave();
     }
 
     public function columns(): array
@@ -35,7 +35,7 @@ class AdvertisanDatatable extends Datatable
 
             Column::add(__('তারিখ'))
                 ->data('created_at')
-                ->dateFormat(__("D/M/Y")),
+                ->dateFormat(__('D/M/Y')),
 
             Column::add(__('বিবরণ / আদেশ'))
                 ->data('details'),
@@ -45,7 +45,7 @@ class AdvertisanDatatable extends Datatable
 
             Column::add(__('ছাপার তারিখ'))
                 ->data('published_date')
-                ->dateFormat(__("D/M/Y")),
+                ->dateFormat(__('D/M/Y')),
 
             Column::add(__('টাকা'))
                 ->data('amount'),
@@ -64,9 +64,7 @@ class AdvertisanDatatable extends Datatable
                     return Str::limit($adAn->comment, 50);
                 }),
 
-            
-
-           /* Column::add(__('Updated At'))
+            /* Column::add(__('Updated At'))
                 ->data('updated_at'),
 
             */
@@ -74,10 +72,10 @@ class AdvertisanDatatable extends Datatable
             Column::add()
                 ->width('20px')
                 ->actions(function (AdAn $adan) {
-                    return join([
-                         Button::show('backend.ads.an.show', $adan),
-                         Button::edit('backend.ads.an.edit', $adan),
-                         Button::delete('backend.ads.an.destroy', $adan),
+                    return implode([
+                        Button::show('backend.ads.an.show', $adan),
+                        Button::edit('backend.ads.an.edit', $adan),
+                        Button::delete('backend.ads.an.destroy', $adan),
                     ]);
                 }),
         ];

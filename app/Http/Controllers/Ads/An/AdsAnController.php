@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Ads\An;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdAn;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class AdsAnController extends Controller
 {
@@ -38,8 +38,8 @@ class AdsAnController extends Controller
             'size' => 'required|string|max:255',
             'page' => 'required|string',
             'an' => 'required|string',
-            'comment' => 'required|string'
-        ]); 
+            'comment' => 'required|string',
+        ]);
 
         AdAn::create($request->all());
 
@@ -55,7 +55,7 @@ class AdsAnController extends Controller
     public function show(AdAn $an)
     {
         return view('backend.ads.an.view', [
-            'adan' => $an
+            'adan' => $an,
         ]);
     }
 
@@ -65,7 +65,7 @@ class AdsAnController extends Controller
     public function edit(AdAn $an)
     {
         return view('backend.ads.an.edit', [
-            'adan' => $an
+            'adan' => $an,
         ]);
     }
 
@@ -83,13 +83,13 @@ class AdsAnController extends Controller
             'page' => 'required|string',
             'an' => 'required|string',
             'comment' => 'required|string',
-            'created_at' => 'required|date'
+            'created_at' => 'required|date',
         ]);
 
         $an->update($request->all());
 
         return redirect()->route('backend.ads.an.index')
-                         ->with('growl', ['The data has been correctly updated.', 'success']);
+            ->with('growl', ['The data has been correctly updated.', 'success']);
     }
 
     /**

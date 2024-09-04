@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Ads\Ass;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdAs;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class AdsAsController extends Controller
 {
@@ -38,8 +38,8 @@ class AdsAsController extends Controller
             'size' => 'required|string|max:255',
             'page' => 'required|string',
             'as' => 'required|string',
-            'comment' => 'required|string'
-        ]); 
+            'comment' => 'required|string',
+        ]);
 
         AdAs::create($request->all());
 
@@ -55,7 +55,7 @@ class AdsAsController extends Controller
     public function show(AdAs $a)
     {
         return view('backend.ads.as.view', [
-            'adas' => $a
+            'adas' => $a,
         ]);
     }
 
@@ -65,7 +65,7 @@ class AdsAsController extends Controller
     public function edit(AdAs $a)
     {
         return view('backend.ads.as.edit', [
-            'adas' => $a
+            'adas' => $a,
         ]);
     }
 
@@ -83,13 +83,13 @@ class AdsAsController extends Controller
             'page' => 'required|string',
             'as' => 'required|string',
             'comment' => 'required|string',
-            'created_at' => 'required|date'
+            'created_at' => 'required|date',
         ]);
 
         $a->update($request->all());
 
         return redirect()->route('backend.ads.as.index')
-                         ->with('growl', ['The data has been correctly updated.', 'success']);
+            ->with('growl', ['The data has been correctly updated.', 'success']);
     }
 
     /**
