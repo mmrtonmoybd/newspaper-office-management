@@ -31,8 +31,8 @@ class AdvertisingpanelDatatable extends Datatable
     {
         return [
             Column::add(__('Id'))
-                ->data('id'), 
-                
+                ->data('id'),
+
             Column::add(__('প্রতিষ্ঠানের নাম'))
                 ->data('org_name'),
 
@@ -58,17 +58,17 @@ class AdvertisingpanelDatatable extends Datatable
                 ->data('created_at')
                 ->dateFormat(__('D/M/Y')),
 
-           /* Column::add(__('Updated At'))
+            /* Column::add(__('Updated At'))
                 ->data('updated_at'),
                 */
 
             Column::add()
                 ->width('20px')
                 ->actions(function (AdvertismentPanel $advertismentpanel) {
-                    return join([
-                         Button::show('backend.ads.panel.show', $advertismentpanel),
-                         Button::edit('backend.ads.panel.edit', $advertismentpanel),
-                         Button::delete('backend.ads.panel.destroy', $advertismentpanel),
+                    return implode([
+                        Button::show('backend.ads.panel.show', $advertismentpanel),
+                        Button::edit('backend.ads.panel.edit', $advertismentpanel),
+                        Button::delete('backend.ads.panel.destroy', $advertismentpanel),
                     ]);
                 }),
         ];

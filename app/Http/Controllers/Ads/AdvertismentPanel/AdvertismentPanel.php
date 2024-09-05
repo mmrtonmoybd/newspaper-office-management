@@ -71,7 +71,7 @@ class AdvertismentPanel extends Controller
      */
     public function update(Request $request, Model $panel)
     {
-        
+
         $request->validate([
             'org_name' => 'required|string',
             'advertisment_start_date' => 'required|date',
