@@ -27,5 +27,11 @@ class Advertisement implements MenuItemInterface
             'active' => 'backend.ads.as.*',
             'route' => 'backend.ads.as.index',
         ]);
+
+        $item->add('Advertisment panel', [
+            'permission' => 'ads_panel',
+            'active' => 'backend.ads.panel.*',
+            'route' => 'backend.ads.panel.index',
+        ]);
     }
 }

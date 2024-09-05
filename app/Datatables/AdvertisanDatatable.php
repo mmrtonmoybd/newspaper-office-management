@@ -20,6 +20,7 @@ class AdvertisanDatatable extends Datatable
     public function setUp()
     {
         $this->order('id', 'desc')
+            ->permissions('an_permission')
             ->setRowId('id')
             ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
             ->pageLength(20)

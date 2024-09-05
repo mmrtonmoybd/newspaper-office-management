@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Datatables;
+
+use App\Models\AdvertismentPanel;
+use Sebastienheyd\Boilerplate\Datatables\Button;
+use Sebastienheyd\Boilerplate\Datatables\Column;
+use Sebastienheyd\Boilerplate\Datatables\Datatable;
+
+class AdvertisingpanelDatatable extends Datatable
+{
+    public $slug = 'advertisingpanel';
+
+    public function datasource()
+    {
+        return AdvertismentPanel::query();
+    }
+
+    public function setUp()
+    {
+        $this->order('id', 'desc')
+            ->setRowId('id')
+            ->permissions('ads_panel')
+            ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
+            ->pageLength(20)
+            ->condensed()
+            ->stateSave();
+    }
+
+    public function columns(): array
+    {
+        return [
+            Column::add(__('Id'))
+                ->data('id'), 
+                
+            Column::add(__('প্রতিষ্ঠানের নাম'))
+                ->data('org_name'),
+
+            Column::add(__('বিজ্ঞাপন শুরু'))
+                ->data('advertisment_start_date')
+                ->dateFormat(__('D/M/Y')),
+
+            Column::add(__('বিজ্ঞাপন শেষ'))
+                ->data('advertisment_end_date')
+                ->dateFormat(__('D/M/Y')),
+
+            Column::add(__('টাকা'))
+                ->data('amount'),
+
+            Column::add(__('প্ররিশোদের তারিখ'))
+                ->data('paid_date')
+                ->dateFormat(__('D/M/Y')),
+
+            Column::add(__('মন্তব্য'))
+                ->data('comment'),
+
+            Column::add(__('তারিখ'))
+                ->data('created_at')
+                ->dateFormat(__('D/M/Y')),
+
+           /* Column::add(__('Updated At'))
+                ->data('updated_at'),
+                */
+
+            Column::add()
+                ->width('20px')
+                ->actions(function (AdvertismentPanel $advertismentpanel) {
+                    return join([
+                         Button::show('backend.ads.panel.show', $advertismentpanel),
+                         Button::edit('backend.ads.panel.edit', $advertismentpanel),
+                         Button::delete('backend.ads.panel.destroy', $advertismentpanel),
+                    ]);
+                }),
+        ];
+    }
+}
