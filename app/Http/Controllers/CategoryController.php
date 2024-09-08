@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -10,6 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+
         return view('backend.cashbook.categories.index', compact('categories'));
     }
 
@@ -41,7 +43,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|unique:categories,name,' . $category->id . '|max:255',
+            'name' => 'required|unique:categories,name,'.$category->id.'|max:255',
         ]);
 
         $category->update($request->only('name'));
