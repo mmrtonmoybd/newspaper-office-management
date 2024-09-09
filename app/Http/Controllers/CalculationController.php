@@ -139,19 +139,19 @@ class CalculationController extends Controller
         $incomeEntries = $calculation->incomeEntries();
         $expenseEntries = $calculation->expenseEntries();
 
-    if ($startDate && $endDate) {
-        $cal = Calculation::whereBetween('created_at', [$startDate, $endDate])->pluck('id')->toArray();
-        $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
-        $expenseEntries = ExpenseEntry::whereIn('calculation_id', $cal);
-        //$incomeEntries->whereBetween('date', [$startDate, $endDate]);
-        //$expenseEntries->whereBetween('date', [$startDate, $endDate]);
-    }
+        if ($startDate && $endDate) {
+            $cal = Calculation::whereBetween('created_at', [$startDate, $endDate])->pluck('id')->toArray();
+            $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
+            $expenseEntries = ExpenseEntry::whereIn('calculation_id', $cal);
+            //$incomeEntries->whereBetween('date', [$startDate, $endDate]);
+            //$expenseEntries->whereBetween('date', [$startDate, $endDate]);
+        }
 
-    // Get the filtered entries
-    $incomeEntries = $incomeEntries->get();
-    $expenseEntries = $expenseEntries->get();
+        // Get the filtered entries
+        $incomeEntries = $incomeEntries->get();
+        $expenseEntries = $expenseEntries->get();
 
-    //dd($incomeEntries);
+        //dd($incomeEntries);
 
         // Calculate total income, total expense, and net balance
         $totalIncome = $incomeEntries->sum('amount');
@@ -162,46 +162,45 @@ class CalculationController extends Controller
         return view('backend.cashbook..show', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance'));
     }
 
-public function destroy($id)
-{
-      // Find the calculation to be deleted
-    $calculationToDelete = Calculation::findOrFail($id);
+    public function destroy($id)
+    {
+        // Find the calculation to be deleted
+        $calculationToDelete = Calculation::findOrFail($id);
 
-    // Fetch the calculation right before the one to be deleted (to get the previous balance)
-    $previousCalculation = Calculation::where('id', '<', $calculationToDelete->id)->orderBy('id', 'desc')->first();
+        // Fetch the calculation right before the one to be deleted (to get the previous balance)
+        $previousCalculation = Calculation::where('id', '<', $calculationToDelete->id)->orderBy('id', 'desc')->first();
 
-    // Get the previous balance from the most recent calculation before the one being deleted
-    $previousBalance = 0;
-    if ($previousCalculation) {
-        $totalIncome = IncomeEntry::where('calculation_id', $previousCalculation->id)->sum('amount');
-        $totalExpense = ExpenseEntry::where('calculation_id', $previousCalculation->id)->sum('amount');
-        $previousBalance = $previousBalance + ($totalIncome - $totalExpense);
+        // Get the previous balance from the most recent calculation before the one being deleted
+        $previousBalance = 0;
+        if ($previousCalculation) {
+            $totalIncome = IncomeEntry::where('calculation_id', $previousCalculation->id)->sum('amount');
+            $totalExpense = ExpenseEntry::where('calculation_id', $previousCalculation->id)->sum('amount');
+            $previousBalance = $previousBalance + ($totalIncome - $totalExpense);
+        }
+
+        // Delete the calculation
+        $calculationToDelete->delete();
+
+        // Fetch all calculations after the deleted one in ascending order
+        $subsequentCalculations = Calculation::where('id', '>', $id)->orderBy('id', 'asc')->get();
+
+        // Recalculate balances for all subsequent calculations
+        foreach ($subsequentCalculations as $subsequentCalculation) {
+            // Fetch income and expense entries for the subsequent calculation
+            $totalIncome = IncomeEntry::where('calculation_id', $subsequentCalculation->id)->sum('amount');
+            $totalExpense = ExpenseEntry::where('calculation_id', $subsequentCalculation->id)->sum('amount');
+
+            // Calculate the net balance for this calculation
+            $netBalance = $totalIncome - $totalExpense;
+
+            // Calculate the current balance based on the recalculated previous balance
+            $currentBalance = $previousBalance + $netBalance;
+
+            // Update previous balance for the next iteration
+            $previousBalance = $currentBalance;
+        }
+
+        // Redirect back with a success message
+        return redirect()->route('backend.calculations.index')->with('success', 'Cashbook deleted and balances recalculated.');
     }
-
-    // Delete the calculation
-    $calculationToDelete->delete();
-
-    // Fetch all calculations after the deleted one in ascending order
-    $subsequentCalculations = Calculation::where('id', '>', $id)->orderBy('id', 'asc')->get();
-
-    // Recalculate balances for all subsequent calculations
-    foreach ($subsequentCalculations as $subsequentCalculation) {
-        // Fetch income and expense entries for the subsequent calculation
-        $totalIncome = IncomeEntry::where('calculation_id', $subsequentCalculation->id)->sum('amount');
-        $totalExpense = ExpenseEntry::where('calculation_id', $subsequentCalculation->id)->sum('amount');
-
-        // Calculate the net balance for this calculation
-        $netBalance = $totalIncome - $totalExpense;
-
-        // Calculate the current balance based on the recalculated previous balance
-        $currentBalance = $previousBalance + $netBalance;
-
-        // Update previous balance for the next iteration
-        $previousBalance = $currentBalance;
-    }
- 
-     // Redirect back with a success message
-     return redirect()->route('backend.calculations.index')->with('success', 'Cashbook deleted and balances recalculated.');
-}
-
 }
