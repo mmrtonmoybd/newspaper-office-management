@@ -1,11 +1,13 @@
 <?php
+
 // app/Http/Controllers/CalculationController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Calculation;
-use App\Models\IncomeEntry;
-use App\Models\ExpenseEntry;
 use App\Models\Category;
+use App\Models\ExpenseEntry;
+use App\Models\IncomeEntry;
 use Illuminate\Http\Request;
 
 class CalculationController extends Controller
@@ -13,33 +15,34 @@ class CalculationController extends Controller
     public function index()
     {
         // Get all calculations in DESC order with pagination (e.g., 10 per page)
-    $calculations = Calculation::with(['incomeEntries', 'expenseEntries'])
-    ->orderBy('created_at', 'DESC')
-    ->paginate(22);
+        $calculations = Calculation::with(['incomeEntries', 'expenseEntries'])
+            ->orderBy('created_at', 'DESC')
+            ->paginate(22);
 
-// Process each calculation to compute total income, total expense, and net balance
-$calculationsData = $calculations->map(function ($calculation) {
-    $totalIncome = $calculation->incomeEntries->sum('amount');
-    $totalExpense = $calculation->expenseEntries->sum('amount');
-    $netChange = $totalIncome - $totalExpense;
-    $netBalance = $calculation->previous_balance + $netChange;
+        // Process each calculation to compute total income, total expense, and net balance
+        $calculationsData = $calculations->map(function ($calculation) {
+            $totalIncome = $calculation->incomeEntries->sum('amount');
+            $totalExpense = $calculation->expenseEntries->sum('amount');
+            $netChange = $totalIncome - $totalExpense;
+            $netBalance = $calculation->previous_balance + $netChange;
 
-    return [
-        'id' => $calculation->id,
-        'name' => $calculation->name,
-        'date' => $calculation->created_at->format('Y-m-d'),
-        'totalIncome' => $totalIncome,
-        'totalExpense' => $totalExpense,
-        'netBalance' => $netBalance,
-    ];
-});
+            return [
+                'id' => $calculation->id,
+                'name' => $calculation->name,
+                'date' => $calculation->created_at->format('Y-m-d'),
+                'totalIncome' => $totalIncome,
+                'totalExpense' => $totalExpense,
+                'netBalance' => $netBalance,
+            ];
+        });
 
-return view('backend.cashbook.index', compact('calculationsData', 'calculations'));
+        return view('backend.cashbook.index', compact('calculationsData', 'calculations'));
     }
 
     public function create()
     {
         $categories = Category::all();
+
         return view('backend.cashbook.create', compact('categories'));
     }
 
@@ -79,12 +82,14 @@ return view('backend.cashbook.index', compact('calculationsData', 'calculations'
         }
 
         $calculation->save();
+
         return redirect()->route('backend.calculations.index');
     }
 
     public function edit(Calculation $calculation)
     {
         $categories = Category::all();
+
         return view('backend.cashbook.edit', compact('calculation', 'categories'));
     }
 
@@ -120,18 +125,19 @@ return view('backend.cashbook.index', compact('calculationsData', 'calculations'
         }
 
         $calculation->save();
+
         return redirect()->route('backend.calculations.index');
     }
 
     public function show(Calculation $calculation, Request $request)
-{
-    // Get the start and end dates from the request
-    $startDate = $request->input('start_date');
-    $endDate = $request->input('end_date');
+    {
+        // Get the start and end dates from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
 
-    // If dates are provided, filter the income and expense entries
-    $incomeEntries = $calculation->incomeEntries();
-    $expenseEntries = $calculation->expenseEntries();
+        // If dates are provided, filter the income and expense entries
+        $incomeEntries = $calculation->incomeEntries();
+        $expenseEntries = $calculation->expenseEntries();
 
     if ($startDate && $endDate) {
         $cal = Calculation::whereBetween('created_at', [$startDate, $endDate])->pluck('id')->toArray();
@@ -147,14 +153,14 @@ return view('backend.cashbook.index', compact('calculationsData', 'calculations'
 
     //dd($incomeEntries);
 
-    // Calculate total income, total expense, and net balance
-    $totalIncome = $incomeEntries->sum('amount');
-    $totalExpense = $expenseEntries->sum('amount');
-    $netChange = $totalIncome - $totalExpense;
-    $netBalance = $calculation->previous_balance + $netChange;
+        // Calculate total income, total expense, and net balance
+        $totalIncome = $incomeEntries->sum('amount');
+        $totalExpense = $expenseEntries->sum('amount');
+        $netChange = $totalIncome - $totalExpense;
+        $netBalance = $calculation->previous_balance + $netChange;
 
-    return view('backend.cashbook..show', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance'));
-}
+        return view('backend.cashbook..show', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance'));
+    }
 
 public function destroy($id)
 {

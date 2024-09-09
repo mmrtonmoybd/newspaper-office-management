@@ -3,10 +3,9 @@
 use App\Http\Controllers\Ads\AdvertismentPanel\AdvertismentPanel;
 use App\Http\Controllers\Ads\An\AdsAnController;
 use App\Http\Controllers\Ads\Ass\AdsAsController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Cashbook\CashbookController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,12 +37,9 @@ Route::group($default, function () {
         Route::resource('panel', AdvertismentPanel::class)->middleware('ability:admin,ads_panel')->names('panel');
     });
 
-    
     Route::group(['prefix' => 'cashbook'], function () {
         Route::resource('calculations', CalculationController::class)->middleware('ability:admin,cashbook')->names('calculations');
         Route::resource('categories', CategoryController::class)->middleware('ability:admin,cashbook_entry_heading')->names('categories');
     });
-
-    
 
 });
