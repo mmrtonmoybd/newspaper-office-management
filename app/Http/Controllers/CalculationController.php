@@ -164,41 +164,42 @@ class CalculationController extends Controller
 
     public function destroy($id)
     {
-        // Find the calculation to be deleted
-        $calculationToDelete = Calculation::findOrFail($id);
+        // Find the calculation to delete
+    $calculationToDelete = Calculation::findOrFail($id);
 
-        // Fetch the calculation right before the one to be deleted (to get the previous balance)
-        $previousCalculation = Calculation::where('id', '<', $calculationToDelete->id)->orderBy('id', 'desc')->first();
+    // Delete the calculation
+    $calculationToDelete->delete();
 
-        // Get the previous balance from the most recent calculation before the one being deleted
-        $previousBalance = 0;
-        if ($previousCalculation) {
-            $totalIncome = IncomeEntry::where('calculation_id', $previousCalculation->id)->sum('amount');
-            $totalExpense = ExpenseEntry::where('calculation_id', $previousCalculation->id)->sum('amount');
-            $previousBalance = $previousBalance + ($totalIncome - $totalExpense);
-        }
+    // Fetch the previous calculation (before the deleted one)
+    $previousCalculation = Calculation::where('id', '<', $id)->orderBy('id', 'desc')->first();
+    
+    // Determine the starting balance (from the previous calculation if it exists)
+    $previousBalance = $previousCalculation ? $previousCalculation->getCurrentBalance() : 0;
 
-        // Delete the calculation
-        $calculationToDelete->delete();
+    // Fetch all subsequent calculations that need recalculation
+    $subsequentCalculations = Calculation::where('id', '>', $id)->orderBy('id', 'asc')->get();
 
-        // Fetch all calculations after the deleted one in ascending order
-        $subsequentCalculations = Calculation::where('id', '>', $id)->orderBy('id', 'asc')->get();
+    // Recalculate balances for subsequent calculations
+    foreach ($subsequentCalculations as $subsequentCalculation) {
+        // Fetch income and expense totals for this calculation
+        $totalIncome = $subsequentCalculation->incomeEntries->sum('amount');
+        $totalExpense = $subsequentCalculation->expenseEntries->sum('amount');
 
-        // Recalculate balances for all subsequent calculations
-        foreach ($subsequentCalculations as $subsequentCalculation) {
-            // Fetch income and expense entries for the subsequent calculation
-            $totalIncome = IncomeEntry::where('calculation_id', $subsequentCalculation->id)->sum('amount');
-            $totalExpense = ExpenseEntry::where('calculation_id', $subsequentCalculation->id)->sum('amount');
+        // Calculate the net balance (Income - Expense)
+        $netBalance = $totalIncome - $totalExpense;
 
-            // Calculate the net balance for this calculation
-            $netBalance = $totalIncome - $totalExpense;
+        // Calculate the current balance for this calculation
+        $currentBalance = $previousBalance + $netBalance;
 
-            // Calculate the current balance based on the recalculated previous balance
-            $currentBalance = $previousBalance + $netBalance;
+        // Update the subsequent calculation balance with recalculated data
+        $subsequentCalculation->update([
+            'previous_balance' => $previousBalance, // You should not have to create a new column; this is conceptual for recalculation
+            'balance' => $currentBalance,   // Update the current balance for the record
+        ]);
 
-            // Update previous balance for the next iteration
-            $previousBalance = $currentBalance;
-        }
+        // Set the previous balance for the next iteration
+        $previousBalance = $currentBalance;
+    }
 
         // Redirect back with a success message
         return redirect()->route('backend.calculations.index')->with('success', 'Cashbook deleted and balances recalculated.');
