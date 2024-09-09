@@ -1,8 +1,8 @@
 @extends('boilerplate::layout.index', [
-    'title' => 'Category',
-    'subtitle' => 'Categories lists',
+    'title' => 'Entries heading',
+    'subtitle' => 'Entries heading edit',
     'breadcrumb' => [
-        'Calculation' => 'backend.categories.index',
+        'Entries heading list' => 'backend.categories.index',
     ]
 ])
 
@@ -10,7 +10,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Edit Category</h3>
+        <h3 class="card-title">Edit Entries heading</h3>
     </div>
 
     <div class="card-body">
@@ -19,7 +19,7 @@
             @method('PUT')
 
             <div class="form-group">
-                <label for="name">Category Name</label>
+                <label for="name">Entries heading Name</label>
                 <input type="text" name="name" class="form-control" id="name" value="{{ $category->name }}" required>
             </div>
 

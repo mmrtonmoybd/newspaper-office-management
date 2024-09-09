@@ -12,4 +12,9 @@ class IncomeEntry extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function calculation()
+    {
+        return $this->belongsTo(Calculation::class);
+    }
 }

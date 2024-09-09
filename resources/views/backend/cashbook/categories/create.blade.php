@@ -1,8 +1,8 @@
 @extends('boilerplate::layout.index', [
-    'title' => 'Category',
-    'subtitle' => 'Categories lists',
+    'title' => 'Entries heading',
+    'subtitle' => 'Entries heading lists',
     'breadcrumb' => [
-        'Calculation' => 'backend.categories.index',
+        'Entries heading list' => 'backend.categories.index',
     ]
 ])
 
@@ -10,7 +10,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Create Category</h3>
+        <h3 class="card-title">Create Entries heading</h3>
     </div>
 
     <div class="card-body">
@@ -18,8 +18,8 @@
             @csrf
 
             <div class="form-group">
-                <label for="name">Category Name</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="Enter category name" required>
+                <label for="name">Entries heading Name</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Entries heading name" required>
             </div>
 
             <button type="submit" class="btn btn-success">Create</button>

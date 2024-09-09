@@ -32,7 +32,7 @@
             </div>
         </form>
 
-        <h4 class="text-info">{{ $calculation->name }}</h4>
+        <center><strong><h4 class="text-info">{{ $calculation->name }}</h4></strong></center>
          <!-- Previous Balance Section -->
          <div class="alert alert-secondary">
             <h5>Previous Balance: <strong>{{ number_format($calculation->previous_balance, 2) }}</strong></h5>
@@ -56,8 +56,12 @@
                     </thead>
                     <tbody>
                         @foreach($entries as $income)
+
+                        @php
+                        $inc = \App\Models\Calculation::where('id', $income->calculation_id)->first();
+                        @endphp
                         <tr>
-                            <td>{{ $income->date }}</td>
+                            <td>{{ $inc->created_at->format('Y-m-d') }}</td>
                             <td>{{ $income->description }}</td>
                             <td>{{ number_format($income->amount, 2) }}</td>
                         </tr>
@@ -87,8 +91,11 @@
                     </thead>
                     <tbody>
                         @foreach($entries as $expense)
+                        @php
+                        $inc = \App\Models\Calculation::where('id', $expense->calculation_id)->first();
+                        @endphp
                         <tr>
-                            <td>{{ $expense->date }}</td>
+                            <td>{{ $inc->created_at->format('Y-m-d') }}</td>
                             <td>{{ $expense->description }}</td>
                             <td>{{ number_format($expense->amount, 2) }}</td>
                         </tr>

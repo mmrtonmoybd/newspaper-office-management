@@ -10,18 +10,18 @@
 
 <div class="card">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-        <h3 class="card-title">Calculations Overview</h3>
-        <a href="{{ route('backend.calculations.create') }}" class="btn btn-success">Create New Calculation</a>
+        <h3 class="card-title">Cashbook Overview</h3>
+        <a href="{{ route('backend.calculations.create') }}" class="btn btn-success">Create New Cashbook</a>
     </div>
 
     <div class="card-body">
         @if($calculationsData->isEmpty())
-            <div class="alert alert-warning">No calculations found.</div>
+            <div class="alert alert-warning">No Cashbooks found.</div>
         @else
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Calculation Name</th>
+                        <th>Cashbook Name</th>
                         <th>Date</th>
                         <th>Total Income</th>
                         <th>Total Expense</th>
@@ -32,7 +32,7 @@
                 <tbody>
                     @foreach($calculationsData as $calculation)
                     <tr>
-                        <td>{{ $calculation['name'] }}</td>
+                        <td>{{ (!empty($calculation['name'])) ? $calculation['name'] : 'N/A' }}</td>
                         <td>{{ $calculation['date'] }}</td>
                         <td>{{ number_format($calculation['totalIncome'], 2) }}</td>
                         <td>{{ number_format($calculation['totalExpense'], 2) }}</td>
@@ -43,7 +43,7 @@
                             <form action="{{ route('backend.calculations.destroy', $calculation['id']) }}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this calculation?');">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Cashbook?');">Delete</button>
                             </form>
                         </td>
                     </tr>

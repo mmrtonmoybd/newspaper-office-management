@@ -18,5 +18,10 @@ class Calculation extends Model
     {
         return $this->hasMany(ExpenseEntry::class);
     }
+
+    public function getCurrentBalance($previousBalance = 0)
+    {
+        return $previousBalance + $this->balance;
+    }
 }
 

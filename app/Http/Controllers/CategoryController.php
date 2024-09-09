@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
         Category::create($request->only('name'));
 
-        return redirect()->route('backend.categories.index')->with('success', 'Category created successfully');
+        return redirect()->route('backend.categories.index')->with('success', 'Entries heading created successfully');
     }
 
     // Show form to edit an existing category
@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
         $category->update($request->only('name'));
 
-        return redirect()->route('backend.categories.index')->with('success', 'Category updated successfully');
+        return redirect()->route('backend.categories.index')->with('success', 'Entries heading updated successfully');
     }
 
     // Delete a category
@@ -54,6 +54,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('backend.categories.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('backend.categories.index')->with('success', 'Entries heading deleted successfully');
     }
 }

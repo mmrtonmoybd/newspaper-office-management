@@ -1,8 +1,8 @@
 @extends('boilerplate::layout.index', [
-    'title' => 'Category',
-    'subtitle' => 'Categories lists',
+    'title' => 'Entries heading',
+    'subtitle' => 'Entries heading lists',
     'breadcrumb' => [
-        'Calculation' => 'backend.categories.index',
+        'Entries heading list' => 'backend.categories.index',
     ]
 ])
 
@@ -10,8 +10,8 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Category List</h3>
-        <a href="{{ route('backend.categories.create') }}" class="btn btn-primary float-right">Create New Category</a>
+        <h3 class="card-title">Entries heading List</h3>
+        <a href="{{ route('backend.categories.create') }}" class="btn btn-primary float-right">Create New Entries heading</a>
     </div>
 
     <div class="card-body">
