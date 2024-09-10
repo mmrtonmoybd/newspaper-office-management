@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Cashbook;
 
+use App\Http\Controllers\Controller;
 use App\Models\Calculation;
 use App\Models\Category;
 use App\Models\ExpenseEntry;
 use App\Models\IncomeEntry;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CalculationController extends Controller
 {
@@ -142,22 +142,22 @@ class CalculationController extends Controller
         $previousBalance = $calculation->previous_balance;
 
         if ($startDate) {
-            
+
             // Check if there is no entry is smaller then start date
-            
+
             $rowcheck = Calculation::where('created_at', '<=', $startDate)->count();
             if ($rowcheck > 1) {
                 // Get all calculations before the start date to adjust the previous balance
-            $previousIncome = Calculation::with('incomeEntries')->where('created_at', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
-            $previousExpense = Calculation::with('expenseEntries')->where('created_at', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
-            $previousNet = $previousIncome - $previousExpense;
-    
-            // Adjust previous balance
-            $previousBalance += $previousNet;
+                $previousIncome = Calculation::with('incomeEntries')->where('created_at', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
+                $previousExpense = Calculation::with('expenseEntries')->where('created_at', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
+                $previousNet = $previousIncome - $previousExpense;
+
+                // Adjust previous balance
+                $previousBalance += $previousNet;
             } else {
                 $previousBalance = 0; // There is no calculation before start date, so we set the previous balance to 0
             }
-            
+
         }
 
         if ($startDate && $endDate) {
