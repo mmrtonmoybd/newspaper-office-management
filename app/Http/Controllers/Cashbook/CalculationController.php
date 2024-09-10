@@ -1,14 +1,13 @@
 <?php
 
-// app/Http/Controllers/CalculationController.php
-
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cashbook;
 
 use App\Models\Calculation;
 use App\Models\Category;
 use App\Models\ExpenseEntry;
 use App\Models\IncomeEntry;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CalculationController extends Controller
 {
@@ -139,6 +138,28 @@ class CalculationController extends Controller
         $incomeEntries = $calculation->incomeEntries();
         $expenseEntries = $calculation->expenseEntries();
 
+        // Step 1: Calculate the previous balance before the start date
+        $previousBalance = $calculation->previous_balance;
+
+        if ($startDate) {
+            
+            // Check if there is no entry is smaller then start date
+            
+            $rowcheck = Calculation::where('created_at', '<=', $startDate)->count();
+            if ($rowcheck > 1) {
+                // Get all calculations before the start date to adjust the previous balance
+            $previousIncome = Calculation::with('incomeEntries')->where('created_at', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
+            $previousExpense = Calculation::with('expenseEntries')->where('created_at', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
+            $previousNet = $previousIncome - $previousExpense;
+    
+            // Adjust previous balance
+            $previousBalance += $previousNet;
+            } else {
+                $previousBalance = 0; // There is no calculation before start date, so we set the previous balance to 0
+            }
+            
+        }
+
         if ($startDate && $endDate) {
             $cal = Calculation::whereBetween('created_at', [$startDate, $endDate])->pluck('id')->toArray();
             $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
@@ -157,9 +178,9 @@ class CalculationController extends Controller
         $totalIncome = $incomeEntries->sum('amount');
         $totalExpense = $expenseEntries->sum('amount');
         $netChange = $totalIncome - $totalExpense;
-        $netBalance = $calculation->previous_balance + $netChange;
+        $netBalance = $previousBalance + $netChange;
 
-        return view('backend.cashbook..show', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance'));
+        return view('backend.cashbook.show', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance', 'previousBalance', 'startDate', 'endDate'));
     }
 
     public function destroy($id)

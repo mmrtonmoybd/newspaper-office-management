@@ -20,11 +20,11 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="start_date">Start Date</label>
-                    <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
+                    <input type="date" name="start_date" id="start_date" class="form-control" value="{{ $startDate ?? '' }}">
                 </div>
                 <div class="col-md-4">
                     <label for="end_date">End Date</label>
-                    <input type="date" name="end_date" id="end_date" class="form-control" value="{{ request('end_date') }}">
+                    <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $endDate ?? '' }}">
                 </div>
                 <div class="col-md-4 d-flex align-items-end">
                     <button type="submit" class="btn btn-primary">Filter by Date</button>
@@ -33,10 +33,14 @@
         </form>
 
         <center><strong><h4 class="text-info">{{ $calculation->name }}</h4></strong></center>
+
          <!-- Previous Balance Section -->
+
+         @if ($previousBalance > 0)
          <div class="alert alert-secondary">
-            <h5>Previous Balance: <strong>{{ number_format($calculation->previous_balance, 2) }}</strong></h5>
+            <h5>Previous Balance: <strong>{{ number_format($previousBalance, 2) }}</strong></h5>
         </div>
+        @endif
 
         <div class="row">
             <!-- Income Section -->
@@ -122,16 +126,18 @@
                         <th>Total Expense</th>
                         <td>{{ number_format($totalExpense, 2) }}</td>
                     </tr>
+                    @if ($previousBalance > 0)
                     <tr>
                         <th>Previous Balance</th>
-                        <td>{{ number_format($calculation->previous_balance, 2) }}</td>
+                        <td>{{ number_format($previousBalance, 2) }}</td>
                     </tr>
+                    @endif
                     <tr>
                         <th>Net Balance</th>
                         <td>
                             @php
                                 $netChange = $totalIncome - $totalExpense;
-                                $netBalance = $calculation->previous_balance + $netChange;
+                                $netBalance = $previousBalance + $netChange;
                             @endphp
                             {{ number_format($netBalance, 2) }}
                         </td>
@@ -144,9 +150,9 @@
         <div class="mt-4">
             <h5>Calculation Details:</h5>
             <p>
-                <strong>Previous Balance:</strong> {{ number_format($calculation->previous_balance, 2) }}<br>
+            @if ($previousBalance > 0) <strong>Previous Balance:</strong> {{ number_format($previousBalance, 2) }}<br>@endif
                 <strong>+/- Income - Expense:</strong> {{ number_format($totalIncome, 2) }} - {{ number_format($totalExpense, 2) }} = {{ number_format($netChange, 2) }}<br>
-                <strong>Final Net Balance:</strong> {{ number_format($calculation->previous_balance, 2) }} + {{ number_format($netChange, 2) }} = <strong>{{ number_format($netBalance, 2) }}</strong>
+                <strong>Final Net Balance:</strong> {{ number_format($previousBalance, 2) }} + {{ number_format($netChange, 2) }} = <strong>{{ number_format($netBalance, 2) }}</strong>
             </p>
         </div>
     </div>

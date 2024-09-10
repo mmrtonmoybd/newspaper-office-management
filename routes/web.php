@@ -3,8 +3,8 @@
 use App\Http\Controllers\Ads\AdvertismentPanel\AdvertismentPanel;
 use App\Http\Controllers\Ads\An\AdsAnController;
 use App\Http\Controllers\Ads\Ass\AdsAsController;
-use App\Http\Controllers\CalculationController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Cashbook\CalculationController;
+use App\Http\Controllers\Cashbook\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
