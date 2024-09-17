@@ -9,10 +9,10 @@ class Cashbook implements MenuItemInterface
 {
     public function make(Builder $menu)
     {
-        $item = $menu->add('Cashbook management', [
+        $item = $menu->add('Cashbook', [
             'permission' => 'backend',
             'active' => 'backend.calculations.*|backend.cashbook.categories.*',
-            'icon' => 'square',
+            'icon' => 'fal fa-money-bill-alt',
             'order' => 100,
         ]);
 

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\ExpenseEntry;
 use App\Models\IncomeEntry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class CalculationController extends Controller
 {
@@ -124,6 +125,51 @@ class CalculationController extends Controller
         }
 
         $calculation->save();
+
+        $nextcalculation = Calculation::where('id', '>', $calculation->id)->count();
+
+        if ($nextcalculation > 0) {
+
+        $previousBalance = $calculation->balance;
+
+            // Fetch all subsequent calculations that need recalculation
+        $subsequentCalculations = Calculation::where('id', '>', $calculation->id)->orderBy('id', 'asc')->get();
+
+        // Recalculate balances for subsequent calculations
+        foreach ($subsequentCalculations as $subsequentCalculation) {
+            // Fetch income and expense totals for this calculation
+            $totalIncome = $subsequentCalculation->incomeEntries->sum('amount');
+            $totalExpense = $subsequentCalculation->expenseEntries->sum('amount');
+
+            // Calculate the net balance (Income - Expense)
+            $netBalance = $totalIncome - $totalExpense;
+
+            // Calculate the current balance for this calculation
+            $currentBalance = $previousBalance + $netBalance;
+
+            // Update the subsequent calculation balance with recalculated data
+           /*
+           $subsequentCalculation->update([
+                'previous_balance' => $previousBalance, // You should not have to create a new column; this is conceptual for recalculation
+                'balance' => $currentBalance,   // Update the current balance for the record
+            ]);
+            */
+
+            $upcal = Calculation::find($subsequentCalculation->id);
+            $upcal->previous_balance = $previousBalance;
+            $upcal->balance = $currentBalance;
+            $upcal->save();
+
+            $previousBalance = $currentBalance;
+
+
+            //dd($previousBalance);
+
+            // Set the previous balance for the next iteration
+            
+        }
+
+        }
 
         return redirect()->route('backend.calculations.index');
     }

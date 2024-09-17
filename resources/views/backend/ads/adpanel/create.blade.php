@@ -1,8 +1,8 @@
 @extends('boilerplate::layout.index', [
-    'title' => 'Ads panel',
-    'subtitle' => 'Ads panel lists',
+    'title' => 'Create Ads panel',
+    'subtitle' => 'Create Ads panel',
     'breadcrumb' => [
-        'Ads panel' => 'backend.ads.panel.index',
+        'Ads panel' => 'backend.ads.panel.create',
     ]
 ])
 
