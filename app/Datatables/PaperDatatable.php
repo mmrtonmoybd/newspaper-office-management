@@ -19,12 +19,12 @@ class PaperDatatable extends Datatable
     public function setUp()
     {
         $this->order('id', 'desc')
-        ->permissions('press_paper')
-        ->setRowId('id')
-        ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
-        ->pageLength(20)
-        ->condensed()
-        ->stateSave();
+            ->permissions('press_paper')
+            ->setRowId('id')
+            ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
+            ->pageLength(20)
+            ->condensed()
+            ->stateSave();
     }
 
     public function columns(): array
@@ -52,7 +52,7 @@ class PaperDatatable extends Datatable
                 ->data('date')
                 ->dateFormat(__('D/M/Y')),
 
-                /*
+            /*
             Column::add(__('Created At'))
                 ->data('created_at'),
 
@@ -63,10 +63,10 @@ class PaperDatatable extends Datatable
             Column::add()
                 ->width('20px')
                 ->actions(function (PressPaper $presspaper) {
-                    return join([
+                    return implode([
                         // Button::show('backend.paper.show', $presspaper),
-                         Button::edit('backend.paper.edit', $presspaper),
-                         Button::delete('backend.paper.destroy', $presspaper),
+                        Button::edit('backend.paper.edit', $presspaper),
+                        Button::delete('backend.paper.destroy', $presspaper),
                     ]);
                 }),
         ];

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Press;
 
+use App\Http\Controllers\Controller;
 use App\Models\PressPaper;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class PressPaperController extends Controller
 {
@@ -64,7 +64,7 @@ class PressPaperController extends Controller
     public function edit(PressPaper $paper)
     {
         return view('backend.press.paper.edit', [
-            'paper' => $paper
+            'paper' => $paper,
         ]);
     }
 

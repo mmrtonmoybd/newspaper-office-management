@@ -19,12 +19,12 @@ class PlateDatatable extends Datatable
     public function setUp()
     {
         $this->order('id', 'desc')
-        ->permissions('press_plate')
-        ->setRowId('id')
-        ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
-        ->pageLength(20)
-        ->condensed()
-        ->stateSave();;
+            ->permissions('press_plate')
+            ->setRowId('id')
+            ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
+            ->pageLength(20)
+            ->condensed()
+            ->stateSave();
     }
 
     public function columns(): array
@@ -52,7 +52,7 @@ class PlateDatatable extends Datatable
             Column::add(__('টোটাল প্লেট'))
                 ->data('total_plate'),
 
-           /* Column::add(__('Created At'))
+            /* Column::add(__('Created At'))
                 ->data('created_at'),
 
             Column::add(__('Updated At'))
@@ -62,10 +62,10 @@ class PlateDatatable extends Datatable
             Column::add()
                 ->width('20px')
                 ->actions(function (PressPlate $pressplate) {
-                    return join([
+                    return implode([
                         // Button::show('pressplate.show', $pressplate),
-                         Button::edit('backend.plate.edit', $pressplate),
-                         Button::delete('backend.plate.destroy', $pressplate),
+                        Button::edit('backend.plate.edit', $pressplate),
+                        Button::delete('backend.plate.destroy', $pressplate),
                     ]);
                 }),
         ];
