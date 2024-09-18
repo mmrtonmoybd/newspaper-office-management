@@ -99,6 +99,10 @@ class CalculationController extends Controller
 
         // Update income entries
         $calculation->incomeEntries()->delete();
+
+        if (is_null($request->income)) {
+            $calculation->balance += 0;
+        } else { 
         foreach ($request->income as $income) {
             IncomeEntry::create([
                 'calculation_id' => $calculation->id,
@@ -109,9 +113,15 @@ class CalculationController extends Controller
             ]);
             $calculation->balance += $income['amount'];
         }
+    }
+
+        //dd($arr, $request->income);
 
         // Update expense entries
         $calculation->expenseEntries()->delete();
+        if (is_null($request->expense)) {
+            $calculation->balance -= 0;
+        } else { 
         foreach ($request->expense as $expense) {
             ExpenseEntry::create([
                 'calculation_id' => $calculation->id,
@@ -121,7 +131,8 @@ class CalculationController extends Controller
                 'category_id' => $expense['category_id'],
             ]);
             $calculation->balance -= $expense['amount'];
-        }
+        } 
+    }
 
         $calculation->save();
 

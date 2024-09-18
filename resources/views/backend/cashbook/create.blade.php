@@ -9,25 +9,41 @@
 @section('content')
 
 <div class="container">
-    <div class="card">
-        <div class="card-header">Create Cashbook</div>
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h3>Create Cashbook</h3>
+            <a href="{{ route('backend.calculations.index') }}" class="btn btn-light">Back to List</a>
+        </div>
         <div class="card-body">
             <form action="{{ route('backend.calculations.store') }}" method="POST">
                 @csrf
-                <div class="form-group">
-                    <label for="name">Calculation Name</label>
-                    <input type="text" name="name" class="form-control" >
+                <div class="form-group mb-4">
+                    <label for="name" class="h5">Calculation Name</label>
+                    <input type="text" name="name" class="form-control form-control-lg rounded" placeholder="Enter calculation name">
                 </div>
 
-                <h4>Income Entries</h4>
-                <div id="income-entries"></div>
-                <button type="button" class="btn btn-secondary" id="add-income">Add Income</button>
+                <!-- Grid system to divide the income and expense entries -->
+                <div class="row">
+                    <!-- Left Side: Income Entries -->
+                    <div class="col-md-6">
+                        <h4 class="text-success">Income Entries</h4>
+                        <div id="income-entries"></div>
+                        <button type="button" class="btn btn-outline-success mt-3" id="add-income">
+                            <i class="fas fa-plus-circle"></i> Add Income
+                        </button>
+                    </div>
 
-                <h4>Expense Entries</h4>
-                <div id="expense-entries"></div>
-                <button type="button" class="btn btn-secondary" id="add-expense">Add Expense</button>
+                    <!-- Right Side: Expense Entries -->
+                    <div class="col-md-6">
+                        <h4 class="text-danger">Expense Entries</h4>
+                        <div id="expense-entries"></div>
+                        <button type="button" class="btn btn-outline-danger mt-3" id="add-expense">
+                            <i class="fas fa-plus-circle"></i> Add Expense
+                        </button>
+                    </div>
+                </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Save Cashbook</button>
+                <button type="submit" class="btn btn-primary mt-4 float-right shadow">Save Cashbook</button>
             </form>
         </div>
     </div>
@@ -37,64 +53,65 @@
     let incomeCount = 0;
     let expenseCount = 0;
 
-    document.getElementById('add-income').addEventListener('click', function () {
-        let newEntry = `
-            <div class="form-group">
-                <label for="income[${incomeCount}][description]">Description</label>
-                <input type="text" name="income[${incomeCount}][description]" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="income[${incomeCount}][amount]">Amount</label>
-                <input type="number" step="0.01" name="income[${incomeCount}][amount]" class="form-control" required>
-            </div>
-            <!--
-            <div class="form-group">
-                <label for="income[${incomeCount}][date]">Date</label>
-                <input type="date" name="income[${incomeCount}][date]" class="form-control">
-            </div>
-            -->
-            <div class="form-group">
-                <label for="income[${incomeCount}][category_id]">Entries heading</label>
-                <select name="income[${incomeCount}][category_id]" class="form-control">
-                    <option value="">No Entries heading</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
+    // Helper function to create card wrapper for form entries
+    function createCard(type, count) {
+        return `
+            <div class="card shadow-sm p-3 mb-3" id="${type}-${count}">
+                <div class="d-flex justify-content-between">
+                    <h5 class="text-${type === 'income' ? 'success' : 'danger'}">${type.charAt(0).toUpperCase() + type.slice(1)} Entry ${count + 1}</h5>
+                    <button type="button" class="btn btn-sm btn-outline-danger remove-${type}" data-count="${count}">
+                        <i class="fas fa-trash-alt"></i> Remove
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="${type}[${count}][description]">Description</label>
+                    <input type="text" name="${type}[${count}][description]" class="form-control" placeholder="Enter description">
+                </div>
+                <div class="form-group">
+                    <label for="${type}[${count}][amount]">Amount</label>
+                    <input type="number" step="0.01" name="${type}[${count}][amount]" class="form-control" required placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="${type}[${count}][category_id]">Entries Heading</label>
+                    <select name="${type}[${count}][category_id]" class="form-control">
+                        <option value="">No Entries Heading</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         `;
+    }
+
+    // Add income entry
+    document.getElementById('add-income').addEventListener('click', function () {
+        let newEntry = createCard('income', incomeCount);
         document.getElementById('income-entries').insertAdjacentHTML('beforeend', newEntry);
         incomeCount++;
     });
 
+    // Add expense entry
     document.getElementById('add-expense').addEventListener('click', function () {
-        let newEntry = `
-            <div class="form-group">
-                <label for="expense[${expenseCount}][description]">Description</label>
-                <input type="text" name="expense[${expenseCount}][description]" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="expense[${expenseCount}][amount]">Amount</label>
-                <input type="number" step="0.01" name="expense[${expenseCount}][amount]" class="form-control" required>
-            </div>
-            <!--
-            <div class="form-group">
-                <label for="expense[${expenseCount}][date]">Date</label>
-                <input type="date" name="expense[${expenseCount}][date]" class="form-control">
-            </div>
-            -->
-            <div class="form-group">
-                <label for="expense[${expenseCount}][category_id]">Entries heading</label>
-                <select name="expense[${expenseCount}][category_id]" class="form-control">
-                    <option value="">No Entries heading</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        `;
+        let newEntry = createCard('expense', expenseCount);
         document.getElementById('expense-entries').insertAdjacentHTML('beforeend', newEntry);
         expenseCount++;
+    });
+
+    // Remove dynamic income entry
+    document.getElementById('income-entries').addEventListener('click', function (e) {
+        if (e.target.closest('.remove-income')) {
+            let count = e.target.closest('.remove-income').dataset.count;
+            document.getElementById(`income-${count}`).remove();
+        }
+    });
+
+    // Remove dynamic expense entry
+    document.getElementById('expense-entries').addEventListener('click', function (e) {
+        if (e.target.closest('.remove-expense')) {
+            let count = e.target.closest('.remove-expense').dataset.count;
+            document.getElementById(`expense-${count}`).remove();
+        }
     });
 </script>
 
