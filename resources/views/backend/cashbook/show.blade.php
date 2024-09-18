@@ -159,6 +159,7 @@
 
     <div class="card-footer">
         <a href="{{ route('backend.calculations.index') }}" class="btn btn-primary">Back to List</a>
+        <a href="{{ route('backend.export', $calculation->id) }}?start_date={{$startDate}}&end_date={{$endDate}}" class="btn btn-primary">Print/Word</a>
     </div>
 </div>
 

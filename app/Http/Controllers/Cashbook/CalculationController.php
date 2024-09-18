@@ -238,6 +238,67 @@ class CalculationController extends Controller
         return view('backend.cashbook.show', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance', 'previousBalance', 'startDate', 'endDate'));
     }
 
+    public function export(Calculation $calculation, Request $request) {
+        // Get the start and end dates from the request
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // If dates are provided, filter the income and expense entries
+        $incomeEntries = $calculation->incomeEntries();
+        $expenseEntries = $calculation->expenseEntries();
+
+        // Step 1: Calculate the previous balance before the start date
+        $previousBalance = $calculation->previous_balance;
+        $range = '';
+
+        if ($startDate) {
+
+            // Check if there is no entry is smaller then start date
+
+            $rowcheck = Calculation::where('created_at', '<=', $startDate)->count();
+            if ($rowcheck > 1) {
+                // Get all calculations before the start date to adjust the previous balance
+                $previousIncome = Calculation::with('incomeEntries')->where('created_at', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
+                $previousExpense = Calculation::with('expenseEntries')->where('created_at', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
+                $previousNet = $previousIncome - $previousExpense;
+
+                // Adjust previous balance
+                $previousBalance += $previousNet;
+            } else {
+                $previousBalance = 0; // There is no calculation before start date, so we set the previous balance to 0
+            }
+
+        }
+
+        if ($startDate && $endDate) {
+            $cal = Calculation::whereBetween('created_at', [$startDate, $endDate])->pluck('id')->toArray();
+            $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
+            $expenseEntries = ExpenseEntry::whereIn('calculation_id', $cal);
+            //$incomeEntries->whereBetween('date', [$startDate, $endDate]);
+            //$expenseEntries->whereBetween('date', [$startDate, $endDate]);
+
+            $sdate= date_create($startDate);
+            $sv = date_format($sdate,"d/m/Y");
+            $edate = date_create($endDate);
+            $ev = date_format($edate,"d/m/Y");
+            $range = (string) $sv . '--' . (string)$ev;
+        }
+
+        // Get the filtered entries
+        $incomeEntries = $incomeEntries->get();
+        $expenseEntries = $expenseEntries->get();
+
+        //dd($incomeEntries);
+
+        // Calculate total income, total expense, and net balance
+        $totalIncome = $incomeEntries->sum('amount');
+        $totalExpense = $expenseEntries->sum('amount');
+        $netChange = $totalIncome - $totalExpense;
+        $netBalance = $previousBalance + $netChange;
+
+        return view('backend.cashbook.export', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance', 'previousBalance', 'startDate', 'endDate', 'range'));
+    }
+
     public function destroy($id)
     {
         // Find the calculation to delete

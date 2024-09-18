@@ -64,6 +64,7 @@ Route::group($default, function () {
 
     Route::group(['prefix' => 'cashbook'], function () {
         Route::resource('calculations', CalculationController::class)->middleware('ability:admin,cashbook')->names('calculations');
+        Route::get('calculations/export/{calculation}', [CalculationController::class, 'export'])->name('export');
         Route::resource('categories', CategoryController::class)->middleware('ability:admin,cashbook_entry_heading')->names('categories');
     });
 
