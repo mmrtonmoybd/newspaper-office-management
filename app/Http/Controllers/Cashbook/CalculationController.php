@@ -102,18 +102,18 @@ class CalculationController extends Controller
 
         if (is_null($request->income)) {
             $calculation->balance += 0;
-        } else { 
-        foreach ($request->income as $income) {
-            IncomeEntry::create([
-                'calculation_id' => $calculation->id,
-                'description' => $income['description'],
-                'amount' => $income['amount'],
-                //'date' => $income['date'],
-                'category_id' => $income['category_id'],
-            ]);
-            $calculation->balance += $income['amount'];
+        } else {
+            foreach ($request->income as $income) {
+                IncomeEntry::create([
+                    'calculation_id' => $calculation->id,
+                    'description' => $income['description'],
+                    'amount' => $income['amount'],
+                    //'date' => $income['date'],
+                    'category_id' => $income['category_id'],
+                ]);
+                $calculation->balance += $income['amount'];
+            }
         }
-    }
 
         //dd($arr, $request->income);
 
@@ -121,18 +121,18 @@ class CalculationController extends Controller
         $calculation->expenseEntries()->delete();
         if (is_null($request->expense)) {
             $calculation->balance -= 0;
-        } else { 
-        foreach ($request->expense as $expense) {
-            ExpenseEntry::create([
-                'calculation_id' => $calculation->id,
-                'description' => $expense['description'],
-                'amount' => $expense['amount'],
-                //'date' => $expense['date'],
-                'category_id' => $expense['category_id'],
-            ]);
-            $calculation->balance -= $expense['amount'];
-        } 
-    }
+        } else {
+            foreach ($request->expense as $expense) {
+                ExpenseEntry::create([
+                    'calculation_id' => $calculation->id,
+                    'description' => $expense['description'],
+                    'amount' => $expense['amount'],
+                    //'date' => $expense['date'],
+                    'category_id' => $expense['category_id'],
+                ]);
+                $calculation->balance -= $expense['amount'];
+            }
+        }
 
         $calculation->save();
 
