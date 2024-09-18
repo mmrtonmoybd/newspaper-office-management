@@ -238,7 +238,8 @@ class CalculationController extends Controller
         return view('backend.cashbook.show', compact('calculation', 'incomeEntries', 'expenseEntries', 'totalIncome', 'totalExpense', 'netBalance', 'previousBalance', 'startDate', 'endDate'));
     }
 
-    public function export(Calculation $calculation, Request $request) {
+    public function export(Calculation $calculation, Request $request)
+    {
         // Get the start and end dates from the request
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
@@ -277,11 +278,11 @@ class CalculationController extends Controller
             //$incomeEntries->whereBetween('date', [$startDate, $endDate]);
             //$expenseEntries->whereBetween('date', [$startDate, $endDate]);
 
-            $sdate= date_create($startDate);
-            $sv = date_format($sdate,"d/m/Y");
+            $sdate = date_create($startDate);
+            $sv = date_format($sdate, 'd/m/Y');
             $edate = date_create($endDate);
-            $ev = date_format($edate,"d/m/Y");
-            $range = (string) $sv . '--' . (string)$ev;
+            $ev = date_format($edate, 'd/m/Y');
+            $range = (string) $sv.'--'.(string) $ev;
         }
 
         // Get the filtered entries
