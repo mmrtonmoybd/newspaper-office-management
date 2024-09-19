@@ -13,7 +13,7 @@ class Cashbook implements MenuItemInterface
             'permission' => 'backend',
             'active' => 'backend.calculations.*|backend.cashbook.categories.*',
             'icon' => 'fal fa-money-bill-alt',
-            'order' => 100,
+            'order' => 200,
         ]);
 
         $item->add('Cashbook', [

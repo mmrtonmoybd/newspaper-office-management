@@ -13,7 +13,7 @@ class Press implements MenuItemInterface
             'permission' => 'press_paper',
             'active' => 'backend.paper.*',
             'icon' => 'fa-newspaper',
-            'order' => 100,
+            'order' => 300,
         ]);
 
         $item->add('Ink', [

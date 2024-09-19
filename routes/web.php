@@ -5,6 +5,7 @@ use App\Http\Controllers\Ads\An\AdsAnController;
 use App\Http\Controllers\Ads\Ass\AdsAsController;
 use App\Http\Controllers\Cashbook\CalculationController;
 use App\Http\Controllers\Cashbook\CategoryController;
+use App\Http\Controllers\Circulation\RepresentativeController;
 use App\Http\Controllers\Press\PressInkController;
 use App\Http\Controllers\Press\PressPaperController;
 use App\Http\Controllers\Press\PressPlateController;
@@ -74,6 +75,10 @@ Route::group($default, function () {
         Route::resource('plate', PressPlateController::class)->middleware('ability:admin,press_plate')->names('plate');
         Route::resource('ink', PressInkController::class)->middleware('ability:admin,press_ink')->names('ink');
         //Route::get('test/{plate}', [PressPlateController::class, 'delete']);
+    });
+
+    Route::group(['prefix' => 'circulation'], function () {
+        Route::resource('representative', RepresentativeController::class)->middleware('ability:admin,press_paper')->names('representative');
     });
 
 });
