@@ -1,0 +1,57 @@
+@extends('boilerplate::layout.index', [
+    'title' => 'Press ink',
+    'subtitle' => 'Create press ink',
+    'breadcrumb' => [
+        'Press ink create' => 'backend.ink.create',
+    ]
+])
+
+@section('content')
+<x-boilerplate::form route='backend.ink.store'>
+        <div class="row">
+            <div class="col-12 pb-3">
+                <a href="{{ route("backend.ink.index") }}" class="btn btn-default" data-toggle="tooltip" title="Press ink lists">
+                    <span class="far fa-arrow-alt-circle-left text-muted"></span>
+                </a>
+                <span class="btn-group float-right">
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+<x-boilerplate::card>
+            <div class="row">
+
+                <div class="col-6">
+                <x-boilerplate::input name='color' type='text' label='কালার' clearable=true placeholder='কালার' required/>
+                </div>
+
+                <div class="col-6">
+                <x-boilerplate::input name='amount' type='number' label='টাকা' clearable=true placeholder='টাকা' required/>
+                </div>
+
+                <div class="col-6">
+                <x-boilerplate::datetimepicker name="purchased_date" clearable=true placeholder='ক্রয়ের তারিখ' required label="ক্রয়ের তারিখ" format="D/M/Y" />
+                </div>
+
+
+                <br><br>
+
+
+                <div class="col-6">
+                <x-boilerplate::input name='quantity' type='text' label='পরিমান' clearable=true placeholder='পরিমান' required/>
+                </div>
+
+                <div class="col-6">
+                <x-boilerplate::datetimepicker name="ink_end" clearable=true placeholder='কালি শেষ হওয়ার তারিখ' label="কালি শেষ হওয়ার তারিখ" format="D/M/Y" />
+                </div>
+
+            </div>
+</x-boilerplate::card>
+        </div>
+    </div>
+</x-boilerplate::form>
+@endsection

@@ -16,6 +16,12 @@ class Press implements MenuItemInterface
             'order' => 100,
         ]);
 
+        $item->add('Ink', [
+            'permission' => 'press_ink',
+            'active' => 'backend.ink.*',
+            'route' => 'backend.ink.index',
+        ]);
+
         $item->add('Paper', [
             'permission' => 'press_paper',
             'active' => 'backend.paper.*',

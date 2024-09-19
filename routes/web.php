@@ -5,6 +5,7 @@ use App\Http\Controllers\Ads\An\AdsAnController;
 use App\Http\Controllers\Ads\Ass\AdsAsController;
 use App\Http\Controllers\Cashbook\CalculationController;
 use App\Http\Controllers\Cashbook\CategoryController;
+use App\Http\Controllers\Press\PressInkController;
 use App\Http\Controllers\Press\PressPaperController;
 use App\Http\Controllers\Press\PressPlateController;
 use Illuminate\Support\Facades\Route;
@@ -70,8 +71,9 @@ Route::group($default, function () {
 
     Route::group(['prefix' => 'press'], function () {
         Route::resource('paper', PressPaperController::class)->middleware('ability:admin,press_paper')->names('paper');
-        Route::resource('plate', PressPlateController::class)->names('plate');
-        Route::get('test/{plate}', [PressPlateController::class, 'delete']);
+        Route::resource('plate', PressPlateController::class)->middleware('ability:admin,press_plate')->names('plate');
+        Route::resource('ink', PressInkController::class)->middleware('ability:admin,press_ink')->names('ink');
+        //Route::get('test/{plate}', [PressPlateController::class, 'delete']);
     });
 
 });
