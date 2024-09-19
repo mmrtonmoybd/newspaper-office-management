@@ -45,7 +45,7 @@ class RepresentativeDatatable extends Datatable
             Column::add(__('ঠিকানা'))
                 ->data('address'),
 
-                /*
+            /*
             Column::add(__('Created At'))
                 ->data('created_at'),
 
@@ -56,10 +56,10 @@ class RepresentativeDatatable extends Datatable
             Column::add()
                 ->width('20px')
                 ->actions(function (MonthlyCirculationRepen $monthlycirculationrepen) {
-                    return join([
+                    return implode([
                         // Button::show('monthlycirculationrepen.show', $monthlycirculationrepen),
-                         Button::edit('backend.representative.edit', $monthlycirculationrepen),
-                         Button::delete('backend.representative.destroy', $monthlycirculationrepen),
+                        Button::edit('backend.representative.edit', $monthlycirculationrepen),
+                        Button::delete('backend.representative.destroy', $monthlycirculationrepen),
                     ]);
                 }),
         ];
