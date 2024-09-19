@@ -68,8 +68,8 @@ class RepresentativeController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'email|unique:monthly_circulation_repens,email,'.$representative->id,
-            'mobile' => 'string|unique:monthly_circulation_repens,mobile,'.$representative->id,
+            'email' => 'nullable|email|unique:monthly_circulation_repens,email,'.$representative->id,
+            'mobile' => 'nullable|string|unique:monthly_circulation_repens,mobile,'.$representative->id,
         ]);
 
         $representative->update($request->all());
