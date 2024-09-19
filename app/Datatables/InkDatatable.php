@@ -50,7 +50,7 @@ class InkDatatable extends Datatable
                 ->data('ink_end')
                 ->dateFormat(__('D/M/Y')),
 
-                /*
+            /*
             Column::add(__('Created At'))
                 ->data('created_at'),
 
@@ -62,10 +62,10 @@ class InkDatatable extends Datatable
             Column::add()
                 ->width('20px')
                 ->actions(function (PressInk $pressink) {
-                    return join([
+                    return implode([
                         // Button::show('pressink.show', $pressink),
-                         Button::edit('backend.ink.edit', $pressink),
-                         Button::delete('backend.ink.destroy', $pressink),
+                        Button::edit('backend.ink.edit', $pressink),
+                        Button::delete('backend.ink.destroy', $pressink),
                     ]);
                 }),
         ];
