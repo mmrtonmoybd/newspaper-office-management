@@ -5,6 +5,7 @@ use App\Http\Controllers\Ads\An\AdsAnController;
 use App\Http\Controllers\Ads\Ass\AdsAsController;
 use App\Http\Controllers\Cashbook\CalculationController;
 use App\Http\Controllers\Cashbook\CategoryController;
+use App\Http\Controllers\Circulation\MonthlyController;
 use App\Http\Controllers\Circulation\RepresentativeController;
 use App\Http\Controllers\Press\PressInkController;
 use App\Http\Controllers\Press\PressPaperController;
@@ -79,6 +80,7 @@ Route::group($default, function () {
 
     Route::group(['prefix' => 'circulation'], function () {
         Route::resource('representative', RepresentativeController::class)->middleware('ability:admin,press_paper')->names('representative');
+        Route::resource('monthly', MonthlyController::class)->names('monthly');
     });
 
 });

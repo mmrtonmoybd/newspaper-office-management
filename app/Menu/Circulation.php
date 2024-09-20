@@ -16,6 +16,12 @@ class Circulation implements MenuItemInterface
             'order' => 100,
         ]);
 
+        $item->add('Monthly', [
+            'permission' => 'backend',
+            'active' => 'backend.monthly.*',
+            'route' => 'backend.monthly.index',
+        ]);
+
         $item->add('Representative', [
             'permission' => 'backend',
             'active' => 'backend.representative.*',
