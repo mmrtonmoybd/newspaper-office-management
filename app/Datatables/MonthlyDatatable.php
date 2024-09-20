@@ -68,7 +68,7 @@ class MonthlyDatatable extends Datatable
                 ->data('created_at')
                 ->dateFormat(__('D/M/Y')),
 
-                /*
+            /*
             Column::add(__('Updated At'))
                 ->data('updated_at'),
 
@@ -77,10 +77,10 @@ class MonthlyDatatable extends Datatable
             Column::add()
                 ->width('20px')
                 ->actions(function (MonthlyCirculation $monthlycirculation) {
-                    return join([
+                    return implode([
                         // Button::show('monthlycirculation.show', $monthlycirculation),
-                         Button::edit('backend.monthly.edit', $monthlycirculation),
-                         Button::delete('backend.monthly.destroy', $monthlycirculation),
+                        Button::edit('backend.monthly.edit', $monthlycirculation),
+                        Button::delete('backend.monthly.destroy', $monthlycirculation),
                     ]);
                 }),
         ];

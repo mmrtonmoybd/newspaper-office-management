@@ -8,7 +8,7 @@ class MonthlyCirculation extends Model
 {
     protected $fillable = [
         'monthly_circulation_repen_id', 'district', 'send_quantity',
-        'monthly_bill', 'paid_bill', 'paid_date', 'due_bill', 'comment'
+        'monthly_bill', 'paid_bill', 'paid_date', 'due_bill', 'comment',
     ];
 
     public function representative()
@@ -55,7 +55,7 @@ class MonthlyCirculation extends Model
             if ($previousCirculation && $nextCirculation) {
                 // Recalculate future records starting from the one after the deleted record
                 self::adjustFutureRecords($previousCirculation);
-            } else if ($nextCirculation) {
+            } elseif ($nextCirculation) {
                 // No previous circulation, so adjust future records from the start
                 $nextCirculation->due_bill = $nextCirculation->monthly_bill - $nextCirculation->paid_bill;
                 $nextCirculation->save();
@@ -85,18 +85,18 @@ class MonthlyCirculation extends Model
 
         if ($isCreating && $circulation->due_bill !== null) {
             // If user provides due_bill during creation
-            $circulation->due_bill = $previousCirculation 
-                ? $currentDue + $circulation->due_bill + $previousCirculation->due_bill 
+            $circulation->due_bill = $previousCirculation
+                ? $currentDue + $circulation->due_bill + $previousCirculation->due_bill
                 : $currentDue + $circulation->due_bill;
-        } elseif (!$isCreating && $circulation->isDirty('due_bill')) {
+        } elseif (! $isCreating && $circulation->isDirty('due_bill')) {
             // If user modifies due_bill during update
-            $circulation->due_bill = $previousCirculation 
-                ? $currentDue + $circulation->due_bill + $previousCirculation->due_bill 
+            $circulation->due_bill = $previousCirculation
+                ? $currentDue + $circulation->due_bill + $previousCirculation->due_bill
                 : $currentDue + $circulation->due_bill;
         } else {
             // If no due_bill is provided or modified, calculate automatically
-            $circulation->due_bill = $previousCirculation 
-                ? $currentDue + $previousCirculation->due_bill 
+            $circulation->due_bill = $previousCirculation
+                ? $currentDue + $previousCirculation->due_bill
                 : $currentDue;
         }
     }

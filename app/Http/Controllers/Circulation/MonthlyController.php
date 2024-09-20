@@ -62,7 +62,7 @@ class MonthlyController extends Controller
     public function edit(MonthlyCirculation $monthly)
     {
         return view('backend.circulation.monthly.edit', [
-            'monthly' => $monthly
+            'monthly' => $monthly,
         ]);
     }
 
