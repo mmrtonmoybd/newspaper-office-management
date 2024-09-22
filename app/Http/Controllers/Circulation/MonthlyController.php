@@ -54,7 +54,7 @@ class MonthlyController extends Controller
     public function show(MonthlyCirculation $monthly)
     {
         return view('backend.circulation.monthly.view', [
-            'monthly' => $monthly
+            'monthly' => $monthly,
         ]);
     }
 

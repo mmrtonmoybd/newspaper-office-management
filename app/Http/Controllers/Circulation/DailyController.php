@@ -33,7 +33,7 @@ class DailyController extends Controller
             'sell_date' => 'nullable|date',
             'buyer_name' => 'required|string',
             'sell_quantity' => 'required|numeric',
-            'per_price' => 'required|numeric'
+            'per_price' => 'required|numeric',
         ]);
 
         DailyCirculation::create($request->all());
@@ -50,7 +50,7 @@ class DailyController extends Controller
     public function show(DailyCirculation $daily)
     {
         return view('backend.circulation.daily.view', [
-            'daily' => $daily
+            'daily' => $daily,
         ]);
     }
 
@@ -60,7 +60,7 @@ class DailyController extends Controller
     public function edit(DailyCirculation $daily)
     {
         return view('backend.circulation.daily.edit', [
-            'daily' => $daily
+            'daily' => $daily,
         ]);
     }
 
@@ -73,7 +73,7 @@ class DailyController extends Controller
             'sell_date' => 'nullable|date',
             'buyer_name' => 'required|string',
             'sell_quantity' => 'required|numeric',
-            'per_price' => 'required|numeric'
+            'per_price' => 'required|numeric',
         ]);
 
         $daily->update($request->all());

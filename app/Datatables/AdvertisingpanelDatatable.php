@@ -53,9 +53,9 @@ class AdvertisingpanelDatatable extends Datatable
                 ->dateFormat(__('D/M/Y')),
 
             Column::add(__('মন্তব্য'))
-            ->data('comment', function (AdvertismentPanel $advertismentpanel) {
-                return Str::limit($advertismentpanel->comment, 50);
-            }),
+                ->data('comment', function (AdvertismentPanel $advertismentpanel) {
+                    return Str::limit($advertismentpanel->comment, 50);
+                }),
 
             Column::add(__('তারিখ'))
                 ->data('created_at')

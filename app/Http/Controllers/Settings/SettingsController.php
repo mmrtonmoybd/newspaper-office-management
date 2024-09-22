@@ -18,27 +18,27 @@ class SettingsController extends Controller
 
         return view('backend.settings.edit', [
             'update' => $upsetting,
-            'delete' => $delsetting
+            'delete' => $delsetting,
         ]);
     }
 
-   public function update(Request $request) 
-   {
+    public function update(Request $request)
+    {
 
-       $request->validate([
-        'update_within' => 'required|numeric',
-        'delete_within' => 'required|numeric'
-       ]);
+        $request->validate([
+            'update_within' => 'required|numeric',
+            'delete_within' => 'required|numeric',
+        ]);
 
-       Setting::where('name', 'update_within')->update([
-        'value' => $request->input('update_within')
-       ]);
+        Setting::where('name', 'update_within')->update([
+            'value' => $request->input('update_within'),
+        ]);
 
-       Setting::where('name', 'delete_within')->update([
-        'value' => $request->input('delete_within')
-       ]);
+        Setting::where('name', 'delete_within')->update([
+            'value' => $request->input('delete_within'),
+        ]);
 
-       return redirect()->route('backend.settings.index')
+        return redirect()->route('backend.settings.index')
             ->with('growl', ['The data has been correctly updated.', 'success']);
-   }
+    }
 }

@@ -49,7 +49,7 @@ class DailyDatatable extends Datatable
             Column::add(__('মোট টাকা'))
                 ->data('total_price'),
 
-                /*
+            /*
             Column::add(__('Created At'))
                 ->data('created_at'),
 
@@ -60,10 +60,10 @@ class DailyDatatable extends Datatable
             Column::add()
                 ->width('20px')
                 ->actions(function (DailyCirculation $dailycirculation) {
-                    return join([
-                         Button::show('backend.daily.show', $dailycirculation),
-                         Button::edit('backend.daily.edit', $dailycirculation),
-                         Button::delete('backend.daily.destroy', $dailycirculation),
+                    return implode([
+                        Button::show('backend.daily.show', $dailycirculation),
+                        Button::edit('backend.daily.edit', $dailycirculation),
+                        Button::delete('backend.daily.destroy', $dailycirculation),
                     ]);
                 }),
         ];
