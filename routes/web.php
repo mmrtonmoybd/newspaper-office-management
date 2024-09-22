@@ -5,11 +5,13 @@ use App\Http\Controllers\Ads\An\AdsAnController;
 use App\Http\Controllers\Ads\Ass\AdsAsController;
 use App\Http\Controllers\Cashbook\CalculationController;
 use App\Http\Controllers\Cashbook\CategoryController;
+use App\Http\Controllers\Circulation\DailyController;
 use App\Http\Controllers\Circulation\MonthlyController;
 use App\Http\Controllers\Circulation\RepresentativeController;
 use App\Http\Controllers\Press\PressInkController;
 use App\Http\Controllers\Press\PressPaperController;
 use App\Http\Controllers\Press\PressPlateController;
+use App\Http\Controllers\Settings\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -54,14 +56,8 @@ Route::group($default, function () {
     });
 
     Route::group(['prefix' => 'ads', 'as' => 'ads.'], function () {
-        Route::resource('an', AdsAnController::class)->middleware('ability:admin,an_permission')->names('an');
-    });
-
-    Route::group(['prefix' => 'ads', 'as' => 'ads.'], function () {
         Route::resource('as', AdsAsController::class)->middleware('ability:admin,as_permission')->names('as');
-    });
-
-    Route::group(['prefix' => 'ads', 'as' => 'ads.'], function () {
+        Route::resource('an', AdsAnController::class)->middleware('ability:admin,an_permission')->names('an');
         Route::resource('panel', AdvertismentPanel::class)->middleware('ability:admin,ads_panel')->names('panel');
     });
 
@@ -79,8 +75,14 @@ Route::group($default, function () {
     });
 
     Route::group(['prefix' => 'circulation'], function () {
-        Route::resource('representative', RepresentativeController::class)->middleware('ability:admin,press_paper')->names('representative');
-        Route::resource('monthly', MonthlyController::class)->names('monthly');
+        Route::resource('representative', RepresentativeController::class)->middleware('ability:admin,representative_monthly_circulation')->names('representative');
+        Route::resource('monthly', MonthlyController::class)->middleware('ability:admin,monthly_circulation')->names('monthly');
+        Route::resource('daily', DailyController::class)->middleware('ability:admin,daily_circulation')->names('daily');
+    });
+
+    Route::group(['prefix' => 'settings', 'middleware' => 'ability:admin,settings'], function () {
+        Route::get('index', [SettingsController::class, 'index'])->name('settings.index');
+        Route::post('update', [SettingsController::class, 'update'])->name('settings.update');
     });
 
 });

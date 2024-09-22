@@ -10,7 +10,7 @@ class Press implements MenuItemInterface
     public function make(Builder $menu)
     {
         $item = $menu->add('Press', [
-            'permission' => 'press_paper',
+            'permission' => 'press_paper|press_ink|press_plate',
             'active' => 'backend.paper.*',
             'icon' => 'fa-newspaper',
             'order' => 300,

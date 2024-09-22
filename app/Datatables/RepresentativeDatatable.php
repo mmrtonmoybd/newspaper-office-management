@@ -19,7 +19,7 @@ class RepresentativeDatatable extends Datatable
     public function setUp()
     {
         $this->order('id', 'desc')
-            ->permissions('press_ink')
+            ->permissions('representative_monthly_circulation')
             ->setRowId('id')
             ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
             ->pageLength(20)

@@ -10,7 +10,7 @@ class Advertisement implements MenuItemInterface
     public function make(Builder $menu)
     {
         $item = $menu->add('Advertisement', [
-            'permission' => 'an_permission|as_permission',
+            'permission' => 'an_permission|as_permission|ads_panel',
             'active' => 'backend.ads.*',
             'icon' => 'fa-ad',
             'order' => 100,

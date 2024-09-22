@@ -3,6 +3,7 @@
 namespace App\Datatables;
 
 use App\Models\MonthlyCirculation;
+use Illuminate\Support\Str;
 use App\Models\MonthlyCirculationRepen;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
@@ -20,7 +21,7 @@ class MonthlyDatatable extends Datatable
     public function setUp()
     {
         $this->order('id', 'desc')
-            ->permissions('press_ink')
+            ->permissions('monthly_circulation')
             ->setRowId('id')
             ->buttons('filters', 'print', 'excel', 'csv', 'refresh')
             ->pageLength(20)
@@ -61,8 +62,13 @@ class MonthlyDatatable extends Datatable
             Column::add(__('চলতি বকেয়া'))
                 ->data('due_bill'),
 
+            Column::add(__('অতিরিক্ত বকেয়া'))
+                ->data('extra_due_bill'),
+
             Column::add(__('মন্তব্য'))
-                ->data('comment'),
+            ->data('comment', format: function (MonthlyCirculation $monthlycirculation) {
+                return Str::limit($monthlycirculation->comment, 50);
+            }),
 
             Column::add(__('তারিখ'))
                 ->data('created_at')
@@ -78,7 +84,7 @@ class MonthlyDatatable extends Datatable
                 ->width('20px')
                 ->actions(function (MonthlyCirculation $monthlycirculation) {
                     return implode([
-                        // Button::show('monthlycirculation.show', $monthlycirculation),
+                         Button::show('backend.monthly.show', $monthlycirculation),
                         Button::edit('backend.monthly.edit', $monthlycirculation),
                         Button::delete('backend.monthly.destroy', $monthlycirculation),
                     ]);

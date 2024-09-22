@@ -3,6 +3,7 @@
 namespace App\Datatables;
 
 use App\Models\AdvertismentPanel;
+use Illuminate\Support\Str;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
@@ -52,7 +53,9 @@ class AdvertisingpanelDatatable extends Datatable
                 ->dateFormat(__('D/M/Y')),
 
             Column::add(__('মন্তব্য'))
-                ->data('comment'),
+            ->data('comment', function (AdvertismentPanel $advertismentpanel) {
+                return Str::limit($advertismentpanel->comment, 50);
+            }),
 
             Column::add(__('তারিখ'))
                 ->data('created_at')

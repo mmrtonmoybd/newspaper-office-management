@@ -13,11 +13,7 @@
                 <a href="{{ route("backend.ads.as.index") }}" class="btn btn-default" data-toggle="tooltip" title="A/S lists">
                     <span class="far fa-arrow-alt-circle-left text-muted"></span>
                 </a>
-                <span class="btn-group float-right">
-                    <button type="submit" class="btn btn-primary">
-                        Save
-                    </button>
-                </span>
+                
             </div>
         </div>
         <div class="row">

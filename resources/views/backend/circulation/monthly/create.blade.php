@@ -62,11 +62,11 @@
 
                             <!-- চলতি বকেয়া -->
                             
-                                <x-boilerplate::input name='due_bill' type='number' id="due_bill" label='চলতি বকেয়া' clearable=true placeholder='চলতি বকেয়া' disabled/>
-                                <small class="form-text text-muted">মাসিক বিল থেকে পরিশোধিত বিল বাদ দিয়ে চলতি বকেয়া নির্ণয় গণনা করা হয়। <br><font color='red'>বি:দ্র: যদি চলমান বকেয়া গণনার(মাসিক বিল - পরিশোধিত বিল) অতিরিক্ত বকেয়া থাকে তবে "কাস্টম চলতি বকেয়া" বাটন টি চাপ দিয়ে উক্ত ফর্মে গণনাকৃত (মাসিক বিল - পরিশোধিত বিল) বকেয়াটি বাদ দিয়ে অতিরিক্তটি লিখতে হবে।</font></small>
+                                <x-boilerplate::input name='extra_due_bill' type='number' id="extra_due_bill" label='অতিরিক্ত বকেয়া' clearable=true placeholder='অতিরিক্ত বকেয়া' disabled/>
+                                <small class="form-text text-muted">মাসিক বিল থেকে পরিশোধিত বিল বাদ দিয়ে চলতি বকেয়া নির্ণয় গণনা করা হয়। <br><font color='red'>বি:দ্র: যদি চলমান বকেয়া গণনার(মাসিক বিল - পরিশোধিত বিল) অতিরিক্ত বকেয়া থাকে তবে "কাস্টম অতিরিক্ত বকেয়া" বাটন টি চাপ দিয়ে অতিরিক্তটি লিখতে হবে।</font></small>
                                 <div class="form-check mt-2">
                                     <input class="form-check-input" type="checkbox" id="enableDueBill">
-                                    <label class="form-check-label" for="enableDueBill">কাস্টম চলতি বকেয়া</label>
+                                    <label class="form-check-label" for="enableDueBill">কাস্টম অতিরিক্ত বকেয়া</label>
                                 </div>
                             
 
@@ -89,7 +89,7 @@
 <script>
     // Enable or disable the due_bill input field based on the checkbox
     document.getElementById('enableDueBill').addEventListener('change', function() {
-        var dueBillInput = document.getElementById('due_bill');
+        var dueBillInput = document.getElementById('extra_due_bill');
         dueBillInput.disabled = !this.checked;
     });
 </script>
