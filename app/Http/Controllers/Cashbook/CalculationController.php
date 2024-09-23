@@ -49,6 +49,9 @@ class CalculationController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'date' => 'required|date'
+        ]);
         $previousCalculation = Calculation::latest()->first();
         $previousBalance = $previousCalculation ? $previousCalculation->balance : 0;
 
@@ -98,6 +101,10 @@ class CalculationController extends Controller
     public function update(Request $request, Calculation $calculation)
     {
         Gate::authorize('update', [$calculation->created_at, 'update_cashbook']);
+
+        $request->validate([
+            'date' => 'required|date'
+        ]);
 
         $calculation->name = $request->name;
         $calculation->balance = $calculation->previous_balance;
