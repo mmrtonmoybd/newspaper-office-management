@@ -4,6 +4,7 @@ namespace App\Datatables;
 
 use App\Models\AdAn;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
@@ -75,8 +76,8 @@ class AdvertisanDatatable extends Datatable
                 ->actions(function (AdAn $adan) {
                     return implode([
                         Button::show('backend.ads.an.show', $adan),
-                        Button::edit('backend.ads.an.edit', $adan),
-                        Button::delete('backend.ads.an.destroy', $adan),
+                        (Gate::allows('update', [$adan->created_at, 'update_an'])) ? Button::edit('backend.ads.an.edit', $adan) : null,
+                        (Gate::allows('delete', [$adan->created_at, 'delete_an'])) ? Button::delete('backend.ads.an.destroy', $adan) : null,
                     ]);
                 }),
         ];

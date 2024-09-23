@@ -5,6 +5,7 @@ namespace App\Datatables;
 use App\Models\MonthlyCirculationRepen;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
 
 class RepresentativeDatatable extends Datatable
@@ -58,8 +59,8 @@ class RepresentativeDatatable extends Datatable
                 ->actions(function (MonthlyCirculationRepen $monthlycirculationrepen) {
                     return implode([
                         // Button::show('monthlycirculationrepen.show', $monthlycirculationrepen),
-                        Button::edit('backend.representative.edit', $monthlycirculationrepen),
-                        Button::delete('backend.representative.destroy', $monthlycirculationrepen),
+                        (Gate::allows('update', [$monthlycirculationrepen->created_at, 'update_representative'])) ? Button::edit('backend.representative.edit', $monthlycirculationrepen) : null,
+                        (Gate::allows('delete', [$monthlycirculationrepen->created_at, 'delete_representative'])) ? Button::delete('backend.representative.destroy', $monthlycirculationrepen) : null,
                     ]);
                 }),
         ];

@@ -5,6 +5,7 @@ namespace App\Datatables;
 use App\Models\PressPaper;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
 
 class PaperDatatable extends Datatable
@@ -65,8 +66,8 @@ class PaperDatatable extends Datatable
                 ->actions(function (PressPaper $presspaper) {
                     return implode([
                         // Button::show('backend.paper.show', $presspaper),
-                        Button::edit('backend.paper.edit', $presspaper),
-                        Button::delete('backend.paper.destroy', $presspaper),
+                        (Gate::allows('update', [$presspaper->created_at, 'update_paper'])) ? Button::edit('backend.paper.edit', $presspaper) : null,
+                        (Gate::allows('delete', [$presspaper->created_at, 'delete_paper'])) ? Button::delete('backend.paper.destroy', $presspaper) : null,
                     ]);
                 }),
         ];

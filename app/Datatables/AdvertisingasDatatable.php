@@ -3,6 +3,7 @@
 namespace App\Datatables;
 
 use App\Models\AdAs;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
@@ -75,8 +76,8 @@ class AdvertisingasDatatable extends Datatable
                 ->actions(function (AdAs $adas) {
                     return implode([
                         Button::show('backend.ads.as.show', $adas),
-                        Button::edit('backend.ads.as.edit', $adas),
-                        Button::delete('backend.ads.as.destroy', $adas),
+                        (Gate::allows('update', [$adas->created_at, 'update_as'])) ? Button::edit('backend.ads.as.edit', $adas) : null,
+                        (Gate::allows('delete', [$adas->created_at, 'delete_as'])) ? Button::delete('backend.ads.as.destroy', $adas) : null,
                     ]);
                 }),
         ];

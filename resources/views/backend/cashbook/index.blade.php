@@ -39,12 +39,19 @@
                         <td>{{ number_format($calculation['netBalance'], 2) }}</td>
                         <td>
                             <a href="{{ route('backend.calculations.show', $calculation['id']) }}" class="btn btn-info btn-sm">View</a>
-                            <a href="{{ route('backend.calculations.edit', $calculation['id']) }}" class="btn btn-warning btn-sm">Edit</a>
+                            @can('update', [$calculation['created_at'], 'update_cashbook'])
+                                <a href="{{ route('backend.calculations.edit', $calculation['id']) }}" class="btn btn-warning btn-sm">Edit</a>
+                            @endcan
+
+                            @can('delete', [$calculation['created_at'], 'delete_cashbook'])
                             <form action="{{ route('backend.calculations.destroy', $calculation['id']) }}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Cashbook?');">Delete</button>
                             </form>
+                            @endcan
+                            
+                            
                         </td>
                     </tr>
                     @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Press;
 use App\Http\Controllers\Controller;
 use App\Models\PressInk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PressInkController extends Controller
 {
@@ -57,6 +58,7 @@ class PressInkController extends Controller
      */
     public function edit(PressInk $ink)
     {
+        Gate::authorize('update', [$ink->created_at, 'update_ink']);
         return view('backend.press.ink.edit', [
             'ink' => $ink,
         ]);
@@ -67,6 +69,7 @@ class PressInkController extends Controller
      */
     public function update(Request $request, PressInk $ink)
     {
+        Gate::authorize('update', [$ink->created_at, 'update_ink']);
         $request->validate([
             'color' => 'required|string',
             'purchased_date' => 'required|date',
@@ -85,6 +88,7 @@ class PressInkController extends Controller
      */
     public function destroy(PressInk $ink)
     {
+        Gate::authorize('delete', [$ink->created_at, 'delete_ink']);
         return response()->json(['success' => $ink->delete() ?? false]);
     }
 }

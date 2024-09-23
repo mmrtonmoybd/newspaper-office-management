@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\ExpenseEntry;
 use App\Models\IncomeEntry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CalculationController extends Controller
 {
@@ -32,6 +33,7 @@ class CalculationController extends Controller
                 'totalIncome' => $totalIncome,
                 'totalExpense' => $totalExpense,
                 'netBalance' => $netBalance,
+                'created_at' => $calculation->created_at,
             ];
         });
 
@@ -87,6 +89,7 @@ class CalculationController extends Controller
 
     public function edit(Calculation $calculation)
     {
+        Gate::authorize('update', [$calculation->created_at, 'update_cashbook']);
         $categories = Category::all();
 
         return view('backend.cashbook.edit', compact('calculation', 'categories'));
@@ -94,6 +97,8 @@ class CalculationController extends Controller
 
     public function update(Request $request, Calculation $calculation)
     {
+        Gate::authorize('update', [$calculation->created_at, 'update_cashbook']);
+        
         $calculation->name = $request->name;
         $calculation->balance = $calculation->previous_balance;
 
@@ -304,6 +309,8 @@ class CalculationController extends Controller
     {
         // Find the calculation to delete
         $calculationToDelete = Calculation::findOrFail($id);
+
+        Gate::authorize('delete', [$calculationToDelete->created_at, 'delete_cashbook']);
 
         // Delete the calculation
         $calculationToDelete->delete();

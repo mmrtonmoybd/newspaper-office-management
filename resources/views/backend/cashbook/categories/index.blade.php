@@ -33,12 +33,19 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
                     <td>
-                        <a href="{{ route('backend.categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('backend.categories.destroy', $category->id) }}" method="POST" style="display:inline-block;">
+                        @can('update', [$category->created_at, 'update_entries_heading'])
+                        <a href="{{ route('backend.categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>  
+                        @endcan
+
+                        @can('delete', [$category->created_at, 'delete_entries_heading'])
+                            <form action="{{ route('backend.categories.destroy', $category->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
+                        @endcan
+                        
+                        
                     </td>
                 </tr>
                 @endforeach

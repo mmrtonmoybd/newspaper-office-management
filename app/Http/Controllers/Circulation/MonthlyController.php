@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Circulation;
 use App\Http\Controllers\Controller;
 use App\Models\MonthlyCirculation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MonthlyController extends Controller
 {
@@ -63,6 +64,7 @@ class MonthlyController extends Controller
      */
     public function edit(MonthlyCirculation $monthly)
     {
+        Gate::authorize('update', [$monthly->created_at, 'update_monthly']);
         return view('backend.circulation.monthly.edit', [
             'monthly' => $monthly,
         ]);
@@ -73,6 +75,7 @@ class MonthlyController extends Controller
      */
     public function update(Request $request, MonthlyCirculation $monthly)
     {
+        Gate::authorize('update', [$monthly->created_at, 'update_monthly']);
         $request->validate([
             'monthly_circulation_repen_id' => 'required|numeric|exists:monthly_circulation_repens,id',
             'district' => 'required|string',
@@ -95,6 +98,7 @@ class MonthlyController extends Controller
      */
     public function destroy(MonthlyCirculation $monthly)
     {
+        Gate::authorize('delete', [$monthly->created_at, 'delete_monthly']);
         return response()->json(['success' => $monthly->delete() ?? false]);
     }
 }

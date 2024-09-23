@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Circulation;
 use App\Http\Controllers\Controller;
 use App\Models\MonthlyCirculationRepen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RepresentativeController extends Controller
 {
@@ -56,6 +57,7 @@ class RepresentativeController extends Controller
      */
     public function edit(MonthlyCirculationRepen $representative)
     {
+        Gate::authorize('update', [$representative->created_at, 'update_representative']);
         return view('backend.circulation.representative.edit', [
             'representative' => $representative,
         ]);
@@ -66,6 +68,7 @@ class RepresentativeController extends Controller
      */
     public function update(Request $request, MonthlyCirculationRepen $representative)
     {
+        Gate::authorize('update', [$representative->created_at, 'update_representative']);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|unique:monthly_circulation_repens,email,'.$representative->id,
@@ -83,6 +86,7 @@ class RepresentativeController extends Controller
      */
     public function destroy(MonthlyCirculationRepen $representative)
     {
+        Gate::authorize('delete', [$representative->created_at, 'delete_representative']);
         return response()->json(['success' => $representative->delete() ?? false]);
     }
 }

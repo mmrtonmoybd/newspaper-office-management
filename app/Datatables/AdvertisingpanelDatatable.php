@@ -4,6 +4,7 @@ namespace App\Datatables;
 
 use App\Models\AdvertismentPanel;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
@@ -70,8 +71,8 @@ class AdvertisingpanelDatatable extends Datatable
                 ->actions(function (AdvertismentPanel $advertismentpanel) {
                     return implode([
                         Button::show('backend.ads.panel.show', $advertismentpanel),
-                        Button::edit('backend.ads.panel.edit', $advertismentpanel),
-                        Button::delete('backend.ads.panel.destroy', $advertismentpanel),
+                        (Gate::allows('update', [$advertismentpanel->created_at, 'update_ads_panel'])) ? Button::edit('backend.ads.panel.edit', $advertismentpanel) : null,
+                        (Gate::allows('delete', [$advertismentpanel->created_at, 'delete_ads_panel'])) ? Button::delete('backend.ads.panel.destroy', $advertismentpanel) : null,
                     ]);
                 }),
         ];

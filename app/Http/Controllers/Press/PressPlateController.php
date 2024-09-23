@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Press;
 use App\Http\Controllers\Controller;
 use App\Models\PressPlate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PressPlateController extends Controller
 {
@@ -66,6 +67,7 @@ class PressPlateController extends Controller
      */
     public function edit(PressPlate $plate)
     {
+        Gate::authorize('update', [$plate->created_at, 'update_plate']);
         return view('backend.press.plate.edit', [
             'plate' => $plate,
         ]);
@@ -76,7 +78,7 @@ class PressPlateController extends Controller
      */
     public function update(Request $request, PressPlate $plate)
     {
-
+        Gate::authorize('update', [$plate->created_at, 'update_plate']);
         $plate->update($request->all());
 
         $lastid = $plate->id;
@@ -120,6 +122,7 @@ class PressPlateController extends Controller
      */
     public function destroy(PressPlate $plate)
     {
+        Gate::authorize('delete', [$plate->created_at, 'delete_plate']);
         $id = $plate->id;
 
         $plate->delete();

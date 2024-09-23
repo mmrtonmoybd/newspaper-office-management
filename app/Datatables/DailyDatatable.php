@@ -4,6 +4,7 @@ namespace App\Datatables;
 
 use App\Models\DailyCirculation;
 use Sebastienheyd\Boilerplate\Datatables\Button;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Column;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
 
@@ -62,8 +63,8 @@ class DailyDatatable extends Datatable
                 ->actions(function (DailyCirculation $dailycirculation) {
                     return implode([
                         Button::show('backend.daily.show', $dailycirculation),
-                        Button::edit('backend.daily.edit', $dailycirculation),
-                        Button::delete('backend.daily.destroy', $dailycirculation),
+                        (Gate::allows('update', [$dailycirculation->created_at, 'update_daily'])) ? Button::edit('backend.daily.edit', $dailycirculation) : null,
+                        (Gate::allows('delete', [$dailycirculation->created_at, 'delete_daily'])) ? Button::delete('backend.daily.destroy', $dailycirculation) : null,
                     ]);
                 }),
         ];

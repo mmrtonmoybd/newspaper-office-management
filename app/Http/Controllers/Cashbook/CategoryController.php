@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cashbook;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -37,12 +38,14 @@ class CategoryController extends Controller
     // Show form to edit an existing category
     public function edit(Category $category)
     {
+        Gate::authorize('update', [$category->created_at, 'update_entries_heading']);
         return view('backend.cashbook.categories.edit', compact('category'));
     }
 
     // Update an existing category
     public function update(Request $request, Category $category)
     {
+        Gate::authorize('update', [$category->created_at, 'update_entries_heading']);
         $request->validate([
             'name' => 'required|unique:categories,name,'.$category->id.'|max:255',
         ]);
@@ -55,6 +58,7 @@ class CategoryController extends Controller
     // Delete a category
     public function destroy(Category $category)
     {
+        Gate::authorize('delete', [$category->created_at, 'delete_entries_heading']);
         $category->delete();
 
         return redirect()->route('backend.categories.index')->with('success', 'Entries heading deleted successfully');

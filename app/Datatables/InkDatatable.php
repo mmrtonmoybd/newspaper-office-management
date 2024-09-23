@@ -5,6 +5,7 @@ namespace App\Datatables;
 use App\Models\PressInk;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
 
 class InkDatatable extends Datatable
@@ -64,8 +65,8 @@ class InkDatatable extends Datatable
                 ->actions(function (PressInk $pressink) {
                     return implode([
                         // Button::show('pressink.show', $pressink),
-                        Button::edit('backend.ink.edit', $pressink),
-                        Button::delete('backend.ink.destroy', $pressink),
+                        (Gate::allows('update', [$pressink->created_at, 'update_ink'])) ? Button::edit('backend.ink.edit', $pressink) : null,
+                        (Gate::allows('delete', [$pressink->created_at, 'delete_ink'])) ? Button::delete('backend.ink.destroy', $pressink) : null,
                     ]);
                 }),
         ];

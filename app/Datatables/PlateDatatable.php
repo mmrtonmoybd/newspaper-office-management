@@ -5,6 +5,7 @@ namespace App\Datatables;
 use App\Models\PressPlate;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
 
 class PlateDatatable extends Datatable
@@ -64,8 +65,8 @@ class PlateDatatable extends Datatable
                 ->actions(function (PressPlate $pressplate) {
                     return implode([
                         // Button::show('pressplate.show', $pressplate),
-                        Button::edit('backend.plate.edit', $pressplate),
-                        Button::delete('backend.plate.destroy', $pressplate),
+                        (Gate::allows('update', [$pressplate->created_at, 'update_plate'])) ? Button::edit('backend.plate.edit', $pressplate) : null,
+                        (Gate::allows('delete', [$pressplate->created_at, 'delete_plate'])) ? Button::delete('backend.plate.destroy', $pressplate) : null,
                     ]);
                 }),
         ];

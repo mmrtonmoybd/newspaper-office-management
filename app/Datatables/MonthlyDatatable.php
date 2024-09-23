@@ -5,6 +5,7 @@ namespace App\Datatables;
 use App\Models\MonthlyCirculation;
 use App\Models\MonthlyCirculationRepen;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
@@ -85,8 +86,8 @@ class MonthlyDatatable extends Datatable
                 ->actions(function (MonthlyCirculation $monthlycirculation) {
                     return implode([
                         Button::show('backend.monthly.show', $monthlycirculation),
-                        Button::edit('backend.monthly.edit', $monthlycirculation),
-                        Button::delete('backend.monthly.destroy', $monthlycirculation),
+                        (Gate::allows('update', [$monthlycirculation->created_at, 'update_monthly'])) ? Button::edit('backend.monthly.edit', $monthlycirculation) : null,
+                        (Gate::allows('delete', [$monthlycirculation->created_at, 'delete_monthly'])) ? Button::delete('backend.monthly.destroy', $monthlycirculation) : null,
                     ]);
                 }),
         ];

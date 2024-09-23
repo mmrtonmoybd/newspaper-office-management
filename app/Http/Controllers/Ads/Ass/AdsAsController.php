@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AdAs;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdsAsController extends Controller
 {
@@ -64,6 +65,7 @@ class AdsAsController extends Controller
      */
     public function edit(AdAs $a)
     {
+        Gate::authorize('update', [$a->created_at, 'update_as']);
         return view('backend.ads.as.edit', [
             'adas' => $a,
         ]);
@@ -74,6 +76,7 @@ class AdsAsController extends Controller
      */
     public function update(Request $request, AdAs $a)
     {
+        Gate::authorize('update', [$a->created_at, 'update_as']);
         $request->validate([
             'details' => 'required|string|max:255',
             'subject' => 'required|string|max:255',
@@ -97,6 +100,7 @@ class AdsAsController extends Controller
      */
     public function destroy(AdAs $a): JsonResponse
     {
+        Gate::authorize('delete', [$a->created_at, 'delete_as']);
         return response()->json(['success' => $a->delete() ?? false]);
     }
 }
