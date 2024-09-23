@@ -11,7 +11,7 @@ class Cashbook implements MenuItemInterface
     {
         $item = $menu->add('Cashbook', [
             'permission' => 'cashbook|cashbook_entry_heading',
-            'active' => 'backend.calculations.*|backend.cashbook.categories.*',
+            'active' => 'backend.calculations.*|backend.categories.*',
             'icon' => 'fal fa-money-bill-alt',
             'order' => 200,
         ]);

@@ -24,7 +24,10 @@ class SettingsController extends Controller
 
     public function update(Request $request)
     {
-
+        $request->merge([
+            'update_within' => convertBengaliToEnglish($request->input('update_within')),
+            'delete_within' => convertBengaliToEnglish($request->input('delete_within'))
+        ]);
         $request->validate([
             'update_within' => 'required|numeric',
             'delete_within' => 'required|numeric',

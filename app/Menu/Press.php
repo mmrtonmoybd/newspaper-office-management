@@ -11,7 +11,7 @@ class Press implements MenuItemInterface
     {
         $item = $menu->add('Press', [
             'permission' => 'press_paper|press_ink|press_plate',
-            'active' => 'backend.paper.*',
+            'active' => 'backend.ink.*|backend.paper.*|backend.plate.*',
             'icon' => 'fa-newspaper',
             'order' => 300,
         ]);

@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="col-6">
-                <x-boilerplate::input name='amount' type='number' label='টাকা' clearable=true placeholder='টাকা' required/>
+                <x-boilerplate::input name='amount' type='text' label='টাকা' clearable=true placeholder='টাকা' required/>
                 </div>
 
                 <div class="col-6">

@@ -44,12 +44,12 @@
                         <div class="col-md-6">
                             <!-- পরিশোধিত বিল -->
                             <div class="form-group">
-                                <x-boilerplate::input name='sell_quantity' type='number' label='পত্রিকার সংখ্যা' value="{{$daily->sell_quantity}}" clearable=true placeholder='পত্রিকার সংখ্যা' required/>
+                                <x-boilerplate::input name='sell_quantity' type='text' label='পত্রিকার সংখ্যা' value="{{$daily->sell_quantity}}" clearable=true placeholder='পত্রিকার সংখ্যা' required/>
                             </div>
 
                             <!-- পরিশোধের তারিখ -->
                             <div class="form-group">
-                                <x-boilerplate::input name='per_price' type='number' label='পত্রিকার মূল্য' value="{{$daily->per_price}}" clearable=true placeholder='পত্রিকার মূল্য' required/>
+                                <x-boilerplate::input name='per_price' type='text' label='পত্রিকার মূল্য' value="{{$daily->per_price}}" clearable=true placeholder='পত্রিকার মূল্য' required/>
                             </div>
 
                         

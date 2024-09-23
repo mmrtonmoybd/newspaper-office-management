@@ -63,11 +63,11 @@ class CalculationController extends Controller
             IncomeEntry::create([
                 'calculation_id' => $calculation->id,
                 'description' => $income['description'],
-                'amount' => $income['amount'],
+                'amount' => convertBengaliToEnglish($income['amount']),
                 //'date' => $income['date'],
                 'category_id' => $income['category_id'],
             ]);
-            $calculation->balance += $income['amount'];
+            $calculation->balance += convertBengaliToEnglish($income['amount']);
         }
 
         // Save expense entries
@@ -75,11 +75,11 @@ class CalculationController extends Controller
             ExpenseEntry::create([
                 'calculation_id' => $calculation->id,
                 'description' => $expense['description'],
-                'amount' => $expense['amount'],
+                'amount' => convertBengaliToEnglish($expense['amount']),
                 //'date' => $expense['date'],
                 'category_id' => $expense['category_id'],
             ]);
-            $calculation->balance -= $expense['amount'];
+            $calculation->balance -= convertBengaliToEnglish($expense['amount']);
         }
 
         $calculation->save();
@@ -112,11 +112,11 @@ class CalculationController extends Controller
                 IncomeEntry::create([
                     'calculation_id' => $calculation->id,
                     'description' => $income['description'],
-                    'amount' => $income['amount'],
+                    'amount' => convertBengaliToEnglish($income['amount']),
                     //'date' => $income['date'],
                     'category_id' => $income['category_id'],
                 ]);
-                $calculation->balance += $income['amount'];
+                $calculation->balance += convertBengaliToEnglish($income['amount']);
             }
         }
 
@@ -131,11 +131,11 @@ class CalculationController extends Controller
                 ExpenseEntry::create([
                     'calculation_id' => $calculation->id,
                     'description' => $expense['description'],
-                    'amount' => $expense['amount'],
+                    'amount' => convertBengaliToEnglish($expense['amount']),
                     //'date' => $expense['date'],
                     'category_id' => $expense['category_id'],
                 ]);
-                $calculation->balance -= $expense['amount'];
+                $calculation->balance -= convertBengaliToEnglish($expense['amount']);
             }
         }
 

@@ -30,6 +30,10 @@ class DailyController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'sell_quantity' => convertBengaliToEnglish($request->input('sell_quantity')),
+            'per_price' => convertBengaliToEnglish($request->input('per_price'))
+        ]);
         $request->validate([
             'sell_date' => 'nullable|date',
             'buyer_name' => 'required|string',
@@ -73,6 +77,11 @@ class DailyController extends Controller
     public function update(Request $request, DailyCirculation $daily)
     {
         Gate::authorize('update', [$daily->created_at, 'update_daily']);
+
+        $request->merge([
+            'sell_quantity' => convertBengaliToEnglish($request->input('sell_quantity')),
+            'per_price' => convertBengaliToEnglish($request->input('per_price'))
+        ]);
         $request->validate([
             'sell_date' => 'nullable|date',
             'buyer_name' => 'required|string',

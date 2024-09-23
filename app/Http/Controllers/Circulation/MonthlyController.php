@@ -30,6 +30,13 @@ class MonthlyController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'send_quantity' => convertBengaliToEnglish($request->input('send_quantity')),
+            'monthly_bill' => convertBengaliToEnglish($request->input('monthly_bill')),
+            'paid_bill' => convertBengaliToEnglish($request->input(key: 'paid_bill')),
+            'extra_due_bill' => convertBengaliToEnglish($request->input(key: 'extra_due_bill'))
+        ]);
+
         $request->validate([
             'monthly_circulation_repen_id' => 'required|numeric|exists:monthly_circulation_repens,id',
             'district' => 'required|string',
@@ -37,7 +44,7 @@ class MonthlyController extends Controller
             'monthly_bill' => 'required|numeric',
             'paid_bill' => 'required|numeric',
             'paid_date' => 'required|date',
-            'due_bill' => 'nullable|numeric',
+            'extra_due_bill' => 'nullable|numeric',
             'comment' => 'nullable|string',
         ]);
 
@@ -77,6 +84,14 @@ class MonthlyController extends Controller
     public function update(Request $request, MonthlyCirculation $monthly)
     {
         Gate::authorize('update', [$monthly->created_at, 'update_monthly']);
+
+        $request->merge([
+            'send_quantity' => convertBengaliToEnglish($request->input('send_quantity')),
+            'monthly_bill' => convertBengaliToEnglish($request->input('monthly_bill')),
+            'paid_bill' => convertBengaliToEnglish($request->input(key: 'paid_bill')),
+            'extra_due_bill' => convertBengaliToEnglish($request->input(key: 'extra_due_bill'))
+        ]);
+        
         $request->validate([
             'monthly_circulation_repen_id' => 'required|numeric|exists:monthly_circulation_repens,id',
             'district' => 'required|string',
@@ -84,7 +99,7 @@ class MonthlyController extends Controller
             'monthly_bill' => 'required|numeric',
             'paid_bill' => 'required|numeric',
             'paid_date' => 'required|date',
-            'due_bill' => 'nullable|numeric',
+            'extra_due_bill' => 'nullable|numeric',
             'comment' => 'nullable|string',
         ]);
 

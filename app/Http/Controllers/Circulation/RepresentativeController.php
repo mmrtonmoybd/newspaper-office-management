@@ -30,6 +30,9 @@ class RepresentativeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'mobile' => convertBengaliToEnglish($request->input('mobile'))
+        ]);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|unique:monthly_circulation_repens,email',
@@ -70,6 +73,9 @@ class RepresentativeController extends Controller
     public function update(Request $request, MonthlyCirculationRepen $representative)
     {
         Gate::authorize('update', [$representative->created_at, 'update_representative']);
+        $request->merge([
+            'mobile' => convertBengaliToEnglish($request->input('mobile'))
+        ]);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|unique:monthly_circulation_repens,email,'.$representative->id,

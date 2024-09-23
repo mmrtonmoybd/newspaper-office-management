@@ -42,11 +42,11 @@
 
 
                 <div class="col-6">
-                <x-boilerplate::input name='published_order' type='number' label='ছাপার অর্ডার' clearable=true placeholder='ছাপার অর্ডার' required/>
+                <x-boilerplate::input name='published_order' type='text' label='ছাপার অর্ডার' clearable=true placeholder='ছাপার অর্ডার' required/>
                 </div>
 
                 <div class="col-6">
-                <x-boilerplate::input name='wastage' type='number' label='ওসেস্টেজ' clearable=true placeholder='ওসেস্টেজ' required/>
+                <x-boilerplate::input name='wastage' type='text' label='ওসেস্টেজ' clearable=true placeholder='ওসেস্টেজ' required/>
                 </div>
 
             </div>

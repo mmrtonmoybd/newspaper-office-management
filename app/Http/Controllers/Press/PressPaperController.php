@@ -30,6 +30,10 @@ class PressPaperController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'published_order' => convertBengaliToEnglish($request->input('published_order')),
+            'wastage' => convertBengaliToEnglish($request->input('wastage'))
+        ]);
         $request->validate([
             'roll' => 'required|string',
             'roll_weight' => 'required|string',
@@ -77,6 +81,10 @@ class PressPaperController extends Controller
     public function update(Request $request, PressPaper $paper)
     {
         Gate::authorize('update', [$paper->created_at, 'update_paper']);
+        $request->merge([
+            'published_order' => convertBengaliToEnglish($request->input('published_order')),
+            'wastage' => convertBengaliToEnglish($request->input('wastage'))
+        ]);
         $request->validate([
             'roll' => 'required|string',
             'roll_weight' => 'required|string',

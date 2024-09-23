@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="income[{{ $index }}][amount]">Amount</label>
-                                        <input type="number" step="0.01" name="income[{{ $index }}][amount]" class="form-control" value="{{ $income->amount }}" required>
+                                        <input type="text" name="income[{{ $index }}][amount]" class="form-control" value="{{ $income->amount }}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="income[{{ $index }}][category_id]">Entries heading</label>
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="expense[{{ $index }}][amount]">Amount</label>
-                                        <input type="number" step="0.01" name="expense[{{ $index }}][amount]" class="form-control" value="{{ $expense->amount }}" required>
+                                        <input type="text" name="expense[{{ $index }}][amount]" class="form-control" value="{{ $expense->amount }}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="expense[{{ $index }}][category_id]">Entries heading</label>
@@ -127,7 +127,7 @@ function createCard(type, count) {
             </div>
             <div class="form-group">
                 <label for="${type}[${count}][amount]">Amount</label>
-                <input type="number" step="0.01" name="${type}[${count}][amount]" class="form-control" required placeholder="Enter amount">
+                <input type="text" name="${type}[${count}][amount]" class="form-control" required placeholder="Enter amount">
             </div>
             <div class="form-group">
                 <label for="${type}[${count}][category_id]">Entries heading</label>

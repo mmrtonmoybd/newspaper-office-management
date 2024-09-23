@@ -40,12 +40,12 @@
 
                             <!-- প্রতিদিন প্রেরণকৃত প্রত্রিকার সংখ্যা -->
                             <div class="form-group">
-                                <x-boilerplate::input name='send_quantity' type='number' label='প্রতিদিন প্রেরণকৃত প্রত্রিকার সংখ্যা' value="{{$monthly->send_quantity}}" clearable=true placeholder='প্রতিদিন প্রেরণকৃত প্রত্রিকার সংখ্যা' required/>
+                                <x-boilerplate::input name='send_quantity' type='text' label='প্রতিদিন প্রেরণকৃত প্রত্রিকার সংখ্যা' value="{{$monthly->send_quantity}}" clearable=true placeholder='প্রতিদিন প্রেরণকৃত প্রত্রিকার সংখ্যা' required/>
                             </div>
 
                             <!-- মাসিক বিল -->
                             <div class="form-group">
-                                <x-boilerplate::input name='monthly_bill' type='number' label='মাসিক বিল' clearable=true placeholder='মাসিক বিল' value="{{$monthly->monthly_bill}}" required/>
+                                <x-boilerplate::input name='monthly_bill' type='text' label='মাসিক বিল' clearable=true placeholder='মাসিক বিল' value="{{$monthly->monthly_bill}}" required/>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                         <div class="col-md-6">
                             <!-- পরিশোধিত বিল -->
                             <div class="form-group">
-                                <x-boilerplate::input name='paid_bill' type='number' label='পরিশোধিত বিল' clearable=true placeholder='পরিশোধিত বিল' value="{{$monthly->paid_bill}}" required/>
+                                <x-boilerplate::input name='paid_bill' type='text' label='পরিশোধিত বিল' clearable=true placeholder='পরিশোধিত বিল' value="{{$monthly->paid_bill}}" required/>
                             </div>
 
                             <!-- পরিশোধের তারিখ -->
@@ -63,7 +63,7 @@
 
                             <!-- চলতি বকেয়া -->
                             
-                            <x-boilerplate::input name='extra_due_bill' type='number' id="extra_due_bill" label='অতিরিক্ত বকেয়া' clearable=true placeholder='অতিরিক্ত বকেয়া' value="{{$monthly->extra_due_bill}}" disabled/>
+                            <x-boilerplate::input name='extra_due_bill' type='text' id="extra_due_bill" label='অতিরিক্ত বকেয়া' clearable=true placeholder='অতিরিক্ত বকেয়া' value="{{$monthly->extra_due_bill}}" disabled/>
                                 <small class="form-text text-muted">মাসিক বিল থেকে পরিশোধিত বিল বাদ দিয়ে চলতি বকেয়া নির্ণয় গণনা করা হয়। <br><font color='red'>বি:দ্র: যদি চলমান বকেয়া গণনার(মাসিক বিল - পরিশোধিত বিল) অতিরিক্ত বকেয়া থাকে তবে "কাস্টম অতিরিক্ত বকেয়া" বাটন টি চাপ দিয়ে অতিরিক্তটি লিখতে হবে।</font></small>
                                 <div class="form-check mt-2">
                                     <input class="form-check-input" type="checkbox" id="enableDueBill">

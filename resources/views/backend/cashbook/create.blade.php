@@ -69,7 +69,7 @@
                 </div>
                 <div class="form-group">
                     <label for="${type}[${count}][amount]">Amount</label>
-                    <input type="number" step="0.01" name="${type}[${count}][amount]" class="form-control" required placeholder="Enter amount">
+                    <input type="text" name="${type}[${count}][amount]" class="form-control" required placeholder="Enter amount">
                 </div>
                 <div class="form-group">
                     <label for="${type}[${count}][category_id]">Entries Heading</label>

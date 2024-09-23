@@ -26,11 +26,11 @@
             <div class="row">
 
                 <div class="col-6">
-                <x-boilerplate::input name='advance_paid' type='number' label='অগ্রিম প্রদান' clearable=true placeholder='অগ্রিম প্রদান' />
+                <x-boilerplate::input name='advance_paid' type='text' label='অগ্রিম প্রদান' clearable=true placeholder='অগ্রিম প্রদান' />
                 </div>
 
                 <div class="col-6">
-                <x-boilerplate::input name='cut_amount' type='number' label='কর্তনকৃত টাকা' clearable=true placeholder='কর্তনকৃত টাকা' required/>
+                <x-boilerplate::input name='cut_amount' type='text' label='কর্তনকৃত টাকা' clearable=true placeholder='কর্তনকৃত টাকা' required/>
                 </div>
 
                 <div class="col-6">
@@ -42,11 +42,11 @@
 
 
                 <div class="col-6">
-                <x-boilerplate::input name='daily_plate' type='number' label='প্রতিদিনের প্লেট' clearable=true placeholder='প্রতিদিনের প্লেট' required/>
+                <x-boilerplate::input name='daily_plate' type='text' label='প্রতিদিনের প্লেট' clearable=true placeholder='প্রতিদিনের প্লেট' required/>
                 </div>
 
                 <div class="col-6">
-                <x-boilerplate::input name='new_plate' type='number' label='নতুন প্লেট' clearable=true placeholder='নতুন প্লেট'/>
+                <x-boilerplate::input name='new_plate' type='text' label='নতুন প্লেট' clearable=true placeholder='নতুন প্লেট'/>
                 </div>
 
             </div>

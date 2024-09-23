@@ -11,7 +11,7 @@ class Circulation implements MenuItemInterface
     {
         $item = $menu->add('Circulation', [
             'permission' => 'representative_monthly_circulation|monthly_circulation|daily_circulation',
-            'active' => 'boilerplate.dashboard',
+            'active' => 'backend.monthly.*|backend.representative.*|backend.daily.*',
             'icon' => 'fa-regular fa-sack-dollar',
             'order' => 100,
         ]);

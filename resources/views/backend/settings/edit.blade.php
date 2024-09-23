@@ -30,7 +30,7 @@
 
                             <!-- উপজেলার নাম -->
                             <div class="form-group">
-                                <x-boilerplate::input name='update_within' type='number' label='Update within hour' value="{{$update->value}}" clearable=true placeholder='Update within hour' required/>
+                                <x-boilerplate::input name='update_within' type='text' label='Update within hour' value="{{$update->value}}" clearable=true placeholder='Update within hour' required/>
                             </div>
 
                         </div>
@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <!-- পরিশোধিত বিল -->
                             <div class="form-group">
-                                <x-boilerplate::input name='delete_within' type='number' label='Delete within hour' value="{{$delete->value}}" clearable=true placeholder='Delete within hour' required/>
+                                <x-boilerplate::input name='delete_within' type='text' label='Delete within hour' value="{{$delete->value}}" clearable=true placeholder='Delete within hour' required/>
                             </div>
 
                         

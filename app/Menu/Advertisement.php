@@ -11,7 +11,7 @@ class Advertisement implements MenuItemInterface
     {
         $item = $menu->add('Advertisement', [
             'permission' => 'an_permission|as_permission|ads_panel',
-            'active' => 'backend.ads.*',
+            'active' => 'backend.ads.an.*|backend.ads.as.*|backend.ads.panel.*',
             'icon' => 'fa-ad',
             'order' => 100,
         ]);

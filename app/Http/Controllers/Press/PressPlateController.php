@@ -30,7 +30,12 @@ class PressPlateController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->merge([
+            'advance_paid' => convertBengaliToEnglish($request->input('advance_paid')),
+            'cut_amount' => convertBengaliToEnglish($request->input('cut_amount')),
+            'daily_plate' => convertBengaliToEnglish($request->input('daily_plate')),
+            'new_plate' => convertBengaliToEnglish($request->input('new_plate'))
+        ]);
         $plate = PressPlate::create($request->all());
         $lastid = $plate->id;
 
@@ -80,6 +85,13 @@ class PressPlateController extends Controller
     public function update(Request $request, PressPlate $plate)
     {
         Gate::authorize('update', [$plate->created_at, 'update_plate']);
+
+        $request->merge([
+            'advance_paid' => convertBengaliToEnglish($request->input('advance_paid')),
+            'cut_amount' => convertBengaliToEnglish($request->input('cut_amount')),
+            'daily_plate' => convertBengaliToEnglish($request->input('daily_plate')),
+            'new_plate' => convertBengaliToEnglish($request->input('new_plate'))
+        ]);
         $plate->update($request->all());
 
         $lastid = $plate->id;

@@ -30,6 +30,10 @@ class AdvertismentPanel extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'amount' => convertBengaliToEnglish($request->input('amount'))
+        ]);
+
         $request->validate([
             'org_name' => 'required|string',
             'advertisment_start_date' => 'required|date',
@@ -75,6 +79,10 @@ class AdvertismentPanel extends Controller
     public function update(Request $request, Model $panel)
     {
         Gate::authorize('update', [$panel->created_at, 'update_ads_panel']);
+
+        $request->merge([
+            'amount' => convertBengaliToEnglish($request->input('amount'))
+        ]);
         $request->validate([
             'org_name' => 'required|string',
             'advertisment_start_date' => 'required|date',
