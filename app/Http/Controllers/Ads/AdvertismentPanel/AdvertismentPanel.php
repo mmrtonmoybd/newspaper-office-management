@@ -41,6 +41,7 @@ class AdvertismentPanel extends Controller
             'amount' => 'required|numeric',
             'paid_date' => 'required|date',
             'comment' => 'required|string',
+            'date' => 'required|date',
         ]);
 
         Model::create($request->all());
@@ -90,7 +91,7 @@ class AdvertismentPanel extends Controller
             'amount' => 'required|numeric',
             'paid_date' => 'required|date',
             'comment' => 'required|string',
-            'created_at' => 'required|date',
+            'date' => 'required|date',
         ]);
 
         $panel->update($request->all());

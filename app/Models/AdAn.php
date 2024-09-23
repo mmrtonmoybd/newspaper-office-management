@@ -9,5 +9,5 @@ class AdAn extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['details', 'subject', 'published_date', 'amount', 'size', 'page', 'an', 'comment'];
+    protected $fillable = ['details', 'subject', 'date', 'published_date', 'amount', 'size', 'page', 'an', 'comment'];
 }

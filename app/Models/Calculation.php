@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calculation extends Model
 {
-    protected $fillable = ['name', 'previous_balance', 'balance'];
+    protected $fillable = ['name', 'date', 'previous_balance', 'balance'];
 
     public function incomeEntries()
     {

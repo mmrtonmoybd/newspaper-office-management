@@ -9,5 +9,5 @@ class AdvertismentPanel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['advertisment_start_date', 'advertisment_end_date', 'org_name', 'amount', 'paid_date', 'comment'];
+    protected $fillable = ['advertisment_start_date', 'advertisment_end_date', 'org_name', 'date', 'amount', 'paid_date', 'comment'];
 }

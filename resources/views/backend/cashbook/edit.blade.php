@@ -24,6 +24,10 @@
                     <input type="text" name="name" class="form-control form-control-lg rounded" value="{{ $calculation->name }}" placeholder="Enter cashbook name">
                 </div>
 
+                <div class="form-group mb-4">
+                <x-boilerplate::datetimepicker name="date" clearable=true placeholder='তারিখ' required label="তারিখ" value="{{$calculation->date}}" format="D/M/Y"/>
+                </div>
+
                 <!-- Grid system to divide the income and expense entries -->
                 <div class="row">
                     <!-- Left Side: Income Entries -->

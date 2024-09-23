@@ -44,6 +44,7 @@ class AdsAsController extends Controller
             'page' => 'required|string',
             'as' => 'required|string',
             'comment' => 'required|string',
+            'date' => 'required|date',
         ]);
 
         AdAs::create($request->all());
@@ -95,7 +96,7 @@ class AdsAsController extends Controller
             'page' => 'required|string',
             'as' => 'required|string',
             'comment' => 'required|string',
-            'created_at' => 'required|date',
+            'date' => 'required|date',
         ]);
 
         $a->update($request->all());

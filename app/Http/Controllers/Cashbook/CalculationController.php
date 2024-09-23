@@ -29,7 +29,7 @@ class CalculationController extends Controller
             return [
                 'id' => $calculation->id,
                 'name' => $calculation->name,
-                'date' => $calculation->created_at->format('Y-m-d'),
+                'date' => \Illuminate\Support\Carbon::parse($calculation->date)->format('d/m/Y'),
                 'totalIncome' => $totalIncome,
                 'totalExpense' => $totalExpense,
                 'netBalance' => $netBalance,
@@ -205,11 +205,11 @@ class CalculationController extends Controller
 
             // Check if there is no entry is smaller then start date
 
-            $rowcheck = Calculation::where('created_at', '<=', $startDate)->count();
+            $rowcheck = Calculation::where('date', '<=', $startDate)->count();
             if ($rowcheck > 1) {
                 // Get all calculations before the start date to adjust the previous balance
-                $previousIncome = Calculation::with('incomeEntries')->where('created_at', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
-                $previousExpense = Calculation::with('expenseEntries')->where('created_at', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
+                $previousIncome = Calculation::with('incomeEntries')->where('date', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
+                $previousExpense = Calculation::with('expenseEntries')->where('date', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
                 $previousNet = $previousIncome - $previousExpense;
 
                 // Adjust previous balance
@@ -221,7 +221,7 @@ class CalculationController extends Controller
         }
 
         if ($startDate && $endDate) {
-            $cal = Calculation::whereBetween('created_at', [$startDate, $endDate])->pluck('id')->toArray();
+            $cal = Calculation::whereBetween('date', [$startDate, $endDate])->pluck('id')->toArray();
             $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
             $expenseEntries = ExpenseEntry::whereIn('calculation_id', $cal);
             //$incomeEntries->whereBetween('date', [$startDate, $endDate]);
@@ -261,11 +261,11 @@ class CalculationController extends Controller
 
             // Check if there is no entry is smaller then start date
 
-            $rowcheck = Calculation::where('created_at', '<=', $startDate)->count();
+            $rowcheck = Calculation::where('date', '<=', $startDate)->count();
             if ($rowcheck > 1) {
                 // Get all calculations before the start date to adjust the previous balance
-                $previousIncome = Calculation::with('incomeEntries')->where('created_at', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
-                $previousExpense = Calculation::with('expenseEntries')->where('created_at', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
+                $previousIncome = Calculation::with('incomeEntries')->where('date', '<', $startDate)->get()->pluck('incomeEntries')->collapse()->sum('amount');
+                $previousExpense = Calculation::with('expenseEntries')->where('date', '<', $startDate)->get()->pluck('expenseEntries')->collapse()->sum('amount');
                 $previousNet = $previousIncome - $previousExpense;
 
                 // Adjust previous balance
@@ -277,7 +277,7 @@ class CalculationController extends Controller
         }
 
         if ($startDate && $endDate) {
-            $cal = Calculation::whereBetween('created_at', [$startDate, $endDate])->pluck('id')->toArray();
+            $cal = Calculation::whereBetween('date', [$startDate, $endDate])->pluck('id')->toArray();
             $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
             $expenseEntries = ExpenseEntry::whereIn('calculation_id', $cal);
             //$incomeEntries->whereBetween('date', [$startDate, $endDate]);

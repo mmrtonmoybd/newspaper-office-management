@@ -59,7 +59,7 @@ class AdvertisingpanelDatatable extends Datatable
                 }),
 
             Column::add(__('তারিখ'))
-                ->data('created_at')
+                ->data('date')
                 ->dateFormat(__('D/M/Y')),
 
             /* Column::add(__('Updated At'))

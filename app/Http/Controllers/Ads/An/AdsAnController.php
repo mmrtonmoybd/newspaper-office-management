@@ -43,6 +43,7 @@ class AdsAnController extends Controller
             'page' => 'required|string',
             'an' => 'required|string',
             'comment' => 'required|string',
+            'date' => 'required|date',
         ]);
 
         AdAn::create($request->all());
@@ -94,7 +95,7 @@ class AdsAnController extends Controller
             'page' => 'required|string',
             'an' => 'required|string',
             'comment' => 'required|string',
-            'created_at' => 'required|date',
+            'date' => 'required|date',
         ]);
 
         $an->update($request->all());

@@ -139,7 +139,7 @@
         <h1>দৈনিক আজকের বার্তা</h1>
         <p>বরিশাল</p>
        
-        <b><p class="date" align="right">তারিখ: {{ ($range != '' ) ? $range : $calculation->created_at->format('Y-m-d')}}</p></b>
+        <b><p class="date" align="right">তারিখ: {{ ($range != '' ) ? $range :  \Illuminate\Support\Carbon::parse($calculation->date)->format('d/m/Y')}}</p></b>
     </div>
 
     <div class="row">
@@ -182,7 +182,7 @@
                         $inc = \App\Models\Calculation::where('id', $income->calculation_id)->first();
         @endphp
                         <tr>
-                            <td>{{ $inc->created_at->format('Y-m-d') }}</td>
+                            <td>{{ \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') }}</td>
                             <td>{{ $income->description }}</td>
                             <td>{{ number_format($income->amount, 2) }}</td>
                         </tr>
@@ -231,7 +231,7 @@
                         $inc = \App\Models\Calculation::where('id', $expense->calculation_id)->first();
                         @endphp
                         <tr>
-                            <td>{{ $inc->created_at->format('Y-m-d') }}</td>
+                            <td>{{ \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') }}</td>
                             <td>{{ $expense->description }}</td>
                             <td>{{ number_format($expense->amount, 2) }}</td>
                         </tr>

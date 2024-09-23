@@ -46,7 +46,7 @@
                 </div>
 
                  <div class="col-6">
-                <x-boilerplate::datetimepicker name="created_at" clearable=true placeholder='তারিখ' required label="তারিখ" value="{{$panel->created_at}}" format="D/M/Y"/>
+                <x-boilerplate::datetimepicker name="date" clearable=true placeholder='তারিখ' required label="তারিখ" value="{{$panel->date}}" format="D/M/Y"/>
                 </div>
         </div>
 

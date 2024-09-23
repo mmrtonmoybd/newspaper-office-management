@@ -18,8 +18,12 @@
             <form action="{{ route('backend.calculations.store') }}" method="POST">
                 @csrf
                 <div class="form-group mb-4">
-                    <label for="name" class="h5">Calculation Name</label>
-                    <input type="text" name="name" class="form-control form-control-lg rounded" placeholder="Enter calculation name">
+                    <label for="name" class="h5">Cashbook Name</label>
+                    <input type="text" name="name" class="form-control form-control-lg rounded" placeholder="Enter Cashbook name">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="name" class="h5">Cashbook date</label>
+                    <x-boilerplate::datetimepicker name="date" clearable=true placeholder='তারিখ' required label="তারিখ" value="{{\Illuminate\Support\Carbon::now()}}" format="D/M/Y"/>
                 </div>
 
                 <!-- Grid system to divide the income and expense entries -->

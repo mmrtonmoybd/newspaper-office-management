@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="col-6">
-                <th><b>তারিখ: </b></th><td>{{\Illuminate\Support\Carbon::parse($adas->created_at)->format('d/M/Y')}}</td>
+                <th><b>তারিখ: </b></th><td>{{\Illuminate\Support\Carbon::parse($adas->date)->format('d/M/Y')}}</td>
                 </div>
                 <br><br>
             </div>

@@ -36,7 +36,7 @@ class AdvertisingasDatatable extends Datatable
                 ->data('id'),
 
             Column::add(__('তারিখ'))
-                ->data('created_at')
+                ->data('date')
                 ->dateFormat(__('D/M/Y')),
 
             Column::add(__('বিবরণ / আদেশ'))

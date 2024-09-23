@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="col-6">
-                <x-boilerplate::datetimepicker name="created_at" clearable=true placeholder='তারিখ' required label="তারিখ" value="{{$adas->created_at}}" format="D/M/Y"/>
+                <x-boilerplate::datetimepicker name="date" clearable=true placeholder='তারিখ' required label="তারিখ" value="{{$adas->date}}" format="D/M/Y"/>
                 </div>
 
             </div>
