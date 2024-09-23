@@ -57,6 +57,7 @@ class CalculationController extends Controller
 
         $calculation = Calculation::create([
             'name' => $request->name,
+            'date' => $request->date,
             'previous_balance' => $previousBalance,
             'balance' => $previousBalance,
         ]);
@@ -107,6 +108,7 @@ class CalculationController extends Controller
         ]);
 
         $calculation->name = $request->name;
+        $calculation->date = $request->date;
         $calculation->balance = $calculation->previous_balance;
 
         // Update income entries
