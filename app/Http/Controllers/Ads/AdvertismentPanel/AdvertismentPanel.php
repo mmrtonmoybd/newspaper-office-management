@@ -31,7 +31,7 @@ class AdvertismentPanel extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            'amount' => convertBengaliToEnglish($request->input('amount'))
+            'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
 
         $request->validate([
@@ -81,7 +81,7 @@ class AdvertismentPanel extends Controller
         Gate::authorize('update', [$panel->created_at, 'update_ads_panel']);
 
         $request->merge([
-            'amount' => convertBengaliToEnglish($request->input('amount'))
+            'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
             'org_name' => 'required|string',

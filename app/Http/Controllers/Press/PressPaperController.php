@@ -32,7 +32,7 @@ class PressPaperController extends Controller
     {
         $request->merge([
             'published_order' => convertBengaliToEnglish($request->input('published_order')),
-            'wastage' => convertBengaliToEnglish($request->input('wastage'))
+            'wastage' => convertBengaliToEnglish($request->input('wastage')),
         ]);
         $request->validate([
             'roll' => 'required|string',
@@ -83,7 +83,7 @@ class PressPaperController extends Controller
         Gate::authorize('update', [$paper->created_at, 'update_paper']);
         $request->merge([
             'published_order' => convertBengaliToEnglish($request->input('published_order')),
-            'wastage' => convertBengaliToEnglish($request->input('wastage'))
+            'wastage' => convertBengaliToEnglish($request->input('wastage')),
         ]);
         $request->validate([
             'roll' => 'required|string',

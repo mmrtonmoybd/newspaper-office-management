@@ -34,7 +34,7 @@ class MonthlyController extends Controller
             'send_quantity' => convertBengaliToEnglish($request->input('send_quantity')),
             'monthly_bill' => convertBengaliToEnglish($request->input('monthly_bill')),
             'paid_bill' => convertBengaliToEnglish($request->input(key: 'paid_bill')),
-            'extra_due_bill' => convertBengaliToEnglish($request->input(key: 'extra_due_bill'))
+            'extra_due_bill' => convertBengaliToEnglish($request->input(key: 'extra_due_bill')),
         ]);
 
         $request->validate([
@@ -89,9 +89,9 @@ class MonthlyController extends Controller
             'send_quantity' => convertBengaliToEnglish($request->input('send_quantity')),
             'monthly_bill' => convertBengaliToEnglish($request->input('monthly_bill')),
             'paid_bill' => convertBengaliToEnglish($request->input(key: 'paid_bill')),
-            'extra_due_bill' => convertBengaliToEnglish($request->input(key: 'extra_due_bill'))
+            'extra_due_bill' => convertBengaliToEnglish($request->input(key: 'extra_due_bill')),
         ]);
-        
+
         $request->validate([
             'monthly_circulation_repen_id' => 'required|numeric|exists:monthly_circulation_repens,id',
             'district' => 'required|string',

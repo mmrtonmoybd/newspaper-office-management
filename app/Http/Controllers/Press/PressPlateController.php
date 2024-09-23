@@ -34,7 +34,7 @@ class PressPlateController extends Controller
             'advance_paid' => convertBengaliToEnglish($request->input('advance_paid')),
             'cut_amount' => convertBengaliToEnglish($request->input('cut_amount')),
             'daily_plate' => convertBengaliToEnglish($request->input('daily_plate')),
-            'new_plate' => convertBengaliToEnglish($request->input('new_plate'))
+            'new_plate' => convertBengaliToEnglish($request->input('new_plate')),
         ]);
         $plate = PressPlate::create($request->all());
         $lastid = $plate->id;
@@ -90,7 +90,7 @@ class PressPlateController extends Controller
             'advance_paid' => convertBengaliToEnglish($request->input('advance_paid')),
             'cut_amount' => convertBengaliToEnglish($request->input('cut_amount')),
             'daily_plate' => convertBengaliToEnglish($request->input('daily_plate')),
-            'new_plate' => convertBengaliToEnglish($request->input('new_plate'))
+            'new_plate' => convertBengaliToEnglish($request->input('new_plate')),
         ]);
         $plate->update($request->all());
 

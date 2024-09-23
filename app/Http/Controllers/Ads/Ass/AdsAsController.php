@@ -32,7 +32,7 @@ class AdsAsController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            'amount' => convertBengaliToEnglish($request->input('amount'))
+            'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
 
         $request->validate([
@@ -84,7 +84,7 @@ class AdsAsController extends Controller
         Gate::authorize('update', [$a->created_at, 'update_as']);
 
         $request->merge([
-            'amount' => convertBengaliToEnglish($request->input('amount'))
+            'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
             'details' => 'required|string|max:255',

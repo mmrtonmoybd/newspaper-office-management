@@ -31,7 +31,7 @@ class PressInkController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            'amount' => convertBengaliToEnglish($request->input('amount'))
+            'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
             'color' => 'required|string',
@@ -75,7 +75,7 @@ class PressInkController extends Controller
     {
         Gate::authorize('update', [$ink->created_at, 'update_ink']);
         $request->merge([
-            'amount' => convertBengaliToEnglish($request->input('amount'))
+            'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
             'color' => 'required|string',

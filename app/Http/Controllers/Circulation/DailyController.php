@@ -32,7 +32,7 @@ class DailyController extends Controller
     {
         $request->merge([
             'sell_quantity' => convertBengaliToEnglish($request->input('sell_quantity')),
-            'per_price' => convertBengaliToEnglish($request->input('per_price'))
+            'per_price' => convertBengaliToEnglish($request->input('per_price')),
         ]);
         $request->validate([
             'sell_date' => 'nullable|date',
@@ -80,7 +80,7 @@ class DailyController extends Controller
 
         $request->merge([
             'sell_quantity' => convertBengaliToEnglish($request->input('sell_quantity')),
-            'per_price' => convertBengaliToEnglish($request->input('per_price'))
+            'per_price' => convertBengaliToEnglish($request->input('per_price')),
         ]);
         $request->validate([
             'sell_date' => 'nullable|date',

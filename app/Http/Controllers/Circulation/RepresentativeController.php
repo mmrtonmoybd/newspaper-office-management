@@ -31,7 +31,7 @@ class RepresentativeController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            'mobile' => convertBengaliToEnglish($request->input('mobile'))
+            'mobile' => convertBengaliToEnglish($request->input('mobile')),
         ]);
         $request->validate([
             'name' => 'required|string|max:255',
@@ -74,7 +74,7 @@ class RepresentativeController extends Controller
     {
         Gate::authorize('update', [$representative->created_at, 'update_representative']);
         $request->merge([
-            'mobile' => convertBengaliToEnglish($request->input('mobile'))
+            'mobile' => convertBengaliToEnglish($request->input('mobile')),
         ]);
         $request->validate([
             'name' => 'required|string|max:255',

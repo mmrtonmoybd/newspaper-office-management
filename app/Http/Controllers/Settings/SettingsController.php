@@ -26,7 +26,7 @@ class SettingsController extends Controller
     {
         $request->merge([
             'update_within' => convertBengaliToEnglish($request->input('update_within')),
-            'delete_within' => convertBengaliToEnglish($request->input('delete_within'))
+            'delete_within' => convertBengaliToEnglish($request->input('delete_within')),
         ]);
         $request->validate([
             'update_within' => 'required|numeric',
