@@ -3,9 +3,9 @@
 namespace App\Datatables;
 
 use App\Models\PressPlate;
+use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
-use Illuminate\Support\Facades\Gate;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
 
 class PlateDatatable extends Datatable

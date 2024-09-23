@@ -68,6 +68,7 @@ class PressPlateController extends Controller
     public function edit(PressPlate $plate)
     {
         Gate::authorize('update', [$plate->created_at, 'update_plate']);
+
         return view('backend.press.plate.edit', [
             'plate' => $plate,
         ]);

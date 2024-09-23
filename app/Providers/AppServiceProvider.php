@@ -3,13 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Setting;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider;
-//use App\Models\User;
-use Sebastienheyd\Boilerplate\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Gate;
+//use App\Models\User;
+use Illuminate\Support\ServiceProvider;
+use Sebastienheyd\Boilerplate\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,9 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
-        Gate::define('update', function(User $user, $modeldate, $permission) {
-            $setting = Setting::where('name','update_within')->first();
+
+        Gate::define('update', function (User $user, $modeldate, $permission) {
+            $setting = Setting::where('name', 'update_within')->first();
             $updatehour = (int) $setting->value;
 
             $modifydate = Carbon::parse($modeldate)->addHours($updatehour);
@@ -39,13 +38,12 @@ class AppServiceProvider extends ServiceProvider
                 return Response::allow();
             } else {
                 return Response::deny('You need update permission to update this data or it is higher than the within update hours');
-                
+
             }
         });
 
-
-        Gate::define('delete', function(User $user, $modeldate, $permission) {
-            $setting = Setting::where('name','update_within')->first();
+        Gate::define('delete', function (User $user, $modeldate, $permission) {
+            $setting = Setting::where('name', 'update_within')->first();
             $updatehour = (int) $setting->value;
 
             $modifydate = Carbon::parse($modeldate)->addHours($updatehour);
@@ -56,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
                 return Response::allow();
             } else {
                 return Response::deny('You need delete permission to delete this data or it is higher than the within delete hours');
-                
+
             }
         });
     }

@@ -65,6 +65,7 @@ class MonthlyController extends Controller
     public function edit(MonthlyCirculation $monthly)
     {
         Gate::authorize('update', [$monthly->created_at, 'update_monthly']);
+
         return view('backend.circulation.monthly.edit', [
             'monthly' => $monthly,
         ]);
@@ -99,6 +100,7 @@ class MonthlyController extends Controller
     public function destroy(MonthlyCirculation $monthly)
     {
         Gate::authorize('delete', [$monthly->created_at, 'delete_monthly']);
+
         return response()->json(['success' => $monthly->delete() ?? false]);
     }
 }

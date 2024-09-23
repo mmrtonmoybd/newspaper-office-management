@@ -3,8 +3,8 @@
 namespace App\Datatables;
 
 use App\Models\DailyCirculation;
-use Sebastienheyd\Boilerplate\Datatables\Button;
 use Illuminate\Support\Facades\Gate;
+use Sebastienheyd\Boilerplate\Datatables\Button;
 use Sebastienheyd\Boilerplate\Datatables\Column;
 use Sebastienheyd\Boilerplate\Datatables\Datatable;
 

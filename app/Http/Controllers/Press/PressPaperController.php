@@ -65,6 +65,7 @@ class PressPaperController extends Controller
     public function edit(PressPaper $paper)
     {
         Gate::authorize('update', [$paper->created_at, 'update_paper']);
+
         return view('backend.press.paper.edit', [
             'paper' => $paper,
         ]);
@@ -99,6 +100,7 @@ class PressPaperController extends Controller
     public function destroy(PressPaper $paper)
     {
         Gate::authorize('delete', [$paper->created_at, 'delete_paper']);
+
         return response()->json(['success' => $paper->delete() ?? false]);
     }
 }

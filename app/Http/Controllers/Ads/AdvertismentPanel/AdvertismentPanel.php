@@ -63,6 +63,7 @@ class AdvertismentPanel extends Controller
     public function edit(Model $panel)
     {
         Gate::authorize('update', [$panel->created_at, 'update_ads_panel']);
+
         return view('backend.ads.adpanel.edit', [
             'panel' => $panel,
         ]);
@@ -96,6 +97,7 @@ class AdvertismentPanel extends Controller
     public function destroy(Model $panel)
     {
         Gate::authorize('delete', [$panel->created_at, 'delete_ads_panel']);
+
         return response()->json(['success' => $panel->delete() ?? false]);
     }
 }

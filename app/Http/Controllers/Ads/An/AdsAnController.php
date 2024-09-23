@@ -66,6 +66,7 @@ class AdsAnController extends Controller
     public function edit(AdAn $an)
     {
         Gate::authorize('update', [$an->created_at, 'update_an']);
+
         return view('backend.ads.an.edit', [
             'adan' => $an,
         ]);
@@ -101,6 +102,7 @@ class AdsAnController extends Controller
     public function destroy(AdAn $an): JsonResponse
     {
         Gate::authorize('delete', [$an->created_at, 'delete_an']);
+
         return response()->json(['success' => $an->delete() ?? false]);
     }
 }

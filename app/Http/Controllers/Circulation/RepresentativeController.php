@@ -58,6 +58,7 @@ class RepresentativeController extends Controller
     public function edit(MonthlyCirculationRepen $representative)
     {
         Gate::authorize('update', [$representative->created_at, 'update_representative']);
+
         return view('backend.circulation.representative.edit', [
             'representative' => $representative,
         ]);
@@ -87,6 +88,7 @@ class RepresentativeController extends Controller
     public function destroy(MonthlyCirculationRepen $representative)
     {
         Gate::authorize('delete', [$representative->created_at, 'delete_representative']);
+
         return response()->json(['success' => $representative->delete() ?? false]);
     }
 }

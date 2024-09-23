@@ -39,6 +39,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         Gate::authorize('update', [$category->created_at, 'update_entries_heading']);
+
         return view('backend.cashbook.categories.edit', compact('category'));
     }
 

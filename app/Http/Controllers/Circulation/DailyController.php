@@ -61,6 +61,7 @@ class DailyController extends Controller
     public function edit(DailyCirculation $daily)
     {
         Gate::authorize('update', [$daily->created_at, 'update_daily']);
+
         return view('backend.circulation.daily.edit', [
             'daily' => $daily,
         ]);
@@ -91,6 +92,7 @@ class DailyController extends Controller
     public function destroy(DailyCirculation $daily)
     {
         Gate::authorize('delete', [$daily->created_at, 'delete_daily']);
+
         return response()->json(['success' => $daily->delete() ?? false]);
     }
 }
