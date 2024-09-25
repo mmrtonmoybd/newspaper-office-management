@@ -53,7 +53,7 @@ class RepresentativeController extends Controller
     public function show(MonthlyCirculationRepen $representative)
     {
         return view('backend.circulation.representative.view', [
-            'representative' => $representative
+            'representative' => $representative,
         ]);
     }
 

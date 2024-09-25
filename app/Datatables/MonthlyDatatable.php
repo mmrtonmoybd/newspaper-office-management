@@ -38,8 +38,9 @@ class MonthlyDatatable extends Datatable
                 ->name('monthly_circulations.id'),
 
             Column::add(__('প্রতিনিধির নাম'))
-                ->data('representative.name', function(MonthlyCirculation $monthlycirculation) {
-                    return "<a href=" . route('backend.representative.show', $monthlycirculation->monthly_circulation_repen_id) . ">" . $monthlycirculation->representative->name ."</a>";                })
+                ->data('representative.name', function (MonthlyCirculation $monthlycirculation) {
+                    return '<a href='.route('backend.representative.show', $monthlycirculation->monthly_circulation_repen_id).'>'.$monthlycirculation->representative->name.'</a>';
+                })
                 ->name('representative.name')
                 ->filterOptions(function () {
                     return MonthlyCirculationRepen::all()->pluck('name', 'name')->toArray();
