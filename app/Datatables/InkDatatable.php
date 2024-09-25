@@ -64,7 +64,7 @@ class InkDatatable extends Datatable
                 ->width('20px')
                 ->actions(function (PressInk $pressink) {
                     return implode([
-                        // Button::show('pressink.show', $pressink),
+                         Button::show('backend.ink.show', $pressink),
                         (Gate::allows('update', [$pressink->created_at, 'update_ink'])) ? Button::edit('backend.ink.edit', $pressink) : null,
                         (Gate::allows('delete', [$pressink->created_at, 'delete_ink'])) ? Button::delete('backend.ink.destroy', $pressink) : null,
                     ]);

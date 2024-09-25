@@ -6,6 +6,42 @@
     ]
 ])
 
+@push('css')
+<style>
+        /* Hide everything by default when printing */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            /* Only print content inside .printable */
+            .printable, .printable * {
+                visibility: visible;
+            }
+
+            /* Center content on print page */
+            .printable {
+            }
+
+            /* Font size responsive for print */
+            .printable {
+                font-size: 14pt; /* Default font size */
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            /* Larger font for higher-resolution print */
+            @media print and (min-resolution: 300dpi) {
+                .printable {
+                    font-size: 18pt; /* Larger font for high-resolution prints */
+                }
+            }
+        }
+</style>
+@endpush
+
 @section('content')
 
         <div class="row">
@@ -18,11 +54,11 @@
         </div>
         <div class="row">
             <div class="col-12">
-<x-boilerplate::card>
+<x-boilerplate::card class="printable">
             <div class="row">
 
                 <div class="col-6">
-                <th><b>বিক্রির তারিখ: </b></th><td>{{\Illuminate\Support\Carbon::parse($daily->sell_date)->format('d/M/Y')}}</td>
+                <th><b>বিক্রির তারিখ: </b></th><td>{{ (!empty($daily->sell_date)) ? \Illuminate\Support\Carbon::parse($daily->sell_date)->format('d/M/Y') : ''}}</td>
                 </div>
 
                 <div class="col-6">
@@ -48,6 +84,7 @@
             </div>
 
 </x-boilerplate::card>
+<button type="button" class="no-print primary-success btn btn-primary" onclick="window.print()">Print</button>
         </div>
     </div>
 @endsection

@@ -5,6 +5,41 @@
         'A/N' => 'backend.ads.an.index',
     ]
 ])
+@push('css')
+<style>
+        /* Hide everything by default when printing */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            /* Only print content inside .printable */
+            .printable, .printable * {
+                visibility: visible;
+            }
+
+            /* Center content on print page */
+            .printable {
+            }
+
+            /* Font size responsive for print */
+            .printable {
+                font-size: 14pt; /* Default font size */
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            /* Larger font for higher-resolution print */
+            @media print and (min-resolution: 300dpi) {
+                .printable {
+                    font-size: 18pt; /* Larger font for high-resolution prints */
+                }
+            }
+        }
+</style>
+@endpush
 
 @section('content')
 
@@ -18,7 +53,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-<x-boilerplate::card>
+<x-boilerplate::card class="printable">
             <div class="row">
 
                 <div class="col-6">
@@ -30,11 +65,11 @@
                 </div>
                 <br><br>
                 <div class="col-6">
-                <th><b>ছাপার তারিখ: </b></th><td>{{\Illuminate\Support\Carbon::parse($adan->published_date)->format('d/M/Y')}}</td>
+                <th><b>ছাপার তারিখ: </b></th><td>{{ (!empty($adan->published_date)) ? \Illuminate\Support\Carbon::parse($adan->published_date)->format('d/M/Y') : ''}}</td>
                 </div>
 
                 <div class="col-6">
-                <th><b>তারিখ: </b></th><td>{{\Illuminate\Support\Carbon::parse($adan->date)->format('d/M/Y')}}</td>
+                <th><b>তারিখ: </b></th><td>{{ (!empty($adan->date)) ? \Illuminate\Support\Carbon::parse($adan->date)->format('d/M/Y') : ''}}</td>
                 </div>
                 <br><br>
             </div>
@@ -65,6 +100,7 @@
                 </div>
             </div>
 </x-boilerplate::card>
+<button type="button" class="no-print primary-success btn btn-primary" onclick="window.print()">Print</button>
         </div>
     </div>
 @endsection

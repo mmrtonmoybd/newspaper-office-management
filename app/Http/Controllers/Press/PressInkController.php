@@ -53,7 +53,9 @@ class PressInkController extends Controller
      */
     public function show(PressInk $ink)
     {
-        //
+        return view('backend.press.ink.view', [
+            'ink' => $ink
+        ]);
     }
 
     /**

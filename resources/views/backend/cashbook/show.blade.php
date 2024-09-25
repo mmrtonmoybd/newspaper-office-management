@@ -65,7 +65,7 @@
                         $inc = \App\Models\Calculation::where('id', $income->calculation_id)->first();
                         @endphp
                         <tr>
-                            <td>{{ \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') }}</td>
+                            <td>{{ (!empty($inc->date)) ? \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') : '' }}</td>
                             <td>{{ $income->description }}</td>
                             <td>{{ number_format($income->amount, 2) }}</td>
                         </tr>
@@ -99,7 +99,7 @@
                         $inc = \App\Models\Calculation::where('id', $expense->calculation_id)->first();
                         @endphp
                         <tr>
-                            <td>{{ \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') }}</td>
+                            <td>{{ (!empty($inc->date)) ? \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') : '' }}</td>
                             <td>{{ $expense->description }}</td>
                             <td>{{ number_format($expense->amount, 2) }}</td>
                         </tr>
@@ -159,7 +159,7 @@
 
     <div class="card-footer">
         <a href="{{ route('backend.calculations.index') }}" class="btn btn-primary">Back to List</a>
-        <a href="{{ route('backend.export', $calculation->id) }}?start_date={{$startDate}}&end_date={{$endDate}}" class="btn btn-primary">Print/Word</a>
+        <a href="{{ route('backend.export', $calculation->id) }}?start_date={{$startDate}}&end_date={{$endDate}}" class="btn btn-primary">Print</a>
     </div>
 </div>
 

@@ -64,7 +64,7 @@ class PlateDatatable extends Datatable
                 ->width('20px')
                 ->actions(function (PressPlate $pressplate) {
                     return implode([
-                        // Button::show('pressplate.show', $pressplate),
+                         Button::show('backend.plate.show', $pressplate),
                         (Gate::allows('update', [$pressplate->created_at, 'update_plate'])) ? Button::edit('backend.plate.edit', $pressplate) : null,
                         (Gate::allows('delete', [$pressplate->created_at, 'delete_plate'])) ? Button::delete('backend.plate.destroy', $pressplate) : null,
                     ]);

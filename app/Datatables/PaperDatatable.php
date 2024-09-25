@@ -46,7 +46,7 @@ class PaperDatatable extends Datatable
             Column::add(__('ওসেস্টেজ'))
                 ->data('wastage'),
 
-            Column::add(__('Total'))
+            Column::add(__('মোট'))
                 ->data('total'),
 
             Column::add(__('তারিখ'))
@@ -65,7 +65,7 @@ class PaperDatatable extends Datatable
                 ->width('20px')
                 ->actions(function (PressPaper $presspaper) {
                     return implode([
-                        // Button::show('backend.paper.show', $presspaper),
+                         Button::show('backend.paper.show', $presspaper),
                         (Gate::allows('update', [$presspaper->created_at, 'update_paper'])) ? Button::edit('backend.paper.edit', $presspaper) : null,
                         (Gate::allows('delete', [$presspaper->created_at, 'delete_paper'])) ? Button::delete('backend.paper.destroy', $presspaper) : null,
                     ]);

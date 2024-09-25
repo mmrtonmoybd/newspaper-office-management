@@ -137,9 +137,9 @@
     <!-- Header -->
     <div class="header">
         <h1>দৈনিক আজকের বার্তা</h1>
-        <p>বরিশাল</p>
+        <p><b>বরিশাল</b></p>
        
-        <b><p class="date" align="right">তারিখ: {{ ($range != '' ) ? $range :  \Illuminate\Support\Carbon::parse($calculation->date)->format('d/m/Y')}}</p></b>
+        <b><p class="date" align="right">তারিখ: {{ ($range != '' ) ? $range :  ( (!empty($calculation->date)) ? \Illuminate\Support\Carbon::parse($calculation->date)->format('d/m/Y') : '' )}}</p></b>
     </div>
 
     <div class="row">
@@ -182,7 +182,7 @@
                         $inc = \App\Models\Calculation::where('id', $income->calculation_id)->first();
         @endphp
                         <tr>
-                            <td>{{ \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') }}</td>
+                            <td>{{ (!empty($inc->date)) ? \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') : '' }}</td>
                             <td>{{ $income->description }}</td>
                             <td>{{ number_format($income->amount, 2) }}</td>
                         </tr>
@@ -195,7 +195,12 @@
         
         <tr>
             <td colspan="2"><b>মোট:</b></td>
+            @if ($previousBalance > 0)
             <td colspan="1"><b>{{ number_format($previousBalance, 2) + number_format($totalIncome, 2) }}/-</b></td>
+            @else
+            <td colspan="1"><b>{{ number_format($totalIncome, 2) }}/-</b></td>
+            @endif
+            
         </tr>
     </table>
 
@@ -231,7 +236,7 @@
                         $inc = \App\Models\Calculation::where('id', $expense->calculation_id)->first();
                         @endphp
                         <tr>
-                            <td>{{ \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') }}</td>
+                            <td>{{ (!empty($inc->date)) ? \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') : '' }}</td>
                             <td>{{ $expense->description }}</td>
                             <td>{{ number_format($expense->amount, 2) }}</td>
                         </tr>
@@ -254,7 +259,11 @@
     <!-- Totals Section -->
     <div class="total-section">
         <div class="totals">
+        @if ($previousBalance > 0)
             <p><strong>আয়:</strong> {{number_format($previousBalance, 2) + number_format($totalIncome, 2)}}/-</p>
+            @else
+            <p><strong>আয়:</strong> {{number_format($totalIncome, 2)}}/-</p>
+            @endif
             <p><strong>ব্যয়:</strong> {{number_format($totalExpense, 2)}}/-</p>
             @php
                                 $netChange = $totalIncome - $totalExpense;
@@ -321,7 +330,7 @@
 <!-- Buttons for Print and Word Export (hidden in print mode) -->
 <div class="no-print" style="text-align:center; margin-top: 20px;">
     <button onclick="window.print()">Print</button>
-    <button onclick="Export2Word('exportContent', 'word-content.docx');">Export to Word</button>
+   <!-- <button onclick="Export2Word('exportContent', 'word-content.docx');">Export to Word</button> -->
 </div>
 
 </body>

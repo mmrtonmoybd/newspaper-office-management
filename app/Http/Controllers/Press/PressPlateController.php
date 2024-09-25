@@ -64,7 +64,9 @@ class PressPlateController extends Controller
      */
     public function show(PressPlate $plate)
     {
-        //
+        return view('backend.press.plate.view', [
+            'plate' => $plate
+        ]);
     }
 
     /**

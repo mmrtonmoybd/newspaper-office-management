@@ -60,7 +60,9 @@ class PressPaperController extends Controller
      */
     public function show(PressPaper $paper)
     {
-        //
+        return view('backend.press.paper.view', [
+            'paper' => $paper
+        ]);
     }
 
     /**
