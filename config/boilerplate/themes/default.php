@@ -27,7 +27,7 @@ return [
         'brand' => [
             'bg' => 'gray-dark',
             'logo' => [
-                'bg' => 'blue',
+                'bg' => 'white',
                 'icon' => '<img src="/logo/logo.png" width="30" height="15">',
                 'text' => '<strong>DAILY</strong> Ajker Barta',
                 'shadow' => 2,
