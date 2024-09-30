@@ -155,17 +155,19 @@
         </tr>
 
         <tr>
-                <td><b>Date</b></td>
-                <td><b>Description</b></td>
-                <td><b>Amount</b></td>
+                <td><b>তারিখ</b></td>
+                <td><b>বিবরণ</b></td>
+                <td><b>টাকা</b></td>
         </tr>
 
         @if ($previousBalance > 0)
+        <!--
         <tr>
             <td></td>
             <td>আগত তহবিল</td>
             <td>{{ (int) $previousBalance }}</td>
         </tr>
+    -->
         @endif
 
         @php $totalIncome = 0; @endphp
@@ -212,9 +214,9 @@
         </tr>
 
         <tr>
-                <td><b>Date</b></td>
-                <td><b>Description</b></td>
-                <td><b>Amount</b></td>
+                <td><b>তারিখ</b></td>
+                <td><b>বিবরণ</b></td>
+                <td><b>টাকা</b></td>
         </tr>
 
         @php $totalExpense = 0; @endphp
@@ -255,13 +257,25 @@
     <div class="total-section">
         <div class="totals">
             <p><strong>আয়:</strong> {{(int)$previousBalance + (int)$totalIncome}}/-</p>
+            <p align="left"><strong>(-)</strong></p>
             <p><strong>ব্যয়:</strong> {{(int)$totalExpense}}/-</p>
+            <br>
             @php
                                 $netChange = (int)$totalIncome - (int)$totalExpense;
                                 $netBalance = (int) $previousBalance + (int)$netChange;
             @endphp
-                            
-            <p><strong>স্থিতি:</strong> {{ (int)$netBalance }}/-</p>
+        
+            @if ($previousBalance > 0)
+            <p style="border-top: solid black; display: inline-block; padding-top: 6px;"><strong>= মোট আয়/ব্যয়:</strong> {{ (int)$netChange }}/-</p>
+            <p align="left"><strong>(+)</strong></p> 
+            <p><strong>পূর্ববর্তী স্থিতি:</strong> {{ (int)$previousBalance }}/-</p> 
+
+            <p style="border-top: solid black; display: inline-block; padding-top: 6px;"><strong>= বর্তমান স্থিতি:</strong> {{ (int)$netBalance }}/-</p>
+            @else
+            <p style="border-top: solid black; display: inline-block; padding-top: 6px;"><strong>= মোট আয়/ব্যয়:</strong> {{ (int)$netChange }}/-</p>
+            <br>             
+            <p><strong>= বর্তমান স্থিতি:</strong> {{ (int)$netBalance }}/-</p>
+            @endif
         </div>
     </div>
 

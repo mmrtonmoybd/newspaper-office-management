@@ -18,7 +18,8 @@
         @if($calculationsData->isEmpty())
             <div class="alert alert-warning">No Cashbooks found.</div>
         @else
-            <table class="table table-bordered table-striped">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover va-middle w-100 table-sm">
                 <thead>
                     <tr>
                         <th>Cashbook Name</th>
@@ -57,6 +58,7 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
 
             <!-- Pagination Links -->
             <div class="d-flex justify-content-center">
