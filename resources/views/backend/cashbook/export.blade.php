@@ -164,7 +164,7 @@
         <tr>
             <td></td>
             <td>আগত তহবিল</td>
-            <td>{{ number_format($previousBalance, 2) }}</td>
+            <td>{{ (int) $previousBalance }}</td>
         </tr>
         @endif
 
@@ -184,7 +184,7 @@
                         <tr>
                             <td>{{ (!empty($inc->date)) ? \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') : '' }}</td>
                             <td>{{ $income->description }}</td>
-                            <td>{{ number_format($income->amount, 2) }}</td>
+                            <td>{{ (int)$income->amount }}</td>
                         </tr>
                         @php $totalIncome += $income->amount; @endphp
         @endforeach
@@ -195,12 +195,7 @@
         
         <tr>
             <td colspan="2"><b>মোট:</b></td>
-            @if ($previousBalance > 0)
-            <td colspan="1"><b>{{ number_format($previousBalance, 2) + number_format($totalIncome, 2) }}/-</b></td>
-            @else
-            <td colspan="1"><b>{{ number_format($totalIncome, 2) }}/-</b></td>
-            @endif
-            
+            <td colspan="1"><b>{{ (int)$previousBalance + (int)$totalIncome }}/-</b></td>
         </tr>
     </table>
 
@@ -238,7 +233,7 @@
                         <tr>
                             <td>{{ (!empty($inc->date)) ? \Illuminate\Support\Carbon::parse($inc->date)->format('d/m/Y') : '' }}</td>
                             <td>{{ $expense->description }}</td>
-                            <td>{{ number_format($expense->amount, 2) }}</td>
+                            <td>{{ (int)$expense->amount }}</td>
                         </tr>
                         @php $totalExpense += $expense->amount; @endphp
 
@@ -248,7 +243,7 @@
                 @endforeach
                 <tr>
             <td colspan="2"><b>মোট:</b></td>
-            <td colspan="1"><b>{{ number_format($totalExpense, 2) }}/-</b></td>
+            <td colspan="1"><b>{{ (int)$totalExpense }}/-</b></td>
         </tr>
     </table>
     
@@ -259,18 +254,14 @@
     <!-- Totals Section -->
     <div class="total-section">
         <div class="totals">
-        @if ($previousBalance > 0)
-            <p><strong>আয়:</strong> {{number_format($previousBalance, 2) + number_format($totalIncome, 2)}}/-</p>
-            @else
-            <p><strong>আয়:</strong> {{number_format($totalIncome, 2)}}/-</p>
-            @endif
-            <p><strong>ব্যয়:</strong> {{number_format($totalExpense, 2)}}/-</p>
+            <p><strong>আয়:</strong> {{(int)$previousBalance + (int)$totalIncome}}/-</p>
+            <p><strong>ব্যয়:</strong> {{(int)$totalExpense}}/-</p>
             @php
-                                $netChange = $totalIncome - $totalExpense;
-                                $netBalance = $previousBalance + $netChange;
+                                $netChange = (int)$totalIncome - (int)$totalExpense;
+                                $netBalance = (int) $previousBalance + (int)$netChange;
             @endphp
                             
-            <p><strong>স্থিতি:</strong> {{ number_format($netBalance, 2) }}/-</p>
+            <p><strong>স্থিতি:</strong> {{ (int)$netBalance }}/-</p>
         </div>
     </div>
 

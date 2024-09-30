@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="col-6">
-                <x-boilerplate::datetimepicker name="paid_date" clearable=true placeholder='প্ররিশোদের তারিখ' value="{{$panel->paid_date}}" required label="প্ররিশোদের তারিখ" format="D/M/Y"/>
+                <x-boilerplate::datetimepicker name="paid_date" clearable=true placeholder='পরিশোধের তারিখ' value="{{$panel->paid_date}}" required label="পরিশোধের তারিখ" format="D/M/Y"/>
                 </div>
 
                  <div class="col-6">

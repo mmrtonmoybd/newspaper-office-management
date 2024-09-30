@@ -49,7 +49,7 @@ class AdvertisingpanelDatatable extends Datatable
             Column::add(__('টাকা'))
                 ->data('amount'),
 
-            Column::add(__('প্ররিশোদের তারিখ'))
+            Column::add(__('পরিশোধের তারিখ'))
                 ->data('paid_date')
                 ->dateFormat(__('D/M/Y')),
 

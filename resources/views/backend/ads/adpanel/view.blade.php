@@ -76,7 +76,7 @@
 
 
                 <div class="col-6">
-                <th><b>প্ররিশোদের তারিখ: </b></th><td>{{ (!empty($panel->paid_date)) ? \Illuminate\Support\Carbon::parse($panel->paid_date)->format('d/M/Y') : ''}}</td>
+                <th><b>পরিশোধের তারিখ: </b></th><td>{{ (!empty($panel->paid_date)) ? \Illuminate\Support\Carbon::parse($panel->paid_date)->format('d/M/Y') : ''}}</td>
                 </div>
 
                 <div class="col-6">
