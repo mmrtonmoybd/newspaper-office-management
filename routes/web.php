@@ -33,20 +33,12 @@ $default = [
 Route::group($default, function () {
 
     Route::get('/clear', function () {
-        $exitCode = Artisan::call('cache:clear');
-        $exitCode = Artisan::call('config:clear');
-        $exitCode = Artisan::call('route:clear');
-        $exitCode = Artisan::call('view:clear');
-        $exitCode = Artisan::call('event:clear');
+        $exitCode = Artisan::call('optimize:clear');
         // return what you want
     });
 
     Route::get('/cache', function () {
         $exitCode = Artisan::call('optimize');
-        $exitCode = Artisan::call('config:cache');
-        $exitCode = Artisan::call('route:cache');
-        $exitCode = Artisan::call('view:cache');
-        $exitCode = Artisan::call('event:cache');
         // return what you want
     });
 

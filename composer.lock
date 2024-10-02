@@ -4377,16 +4377,16 @@
         },
         {
             "name": "sebastienheyd/boilerplate",
-            "version": "8.0.4",
+            "version": "8.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastienheyd/boilerplate.git",
-                "reference": "0f1a885e5143d9c4a945b70ee31bafb4d2193b5d"
+                "reference": "00b6539da19195e66b56d729fe15a9a7e5b59c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastienheyd/boilerplate/zipball/0f1a885e5143d9c4a945b70ee31bafb4d2193b5d",
-                "reference": "0f1a885e5143d9c4a945b70ee31bafb4d2193b5d",
+                "url": "https://api.github.com/repos/sebastienheyd/boilerplate/zipball/00b6539da19195e66b56d729fe15a9a7e5b59c8d",
+                "reference": "00b6539da19195e66b56d729fe15a9a7e5b59c8d",
                 "shasum": ""
             },
             "require": {
@@ -4458,9 +4458,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastienheyd/boilerplate/issues",
-                "source": "https://github.com/sebastienheyd/boilerplate/tree/8.0.4"
+                "source": "https://github.com/sebastienheyd/boilerplate/tree/8.0.5"
             },
-            "time": "2024-10-01T14:14:06+00:00"
+            "time": "2024-10-02T11:55:55+00:00"
         },
         {
             "name": "spatie/laravel-html",
@@ -7128,16 +7128,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.14.2",
+            "version": "v3.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "850be4e3c05add22d70a3a3fb564925fd7605973"
+                "reference": "c0bee7c08ae2429e4a9ed2bc75679b012db6e3bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/850be4e3c05add22d70a3a3fb564925fd7605973",
-                "reference": "850be4e3c05add22d70a3a3fb564925fd7605973",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/c0bee7c08ae2429e4a9ed2bc75679b012db6e3bd",
+                "reference": "c0bee7c08ae2429e4a9ed2bc75679b012db6e3bd",
                 "shasum": ""
             },
             "require": {
@@ -7196,7 +7196,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
-                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.14.2"
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.14.3"
             },
             "funding": [
                 {
@@ -7208,7 +7208,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-24T17:03:19+00:00"
+            "time": "2024-10-02T09:17:49+00:00"
         },
         {
             "name": "fakerphp/faker",
