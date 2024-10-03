@@ -2,10 +2,10 @@
 
 return [
     // Backend routes prefix. Ex: "admin" => "http://..../admin"
-    'prefix' => 'backend',
+    'prefix' => '',
 
     // Backend domain if different as current domain. Ex: "admin.mydomain.tld"
-    'domain' => '',
+    'domain' => 'data.dailyajkerbarta.com',
 
     // Redirect to this route after login
     'redirectTo' => 'boilerplate.dashboard',
@@ -14,7 +14,7 @@ return [
     'logs' => true,
 
     // When set to true, allows admins to view the site as a user of their choice
-    'allowImpersonate' => true,
+    'allowImpersonate' => false,
 
     // Allows to generate text with ChatGPT in TinyMCE
     'openai' => [
