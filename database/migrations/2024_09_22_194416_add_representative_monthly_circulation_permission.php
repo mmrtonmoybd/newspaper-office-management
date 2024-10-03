@@ -6,9 +6,9 @@ class AddRepresentativeMonthlyCirculationPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'representative_monthly_circulation',
+            'name'         => 'representative_monthly_circulation',
             'display_name' => 'Representative monthly circulation',
-            'description' => 'Representative monthly circulation permission of circulation management section.',
+            'description'  => 'Representative monthly circulation permission of circulation management section.',
         ],
     ];
 

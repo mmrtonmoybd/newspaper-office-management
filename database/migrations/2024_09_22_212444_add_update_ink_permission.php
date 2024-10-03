@@ -6,9 +6,9 @@ class AddUpdateInkPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_ink',
+            'name'         => 'update_ink',
             'display_name' => 'Update ink',
-            'description' => 'Update ink',
+            'description'  => 'Update ink',
         ],
     ];
 

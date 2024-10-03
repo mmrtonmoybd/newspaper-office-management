@@ -36,15 +36,15 @@ class AdsAsController extends Controller
         ]);
 
         $request->validate([
-            'details' => 'required|string|max:255',
-            'subject' => 'required|string|max:255',
+            'details'        => 'required|string|max:255',
+            'subject'        => 'required|string|max:255',
             'published_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'size' => 'required|string|max:255',
-            'page' => 'required|string',
-            'as' => 'required|string',
-            'comment' => 'required|string',
-            'date' => 'required|date',
+            'amount'         => 'required|numeric',
+            'size'           => 'required|string|max:255',
+            'page'           => 'required|string',
+            'as'             => 'required|string',
+            'comment'        => 'required|string',
+            'date'           => 'required|date',
         ]);
 
         AdAs::create($request->all());
@@ -88,15 +88,15 @@ class AdsAsController extends Controller
             'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
-            'details' => 'required|string|max:255',
-            'subject' => 'required|string|max:255',
+            'details'        => 'required|string|max:255',
+            'subject'        => 'required|string|max:255',
             'published_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'size' => 'required|string|max:255',
-            'page' => 'required|string',
-            'as' => 'required|string',
-            'comment' => 'required|string',
-            'date' => 'required|date',
+            'amount'         => 'required|numeric',
+            'size'           => 'required|string|max:255',
+            'page'           => 'required|string',
+            'as'             => 'required|string',
+            'comment'        => 'required|string',
+            'date'           => 'required|date',
         ]);
 
         $a->update($request->all());

@@ -6,9 +6,9 @@ class AddPressInkPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'press_ink',
+            'name'         => 'press_ink',
             'display_name' => 'Ink',
-            'description' => 'Ink permission of Press management section.',
+            'description'  => 'Ink permission of Press management section.',
         ],
     ];
 

@@ -6,9 +6,9 @@ class AddDeleteMonthlyPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_monthly',
+            'name'         => 'delete_monthly',
             'display_name' => 'Delete monthly',
-            'description' => 'Delete monthly',
+            'description'  => 'Delete monthly',
         ],
     ];
 

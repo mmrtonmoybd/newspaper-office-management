@@ -6,9 +6,9 @@ class AddDeleteManagementPermissions extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_an',
+            'name'         => 'delete_an',
             'display_name' => 'Delete A/N',
-            'description' => 'Delete A/N',
+            'description'  => 'Delete A/N',
         ],
     ];
 
@@ -20,7 +20,7 @@ class AddDeleteManagementPermissions extends Migration
     public function up()
     {
         $catId = DB::table('permissions_categories')->insertGetId([
-            'name' => 'delete_management',
+            'name'         => 'delete_management',
             'display_name' => 'Delete management',
         ]);
 

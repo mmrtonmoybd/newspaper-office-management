@@ -6,9 +6,9 @@ class AddAdsPanelPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'ads_panel',
+            'name'         => 'ads_panel',
             'display_name' => 'Advertisment panel',
-            'description' => 'Advertisment panel permission of Advertisement section.',
+            'description'  => 'Advertisment panel permission of Advertisement section.',
         ],
     ];
 

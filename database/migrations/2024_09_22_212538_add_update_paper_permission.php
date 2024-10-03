@@ -6,9 +6,9 @@ class AddUpdatePaperPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_paper',
+            'name'         => 'update_paper',
             'display_name' => 'Update paper',
-            'description' => 'Update Paper',
+            'description'  => 'Update Paper',
         ],
     ];
 

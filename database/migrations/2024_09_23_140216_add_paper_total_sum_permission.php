@@ -6,9 +6,9 @@ class AddPaperTotalSumPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'paper_total_sum',
+            'name'         => 'paper_total_sum',
             'display_name' => 'Peper total sum',
-            'description' => 'Paper total sum permission of press paper section.',
+            'description'  => 'Paper total sum permission of press paper section.',
         ],
     ];
 

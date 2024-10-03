@@ -7,44 +7,44 @@
  */
 return [
     'navbar' => [
-        'bg' => 'gray-dark',
-        'type' => 'dark',
+        'bg'     => 'gray-dark',
+        'type'   => 'dark',
         'border' => true,
-        'user' => [
+        'user'   => [
             'visible' => false,
-            'shadow' => 0,
+            'shadow'  => 0,
         ],
     ],
     'sidebar' => [
-        'type' => 'dark',
-        'shadow' => 0,
-        'border' => false,
+        'type'    => 'dark',
+        'shadow'  => 0,
+        'border'  => false,
         'compact' => false,
-        'links' => [
-            'bg' => 'gray-dark',
+        'links'   => [
+            'bg'     => 'gray-dark',
             'shadow' => 0,
         ],
         'brand' => [
-            'bg' => 'gray-dark',
+            'bg'   => 'gray-dark',
             'logo' => [
-                'bg' => 'white',
-                'icon' => '<i class="fa fa-cubes"></i>',
-                'text' => '<strong>BO</strong>ilerplate',
+                'bg'     => 'white',
+                'icon'   => '<i class="fa fa-cubes"></i>',
+                'text'   => '<strong>BO</strong>ilerplate',
                 'shadow' => 2,
             ],
         ],
         'user' => [
             'visible' => true,
-            'shadow' => 0,
+            'shadow'  => 0,
         ],
     ],
     'footer' => [
-        'visible' => true,
+        'visible'    => true,
         'vendorname' => 'Boilerplate',
         'vendorlink' => '',
     ],
     'card' => [
-        'outline' => true,
+        'outline'       => true,
         'default_color' => 'info',
     ],
 ];

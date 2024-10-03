@@ -6,9 +6,9 @@ class AddDeleteInkPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_ink',
+            'name'         => 'delete_ink',
             'display_name' => 'Delete ink',
-            'description' => 'Delete ink',
+            'description'  => 'Delete ink',
         ],
     ];
 

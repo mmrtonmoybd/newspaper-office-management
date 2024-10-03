@@ -6,9 +6,9 @@ class AddCashbookManagementPermissions extends Migration
 {
     private $permissions = [
         [
-            'name' => 'cashbook',
+            'name'         => 'cashbook',
             'display_name' => 'Cashbook',
-            'description' => 'Cashbook permission of Cashbook Management section.',
+            'description'  => 'Cashbook permission of Cashbook Management section.',
         ],
     ];
 
@@ -20,7 +20,7 @@ class AddCashbookManagementPermissions extends Migration
     public function up()
     {
         $catId = DB::table('permissions_categories')->insertGetId([
-            'name' => 'cashbook_management',
+            'name'         => 'cashbook_management',
             'display_name' => 'Cashbook Management',
         ]);
 

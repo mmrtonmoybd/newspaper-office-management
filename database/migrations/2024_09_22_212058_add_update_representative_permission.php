@@ -6,9 +6,9 @@ class AddUpdateRepresentativePermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_representative',
+            'name'         => 'update_representative',
             'display_name' => 'Update representative',
-            'description' => 'Update representative',
+            'description'  => 'Update representative',
         ],
     ];
 

@@ -19,8 +19,8 @@ Route::get('/', function () {
 });
 
 $default = [
-    'prefix' => config('boilerplate.app.prefix', ''),
-    'domain' => config('boilerplate.app.domain', ''),
+    'prefix'     => config('boilerplate.app.prefix', ''),
+    'domain'     => config('boilerplate.app.domain', ''),
     'middleware' => [
         'web',
         'boilerplatelocale',
@@ -31,7 +31,6 @@ $default = [
 ];
 
 Route::group($default, function () {
-
     Route::get('/clear', function () {
         $exitCode = Artisan::call('optimize:clear');
         // return what you want
@@ -76,5 +75,4 @@ Route::group($default, function () {
         Route::get('index', [SettingsController::class, 'index'])->name('settings.index');
         Route::post('update', [SettingsController::class, 'update'])->name('settings.update');
     });
-
 });

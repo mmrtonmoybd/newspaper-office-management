@@ -6,9 +6,9 @@ class AddPressManagementPermissions extends Migration
 {
     private $permissions = [
         [
-            'name' => 'press_paper',
+            'name'         => 'press_paper',
             'display_name' => 'Paper',
-            'description' => 'Paper permission of Press management section.',
+            'description'  => 'Paper permission of Press management section.',
         ],
     ];
 
@@ -20,7 +20,7 @@ class AddPressManagementPermissions extends Migration
     public function up()
     {
         $catId = DB::table('permissions_categories')->insertGetId([
-            'name' => 'press_management',
+            'name'         => 'press_management',
             'display_name' => 'Press management',
         ]);
 

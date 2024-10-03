@@ -7,44 +7,44 @@
  */
 return [
     'navbar' => [
-        'bg' => 'white',
-        'type' => 'light',
+        'bg'     => 'white',
+        'type'   => 'light',
         'border' => true,
-        'user' => [
+        'user'   => [
             'visible' => false,
-            'shadow' => 0,
+            'shadow'  => 0,
         ],
     ],
     'sidebar' => [
-        'type' => 'dark',
-        'shadow' => 4,
-        'border' => false,
+        'type'    => 'dark',
+        'shadow'  => 4,
+        'border'  => false,
         'compact' => false,
-        'links' => [
-            'bg' => 'blue',
+        'links'   => [
+            'bg'     => 'blue',
             'shadow' => 1,
         ],
         'brand' => [
-            'bg' => 'gray-dark',
+            'bg'   => 'gray-dark',
             'logo' => [
-                'bg' => 'white',
-                'icon' => '<img src="/logo/logo.png" width="30" height="15">',
-                'text' => '<strong>DAILY</strong> Ajker Barta',
+                'bg'     => 'white',
+                'icon'   => '<img src="/logo/logo.png" width="30" height="15">',
+                'text'   => '<strong>DAILY</strong> Ajker Barta',
                 'shadow' => 2,
             ],
         ],
         'user' => [
             'visible' => true,
-            'shadow' => 2,
+            'shadow'  => 2,
         ],
     ],
     'footer' => [
-        'visible' => true,
+        'visible'    => true,
         'vendorname' => 'Daily Ajker Barta',
         'vendorlink' => 'https://dailyajkerbarta.com',
     ],
     'card' => [
-        'outline' => true,
+        'outline'       => true,
         'default_color' => 'info',
     ],
 ];

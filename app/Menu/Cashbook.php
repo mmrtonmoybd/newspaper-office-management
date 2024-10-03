@@ -11,21 +11,21 @@ class Cashbook implements MenuItemInterface
     {
         $item = $menu->add('Cashbook', [
             'permission' => 'cashbook|cashbook_entry_heading',
-            'active' => 'backend.calculations.*|backend.categories.*',
-            'icon' => 'fal fa-money-bill-alt',
-            'order' => 200,
+            'active'     => 'backend.calculations.*|backend.categories.*',
+            'icon'       => 'fal fa-money-bill-alt',
+            'order'      => 200,
         ]);
 
         $item->add('Cashbook', [
             'permission' => 'cashbook',
-            'active' => 'backend.calculations.*',
-            'route' => 'backend.calculations.index',
+            'active'     => 'backend.calculations.*',
+            'route'      => 'backend.calculations.index',
         ]);
 
         $item->add('Entries heading', [
             'permission' => 'cashbook_entry_heading',
-            'active' => 'backend.categories.*',
-            'route' => 'backend.categories.index',
+            'active'     => 'backend.categories.*',
+            'route'      => 'backend.categories.index',
         ]);
     }
 }

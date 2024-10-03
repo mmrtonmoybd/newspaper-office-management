@@ -6,9 +6,9 @@ class AddDeleteAsPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_as',
+            'name'         => 'delete_as',
             'display_name' => 'Delete A/S',
-            'description' => 'Delete A/S',
+            'description'  => 'Delete A/S',
         ],
     ];
 

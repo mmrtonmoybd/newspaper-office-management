@@ -6,9 +6,9 @@ class AddDeletePlatePermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_plate',
+            'name'         => 'delete_plate',
             'display_name' => 'Delete plate',
-            'description' => 'Delete plate',
+            'description'  => 'Delete plate',
         ],
     ];
 

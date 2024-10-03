@@ -6,9 +6,9 @@ class AddDeleteCashbookPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_cashbook',
+            'name'         => 'delete_cashbook',
             'display_name' => 'Delete cashbook',
-            'description' => 'Delete cashbook',
+            'description'  => 'Delete cashbook',
         ],
     ];
 

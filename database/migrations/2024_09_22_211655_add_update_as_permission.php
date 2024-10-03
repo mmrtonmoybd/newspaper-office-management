@@ -6,9 +6,9 @@ class AddUpdateAsPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_as',
+            'name'         => 'update_as',
             'display_name' => 'Update A/S',
-            'description' => 'Update A/S',
+            'description'  => 'Update A/S',
         ],
     ];
 

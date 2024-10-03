@@ -11,28 +11,27 @@ class Circulation implements MenuItemInterface
     {
         $item = $menu->add('Circulation', [
             'permission' => 'representative_monthly_circulation|monthly_circulation|daily_circulation',
-            'active' => 'backend.monthly.*|backend.representative.*|backend.daily.*',
-            'icon' => 'fa-regular fa-sack-dollar',
-            'order' => 100,
+            'active'     => 'backend.monthly.*|backend.representative.*|backend.daily.*',
+            'icon'       => 'fa-regular fa-sack-dollar',
+            'order'      => 100,
         ]);
 
         $item->add('Monthly', [
             'permission' => 'monthly_circulation',
-            'active' => 'backend.monthly.*',
-            'route' => 'backend.monthly.index',
+            'active'     => 'backend.monthly.*',
+            'route'      => 'backend.monthly.index',
         ]);
 
         $item->add('Representative', [
             'permission' => 'representative_monthly_circulation',
-            'active' => 'backend.representative.*',
-            'route' => 'backend.representative.index',
+            'active'     => 'backend.representative.*',
+            'route'      => 'backend.representative.index',
         ]);
 
         $item->add('Daily', [
             'permission' => 'daily_circulation',
-            'active' => 'backend.daily.*',
-            'route' => 'backend.daily.index',
+            'active'     => 'backend.daily.*',
+            'route'      => 'backend.daily.index',
         ]);
-
     }
 }

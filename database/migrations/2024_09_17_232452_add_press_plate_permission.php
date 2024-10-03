@@ -6,9 +6,9 @@ class AddPressPlatePermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'press_plate',
+            'name'         => 'press_plate',
             'display_name' => 'Plate',
-            'description' => 'Plate permission of Press management section.',
+            'description'  => 'Plate permission of Press management section.',
         ],
     ];
 

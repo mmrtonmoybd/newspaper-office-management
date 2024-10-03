@@ -11,28 +11,27 @@ class Press implements MenuItemInterface
     {
         $item = $menu->add('Press', [
             'permission' => 'press_paper|press_ink|press_plate',
-            'active' => 'backend.ink.*|backend.paper.*|backend.plate.*',
-            'icon' => 'fa-newspaper',
-            'order' => 300,
+            'active'     => 'backend.ink.*|backend.paper.*|backend.plate.*',
+            'icon'       => 'fa-newspaper',
+            'order'      => 300,
         ]);
 
         $item->add('Ink', [
             'permission' => 'press_ink',
-            'active' => 'backend.ink.*',
-            'route' => 'backend.ink.index',
+            'active'     => 'backend.ink.*',
+            'route'      => 'backend.ink.index',
         ]);
 
         $item->add('Paper', [
             'permission' => 'press_paper',
-            'active' => 'backend.paper.*',
-            'route' => 'backend.paper.index',
+            'active'     => 'backend.paper.*',
+            'route'      => 'backend.paper.index',
         ]);
 
         $item->add('Plate', [
             'permission' => 'press_plate',
-            'active' => 'backend.plate.*',
-            'route' => 'backend.plate.index',
+            'active'     => 'backend.plate.*',
+            'route'      => 'backend.plate.index',
         ]);
-
     }
 }

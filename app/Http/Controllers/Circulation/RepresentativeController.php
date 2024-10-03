@@ -34,8 +34,8 @@ class RepresentativeController extends Controller
             'mobile' => convertBengaliToEnglish($request->input('mobile')),
         ]);
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|email|unique:monthly_circulation_repens,email',
+            'name'   => 'required|string|max:255',
+            'email'  => 'nullable|email|unique:monthly_circulation_repens,email',
             'mobile' => 'nullable|string|unique:monthly_circulation_repens,mobile',
         ]);
 
@@ -79,8 +79,8 @@ class RepresentativeController extends Controller
             'mobile' => convertBengaliToEnglish($request->input('mobile')),
         ]);
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|email|unique:monthly_circulation_repens,email,'.$representative->id,
+            'name'   => 'required|string|max:255',
+            'email'  => 'nullable|email|unique:monthly_circulation_repens,email,'.$representative->id,
             'mobile' => 'nullable|string|unique:monthly_circulation_repens,mobile,'.$representative->id,
         ]);
 

@@ -17,7 +17,7 @@ class DailyCirculation extends Model
     protected static function booted()
     {
         static::saving(function ($circulation) {
-            $circulation->total_price = number_format(($circulation->sell_quantity * $circulation->per_price), 2);
+            $circulation->total_price = number_format($circulation->sell_quantity * $circulation->per_price, 2);
         });
     }
 }

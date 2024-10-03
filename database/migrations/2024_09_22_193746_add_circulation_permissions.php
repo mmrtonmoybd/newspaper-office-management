@@ -6,9 +6,9 @@ class AddCirculationPermissions extends Migration
 {
     private $permissions = [
         [
-            'name' => 'monthly_circulation',
+            'name'         => 'monthly_circulation',
             'display_name' => 'Monthly circulation',
-            'description' => 'Monthly circulation permission of circulation management section.',
+            'description'  => 'Monthly circulation permission of circulation management section.',
         ],
     ];
 
@@ -20,7 +20,7 @@ class AddCirculationPermissions extends Migration
     public function up()
     {
         $catId = DB::table('permissions_categories')->insertGetId([
-            'name' => 'circulation',
+            'name'         => 'circulation',
             'display_name' => 'Circulation',
         ]);
 

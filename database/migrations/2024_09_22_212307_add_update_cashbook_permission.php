@@ -6,9 +6,9 @@ class AddUpdateCashbookPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_cashbook',
+            'name'         => 'update_cashbook',
             'display_name' => 'Update cashbook',
-            'description' => 'Update cashbook',
+            'description'  => 'Update cashbook',
         ],
     ];
 

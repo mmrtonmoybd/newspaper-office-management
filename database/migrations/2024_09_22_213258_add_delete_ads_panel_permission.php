@@ -6,9 +6,9 @@ class AddDeleteAdsPanelPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_ads_panel',
+            'name'         => 'delete_ads_panel',
             'display_name' => 'Delete Advertisment panel',
-            'description' => 'Delete Advertisment panel',
+            'description'  => 'Delete Advertisment panel',
         ],
     ];
 

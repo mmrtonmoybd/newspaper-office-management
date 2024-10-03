@@ -34,10 +34,10 @@ class PressInkController extends Controller
             'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
-            'color' => 'required|string',
+            'color'          => 'required|string',
             'purchased_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'quantity' => 'required|string',
+            'amount'         => 'required|numeric',
+            'quantity'       => 'required|string',
         ]);
 
         PressInk::create($request->all());
@@ -80,10 +80,10 @@ class PressInkController extends Controller
             'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
-            'color' => 'required|string',
+            'color'          => 'required|string',
             'purchased_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'quantity' => 'required|string',
+            'amount'         => 'required|numeric',
+            'quantity'       => 'required|string',
         ]);
 
         $ink->update($request->all());

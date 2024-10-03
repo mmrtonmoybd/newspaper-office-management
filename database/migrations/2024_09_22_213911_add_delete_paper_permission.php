@@ -6,9 +6,9 @@ class AddDeletePaperPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_paper',
+            'name'         => 'delete_paper',
             'display_name' => 'Delete paper',
-            'description' => 'Delete paper',
+            'description'  => 'Delete paper',
         ],
     ];
 

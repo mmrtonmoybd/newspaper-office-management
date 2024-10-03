@@ -6,9 +6,9 @@ class AddAnPermissionPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'an_permission',
+            'name'         => 'an_permission',
             'display_name' => 'A/N advertisement',
-            'description' => 'A/N advertisement permission of Advertisement section.',
+            'description'  => 'A/N advertisement permission of Advertisement section.',
         ],
     ];
 

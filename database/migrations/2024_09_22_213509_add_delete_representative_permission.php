@@ -6,9 +6,9 @@ class AddDeleteRepresentativePermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_representative',
+            'name'         => 'delete_representative',
             'display_name' => 'Delete representative',
-            'description' => 'Delete representative',
+            'description'  => 'Delete representative',
         ],
     ];
 

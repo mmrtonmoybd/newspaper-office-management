@@ -6,9 +6,9 @@ class AddSettingsPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'settings',
+            'name'         => 'settings',
             'display_name' => 'Settings permission',
-            'description' => 'Settings permission of this application.',
+            'description'  => 'Settings permission of this application.',
         ],
     ];
 

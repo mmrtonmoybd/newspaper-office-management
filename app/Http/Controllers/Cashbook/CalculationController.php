@@ -27,13 +27,13 @@ class CalculationController extends Controller
             $netBalance = $calculation->previous_balance + $netChange;
 
             return [
-                'id' => $calculation->id,
-                'name' => $calculation->name,
-                'date' => \Illuminate\Support\Carbon::parse($calculation->date)->format('d/m/Y'),
-                'totalIncome' => $totalIncome,
+                'id'           => $calculation->id,
+                'name'         => $calculation->name,
+                'date'         => \Illuminate\Support\Carbon::parse($calculation->date)->format('d/m/Y'),
+                'totalIncome'  => $totalIncome,
                 'totalExpense' => $totalExpense,
-                'netBalance' => $netBalance,
-                'created_at' => $calculation->created_at,
+                'netBalance'   => $netBalance,
+                'created_at'   => $calculation->created_at,
             ];
         });
 
@@ -56,18 +56,18 @@ class CalculationController extends Controller
         $previousBalance = $previousCalculation ? $previousCalculation->balance : 0;
 
         $calculation = Calculation::create([
-            'name' => $request->name,
-            'date' => $request->date,
+            'name'             => $request->name,
+            'date'             => $request->date,
             'previous_balance' => $previousBalance,
-            'balance' => $previousBalance,
+            'balance'          => $previousBalance,
         ]);
 
         // Save income entries
         foreach ($request->income as $income) {
             IncomeEntry::create([
                 'calculation_id' => $calculation->id,
-                'description' => $income['description'],
-                'amount' => convertBengaliToEnglish($income['amount']),
+                'description'    => $income['description'],
+                'amount'         => convertBengaliToEnglish($income['amount']),
                 //'date' => $income['date'],
                 'category_id' => $income['category_id'],
             ]);
@@ -78,8 +78,8 @@ class CalculationController extends Controller
         foreach ($request->expense as $expense) {
             ExpenseEntry::create([
                 'calculation_id' => $calculation->id,
-                'description' => $expense['description'],
-                'amount' => convertBengaliToEnglish($expense['amount']),
+                'description'    => $expense['description'],
+                'amount'         => convertBengaliToEnglish($expense['amount']),
                 //'date' => $expense['date'],
                 'category_id' => $expense['category_id'],
             ]);
@@ -120,8 +120,8 @@ class CalculationController extends Controller
             foreach ($request->income as $income) {
                 IncomeEntry::create([
                     'calculation_id' => $calculation->id,
-                    'description' => $income['description'],
-                    'amount' => convertBengaliToEnglish($income['amount']),
+                    'description'    => $income['description'],
+                    'amount'         => convertBengaliToEnglish($income['amount']),
                     //'date' => $income['date'],
                     'category_id' => $income['category_id'],
                 ]);
@@ -139,8 +139,8 @@ class CalculationController extends Controller
             foreach ($request->expense as $expense) {
                 ExpenseEntry::create([
                     'calculation_id' => $calculation->id,
-                    'description' => $expense['description'],
-                    'amount' => convertBengaliToEnglish($expense['amount']),
+                    'description'    => $expense['description'],
+                    'amount'         => convertBengaliToEnglish($expense['amount']),
                     //'date' => $expense['date'],
                     'category_id' => $expense['category_id'],
                 ]);
@@ -153,7 +153,6 @@ class CalculationController extends Controller
         $nextcalculation = Calculation::where('id', '>', $calculation->id)->count();
 
         if ($nextcalculation > 0) {
-
             $previousBalance = $calculation->balance;
 
             // Fetch all subsequent calculations that need recalculation
@@ -189,9 +188,7 @@ class CalculationController extends Controller
                 //dd($previousBalance);
 
                 // Set the previous balance for the next iteration
-
             }
-
         }
 
         return redirect()->route('backend.calculations.index');
@@ -211,7 +208,6 @@ class CalculationController extends Controller
         $previousBalance = $calculation->previous_balance;
 
         if ($startDate) {
-
             // Check if there is no entry is smaller then start date
 
             $rowcheck = Calculation::where('date', '<=', $startDate)->count();
@@ -226,7 +222,6 @@ class CalculationController extends Controller
             } else {
                 $previousBalance = 0; // There is no calculation before start date, so we set the previous balance to 0
             }
-
         }
 
         if ($startDate && $endDate) {
@@ -267,7 +262,6 @@ class CalculationController extends Controller
         $range = '';
 
         if ($startDate) {
-
             // Check if there is no entry is smaller then start date
 
             $rowcheck = Calculation::where('date', '<=', $startDate)->count();
@@ -282,7 +276,6 @@ class CalculationController extends Controller
             } else {
                 $previousBalance = 0; // There is no calculation before start date, so we set the previous balance to 0
             }
-
         }
 
         if ($startDate && $endDate) {
@@ -348,7 +341,7 @@ class CalculationController extends Controller
             // Update the subsequent calculation balance with recalculated data
             $subsequentCalculation->update([
                 'previous_balance' => $previousBalance, // You should not have to create a new column; this is conceptual for recalculation
-                'balance' => $currentBalance,   // Update the current balance for the record
+                'balance'          => $currentBalance,   // Update the current balance for the record
             ]);
 
             // Set the previous balance for the next iteration

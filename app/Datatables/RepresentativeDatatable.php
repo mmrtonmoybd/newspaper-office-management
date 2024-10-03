@@ -42,7 +42,7 @@ class RepresentativeDatatable extends Datatable
                 ->data('', function (MonthlyCirculationRepen $monthlyCirculationRepen) {
                     $monthly = MonthlyCirculation::where('monthly_circulation_repen_id', $monthlyCirculationRepen->id)->orderBy('id', 'desc')->first();
 
-                    return ! empty($monthly->due_bill) ? $monthly->due_bill : 0;
+                    return !empty($monthly->due_bill) ? $monthly->due_bill : 0;
                 })
                 ->notSearchable()
                 ->notSortable()

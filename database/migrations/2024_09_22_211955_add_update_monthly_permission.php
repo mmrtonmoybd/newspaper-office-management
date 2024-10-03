@@ -6,9 +6,9 @@ class AddUpdateMonthlyPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_monthly',
+            'name'         => 'update_monthly',
             'display_name' => 'Update monthly',
-            'description' => 'Update monthly',
+            'description'  => 'Update monthly',
         ],
     ];
 

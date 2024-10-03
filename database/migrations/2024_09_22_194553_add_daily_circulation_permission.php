@@ -6,9 +6,9 @@ class AddDailyCirculationPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'daily_circulation',
+            'name'         => 'daily_circulation',
             'display_name' => 'Daily circulation',
-            'description' => 'Daily circulation permission of circulation management section.',
+            'description'  => 'Daily circulation permission of circulation management section.',
         ],
     ];
 

@@ -25,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         Gate::define('update', function (User $user, $modeldate, $permission) {
             $setting = Setting::where('name', 'update_within')->first();
             $updatehour = (int) $setting->value;
@@ -38,7 +37,6 @@ class AppServiceProvider extends ServiceProvider
                 return Response::allow();
             } else {
                 return Response::deny('You need update permission to update this data or it is higher than the within update hours');
-
             }
         });
 
@@ -54,7 +52,6 @@ class AppServiceProvider extends ServiceProvider
                 return Response::allow();
             } else {
                 return Response::deny('You need delete permission to delete this data or it is higher than the within delete hours');
-
             }
         });
     }

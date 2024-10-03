@@ -14,11 +14,11 @@ class SettingSeeder extends Seeder
     {
         DB::table('settings')->insert([
             [
-                'name' => 'update_within',
+                'name'  => 'update_within',
                 'value' => '3',
             ],
             [
-                'name' => 'delete_within',
+                'name'  => 'delete_within',
                 'value' => '3',
             ],
         ]);

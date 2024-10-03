@@ -35,13 +35,13 @@ class AdvertismentPanel extends Controller
         ]);
 
         $request->validate([
-            'org_name' => 'required|string',
+            'org_name'                => 'required|string',
             'advertisment_start_date' => 'required|date',
-            'advertisment_end_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'paid_date' => 'required|date',
-            'comment' => 'required|string',
-            'date' => 'required|date',
+            'advertisment_end_date'   => 'required|date',
+            'amount'                  => 'required|numeric',
+            'paid_date'               => 'required|date',
+            'comment'                 => 'required|string',
+            'date'                    => 'required|date',
         ]);
 
         Model::create($request->all());
@@ -85,13 +85,13 @@ class AdvertismentPanel extends Controller
             'amount' => convertBengaliToEnglish($request->input('amount')),
         ]);
         $request->validate([
-            'org_name' => 'required|string',
+            'org_name'                => 'required|string',
             'advertisment_start_date' => 'required|date',
-            'advertisment_end_date' => 'required|date',
-            'amount' => 'required|numeric',
-            'paid_date' => 'required|date',
-            'comment' => 'required|string',
-            'date' => 'required|date',
+            'advertisment_end_date'   => 'required|date',
+            'amount'                  => 'required|numeric',
+            'paid_date'               => 'required|date',
+            'comment'                 => 'required|string',
+            'date'                    => 'required|date',
         ]);
 
         $panel->update($request->all());

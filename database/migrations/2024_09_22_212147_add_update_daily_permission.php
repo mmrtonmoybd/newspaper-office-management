@@ -6,9 +6,9 @@ class AddUpdateDailyPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_daily',
+            'name'         => 'update_daily',
             'display_name' => 'Update daily',
-            'description' => 'Update daily',
+            'description'  => 'Update daily',
         ],
     ];
 

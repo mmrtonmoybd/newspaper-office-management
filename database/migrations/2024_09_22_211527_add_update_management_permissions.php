@@ -6,9 +6,9 @@ class AddUpdateManagementPermissions extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_an',
+            'name'         => 'update_an',
             'display_name' => 'Update A/N',
-            'description' => 'Update A/N',
+            'description'  => 'Update A/N',
         ],
     ];
 
@@ -20,7 +20,7 @@ class AddUpdateManagementPermissions extends Migration
     public function up()
     {
         $catId = DB::table('permissions_categories')->insertGetId([
-            'name' => 'update_management',
+            'name'         => 'update_management',
             'display_name' => 'Update management',
         ]);
 

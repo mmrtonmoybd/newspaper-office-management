@@ -6,9 +6,9 @@ class AddCashbookEntryHeadingPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'cashbook_entry_heading',
+            'name'         => 'cashbook_entry_heading',
             'display_name' => 'Cashbook heading',
-            'description' => 'Cashbook heading permission of Cashbook Management section.',
+            'description'  => 'Cashbook heading permission of Cashbook Management section.',
         ],
     ];
 

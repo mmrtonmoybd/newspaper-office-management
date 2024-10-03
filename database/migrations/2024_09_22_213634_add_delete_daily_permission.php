@@ -6,9 +6,9 @@ class AddDeleteDailyPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_daily',
+            'name'         => 'delete_daily',
             'display_name' => 'Delete daily',
-            'description' => 'Delete daily',
+            'description'  => 'Delete daily',
         ],
     ];
 

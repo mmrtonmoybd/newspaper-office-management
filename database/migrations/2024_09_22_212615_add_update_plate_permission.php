@@ -6,9 +6,9 @@ class AddUpdatePlatePermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_plate',
+            'name'         => 'update_plate',
             'display_name' => 'Update plate',
-            'description' => 'Update plate',
+            'description'  => 'Update plate',
         ],
     ];
 

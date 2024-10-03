@@ -6,9 +6,9 @@ class AddDeleteEntriesHeadingPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'delete_entries_heading',
+            'name'         => 'delete_entries_heading',
             'display_name' => 'Delete entries heading',
-            'description' => 'Delete entries heading',
+            'description'  => 'Delete entries heading',
         ],
     ];
 

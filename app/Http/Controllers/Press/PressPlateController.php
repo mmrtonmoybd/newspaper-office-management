@@ -32,9 +32,9 @@ class PressPlateController extends Controller
     {
         $request->merge([
             'advance_paid' => convertBengaliToEnglish($request->input('advance_paid')),
-            'cut_amount' => convertBengaliToEnglish($request->input('cut_amount')),
-            'daily_plate' => convertBengaliToEnglish($request->input('daily_plate')),
-            'new_plate' => convertBengaliToEnglish($request->input('new_plate')),
+            'cut_amount'   => convertBengaliToEnglish($request->input('cut_amount')),
+            'daily_plate'  => convertBengaliToEnglish($request->input('daily_plate')),
+            'new_plate'    => convertBengaliToEnglish($request->input('new_plate')),
         ]);
         $plate = PressPlate::create($request->all());
         $lastid = $plate->id;
@@ -90,9 +90,9 @@ class PressPlateController extends Controller
 
         $request->merge([
             'advance_paid' => convertBengaliToEnglish($request->input('advance_paid')),
-            'cut_amount' => convertBengaliToEnglish($request->input('cut_amount')),
-            'daily_plate' => convertBengaliToEnglish($request->input('daily_plate')),
-            'new_plate' => convertBengaliToEnglish($request->input('new_plate')),
+            'cut_amount'   => convertBengaliToEnglish($request->input('cut_amount')),
+            'daily_plate'  => convertBengaliToEnglish($request->input('daily_plate')),
+            'new_plate'    => convertBengaliToEnglish($request->input('new_plate')),
         ]);
         $plate->update($request->all());
 
@@ -124,7 +124,6 @@ class PressPlateController extends Controller
 
                 //dd($previous2, $curplate2);
                 $curplate2->save();
-
             }
         }
 
@@ -153,7 +152,6 @@ class PressPlateController extends Controller
 
                 if (PressPlate::where('id', '<', $curplate2->id)->orderBy('id', 'desc')->count() > 0) {
                     $curplate2->total_plate = ($previous2->total_plate + $curplate2->new_plate) - $curplate2->daily_plate;
-
                 } else {
                     $cal = $curplate2->new_plate - $curplate2->daily_plate;
                     $curplate2->total_plate = ($cal > 0) ? $cal : 0;
@@ -186,7 +184,6 @@ class PressPlateController extends Controller
 
                 if (PressPlate::where('id', '<', $curplate2->id)->orderBy('id', 'desc')->count() > 0) {
                     $curplate2->total_plate = ($previous2->total_plate + $curplate2->new_plate) - $curplate2->daily_plate;
-
                 } else {
                     $cal = $curplate2->new_plate - $curplate2->daily_plate;
                     $curplate2->total_plate = ($cal > 0) ? $cal : 0;

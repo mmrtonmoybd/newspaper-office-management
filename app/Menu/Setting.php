@@ -10,11 +10,11 @@ class Setting implements MenuItemInterface
     public function make(Builder $menu)
     {
         $menu->add('Setting', [
-            'route' => 'backend.settings.index',
-            'active' => 'backend.settings.index',
+            'route'      => 'backend.settings.index',
+            'active'     => 'backend.settings.index',
             'permission' => 'settings',
-            'icon' => 'fa-regular fa-gear',
-            'order' => 10000,
+            'icon'       => 'fa-regular fa-gear',
+            'order'      => 10000,
         ]);
     }
 }

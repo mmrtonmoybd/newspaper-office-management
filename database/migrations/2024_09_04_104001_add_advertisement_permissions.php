@@ -6,9 +6,9 @@ class AddAdvertisementPermissions extends Migration
 {
     private $permissions = [
         [
-            'name' => 'as_permission',
+            'name'         => 'as_permission',
             'display_name' => 'A/S advertisement',
-            'description' => 'A/S advertisement permission of Advertisement section.',
+            'description'  => 'A/S advertisement permission of Advertisement section.',
         ],
     ];
 
@@ -20,7 +20,7 @@ class AddAdvertisementPermissions extends Migration
     public function up()
     {
         $catId = DB::table('permissions_categories')->insertGetId([
-            'name' => 'advertisement',
+            'name'         => 'advertisement',
             'display_name' => 'Advertisement',
         ]);
 

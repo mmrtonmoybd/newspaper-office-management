@@ -6,9 +6,9 @@ class AddUpdateEntriesHeadingPermission extends Migration
 {
     private $permissions = [
         [
-            'name' => 'update_entries_heading',
+            'name'         => 'update_entries_heading',
             'display_name' => 'Update entries heading',
-            'description' => 'Update entries heading',
+            'description'  => 'Update entries heading',
         ],
     ];
 
