@@ -4,6 +4,9 @@
 /public/hot
 /public/storage
 /storage/*.key
+/public/images
+/bootstrap/app.php
+/bootstrap/cache
 .env
 .env.backup
 .env.production
