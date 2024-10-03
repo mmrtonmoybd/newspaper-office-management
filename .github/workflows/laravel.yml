@@ -23,7 +23,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Update Dependencies
-      run: composer update
+      run: composer update --no-dev -o
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
