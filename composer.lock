@@ -299,12 +299,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Creativeorange\\Gravatar\\GravatarServiceProvider"
-                    ],
                     "aliases": {
                         "Gravatar": "Creativeorange\\Gravatar\\Facades\\Gravatar"
-                    }
+                    },
+                    "providers": [
+                        "Creativeorange\\Gravatar\\GravatarServiceProvider"
+                    ]
                 }
             },
             "autoload": {
