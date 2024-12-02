@@ -4341,16 +4341,16 @@
         },
         {
             "name": "sebastienheyd/boilerplate",
-            "version": "8.1.1",
+            "version": "8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastienheyd/boilerplate.git",
-                "reference": "961638ce9f58f374de769afa4cd5b2411f3f2c88"
+                "reference": "9a7238c101f03378dadea12aa33fb28cf566e72b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastienheyd/boilerplate/zipball/961638ce9f58f374de769afa4cd5b2411f3f2c88",
-                "reference": "961638ce9f58f374de769afa4cd5b2411f3f2c88",
+                "url": "https://api.github.com/repos/sebastienheyd/boilerplate/zipball/9a7238c101f03378dadea12aa33fb28cf566e72b",
+                "reference": "9a7238c101f03378dadea12aa33fb28cf566e72b",
                 "shasum": ""
             },
             "require": {
@@ -4422,9 +4422,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastienheyd/boilerplate/issues",
-                "source": "https://github.com/sebastienheyd/boilerplate/tree/8.1.1"
+                "source": "https://github.com/sebastienheyd/boilerplate/tree/8.2.0"
             },
-            "time": "2024-11-25T06:49:22+00:00"
+            "time": "2024-12-01T07:58:48+00:00"
         },
         {
             "name": "spatie/laravel-html",
