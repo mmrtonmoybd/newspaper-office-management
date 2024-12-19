@@ -34,14 +34,14 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-develop": "11.x-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Arcanedev\\LogViewer\\LogViewerServiceProvider",
                         "Arcanedev\\LogViewer\\Providers\\DeferredServicesProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-develop": "11.x-dev"
                 }
             },
             "autoload": {
@@ -4628,12 +4628,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Spatie\\Html\\HtmlServiceProvider"
-                    ],
                     "aliases": {
                         "Html": "Spatie\\Html\\Facades\\Html"
-                    }
+                    },
+                    "providers": [
+                        "Spatie\\Html\\HtmlServiceProvider"
+                    ]
                 }
             },
             "autoload": {
