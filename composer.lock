@@ -2108,13 +2108,13 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Laravel\\Ui\\UiServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
                 }
             },
             "autoload": {
@@ -4470,12 +4470,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "SebastienHeyd\\Active\\ActiveServiceProvider"
-                    ],
                     "aliases": {
                         "Active": "SebastienHeyd\\Active\\Facades\\Active"
-                    }
+                    },
+                    "providers": [
+                        "SebastienHeyd\\Active\\ActiveServiceProvider"
+                    ]
                 }
             },
             "autoload": {
