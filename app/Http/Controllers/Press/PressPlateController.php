@@ -43,7 +43,7 @@ class PressPlateController extends Controller
 
         $previous = PressPlate::where('id', '<', $lastid)->orderBy('id', 'desc')->first();
 
-        //dd($total, $lastid, $previous);
+        // dd($total, $lastid, $previous);
 
         if ($previous) {
             $total = ($previous->total_plate + $request->new_plate) - $request->daily_plate;
@@ -114,7 +114,7 @@ class PressPlateController extends Controller
 
         $nextdata = PressPlate::where('id', '>', $plate->id)->orderBy('id', 'asc')->get();
 
-        //dd($nextdata);
+        // dd($nextdata);
 
         if ($nextdata) {
             foreach ($nextdata as $key => $value) {
@@ -122,7 +122,7 @@ class PressPlateController extends Controller
                 $curplate2 = PressPlate::find($value->id);
                 $curplate2->total_plate = ($previous2->total_plate + $curplate2->new_plate) - $curplate2->daily_plate;
 
-                //dd($previous2, $curplate2);
+                // dd($previous2, $curplate2);
                 $curplate2->save();
 
             }
@@ -159,10 +159,10 @@ class PressPlateController extends Controller
                     $curplate2->total_plate = ($cal > 0) ? $cal : 0;
                 }
 
-                //dd($nextdata, $previous2, $curplate2);
+                // dd($nextdata, $previous2, $curplate2);
                 $curplate2->save();
 
-                //dd($previous2, $curplate2);
+                // dd($previous2, $curplate2);
             }
         }
 
@@ -173,7 +173,7 @@ class PressPlateController extends Controller
     {
         $id = $plate->id;
 
-        //$plate->delete();
+        // $plate->delete();
 
         $previousPlate = PressPlate::where('id', '<', $id)->orderBy('id', 'desc')->first();
 
@@ -192,15 +192,15 @@ class PressPlateController extends Controller
                     $curplate2->total_plate = ($cal > 0) ? $cal : 0;
                 }
 
-                //dd($nextdata, $previous2, $curplate2);
+                // dd($nextdata, $previous2, $curplate2);
                 $curplate2->save();
 
-                //dd($previous2, $curplate2);
+                // dd($previous2, $curplate2);
             }
         }
 
-        //dd($nextdata);
+        // dd($nextdata);
 
-        //return response()->json(['success' => $paper->delete() ?? false]);
+        // return response()->json(['success' => $paper->delete() ?? false]);
     }
 }

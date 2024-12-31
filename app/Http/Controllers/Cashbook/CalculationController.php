@@ -68,7 +68,7 @@ class CalculationController extends Controller
                 'calculation_id' => $calculation->id,
                 'description' => $income['description'],
                 'amount' => convertBengaliToEnglish($income['amount']),
-                //'date' => $income['date'],
+                // 'date' => $income['date'],
                 'category_id' => $income['category_id'],
             ]);
             $calculation->balance += convertBengaliToEnglish($income['amount']);
@@ -80,7 +80,7 @@ class CalculationController extends Controller
                 'calculation_id' => $calculation->id,
                 'description' => $expense['description'],
                 'amount' => convertBengaliToEnglish($expense['amount']),
-                //'date' => $expense['date'],
+                // 'date' => $expense['date'],
                 'category_id' => $expense['category_id'],
             ]);
             $calculation->balance -= convertBengaliToEnglish($expense['amount']);
@@ -122,14 +122,14 @@ class CalculationController extends Controller
                     'calculation_id' => $calculation->id,
                     'description' => $income['description'],
                     'amount' => convertBengaliToEnglish($income['amount']),
-                    //'date' => $income['date'],
+                    // 'date' => $income['date'],
                     'category_id' => $income['category_id'],
                 ]);
                 $calculation->balance += convertBengaliToEnglish($income['amount']);
             }
         }
 
-        //dd($arr, $request->income);
+        // dd($arr, $request->income);
 
         // Update expense entries
         $calculation->expenseEntries()->delete();
@@ -141,7 +141,7 @@ class CalculationController extends Controller
                     'calculation_id' => $calculation->id,
                     'description' => $expense['description'],
                     'amount' => convertBengaliToEnglish($expense['amount']),
-                    //'date' => $expense['date'],
+                    // 'date' => $expense['date'],
                     'category_id' => $expense['category_id'],
                 ]);
                 $calculation->balance -= convertBengaliToEnglish($expense['amount']);
@@ -186,7 +186,7 @@ class CalculationController extends Controller
 
                 $previousBalance = $currentBalance;
 
-                //dd($previousBalance);
+                // dd($previousBalance);
 
                 // Set the previous balance for the next iteration
 
@@ -233,15 +233,15 @@ class CalculationController extends Controller
             $cal = Calculation::whereBetween('date', [$startDate, $endDate])->pluck('id')->toArray();
             $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
             $expenseEntries = ExpenseEntry::whereIn('calculation_id', $cal);
-            //$incomeEntries->whereBetween('date', [$startDate, $endDate]);
-            //$expenseEntries->whereBetween('date', [$startDate, $endDate]);
+            // $incomeEntries->whereBetween('date', [$startDate, $endDate]);
+            // $expenseEntries->whereBetween('date', [$startDate, $endDate]);
         }
 
         // Get the filtered entries
         $incomeEntries = $incomeEntries->get();
         $expenseEntries = $expenseEntries->get();
 
-        //dd($incomeEntries);
+        // dd($incomeEntries);
 
         // Calculate total income, total expense, and net balance
         $totalIncome = $incomeEntries->sum('amount');
@@ -289,8 +289,8 @@ class CalculationController extends Controller
             $cal = Calculation::whereBetween('date', [$startDate, $endDate])->pluck('id')->toArray();
             $incomeEntries = IncomeEntry::whereIn('calculation_id', $cal);
             $expenseEntries = ExpenseEntry::whereIn('calculation_id', $cal);
-            //$incomeEntries->whereBetween('date', [$startDate, $endDate]);
-            //$expenseEntries->whereBetween('date', [$startDate, $endDate]);
+            // $incomeEntries->whereBetween('date', [$startDate, $endDate]);
+            // $expenseEntries->whereBetween('date', [$startDate, $endDate]);
 
             $sdate = date_create($startDate);
             $sv = date_format($sdate, 'd/m/Y');
@@ -303,7 +303,7 @@ class CalculationController extends Controller
         $incomeEntries = $incomeEntries->get();
         $expenseEntries = $expenseEntries->get();
 
-        //dd($incomeEntries);
+        // dd($incomeEntries);
 
         // Calculate total income, total expense, and net balance
         $totalIncome = $incomeEntries->sum('amount');

@@ -45,7 +45,7 @@ class PressPaperController extends Controller
         $total = $request->input('published_order') + $request->input('wastage');
         $request->request->add(['total' => $total]);
 
-        //dd($total, $request);
+        // dd($total, $request);
 
         PressPaper::create($request->all());
 

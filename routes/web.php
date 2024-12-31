@@ -63,7 +63,7 @@ Route::group($default, function () {
         Route::resource('paper', PressPaperController::class)->middleware('ability:admin,press_paper')->names('paper');
         Route::resource('plate', PressPlateController::class)->middleware('ability:admin,press_plate')->names('plate');
         Route::resource('ink', PressInkController::class)->middleware('ability:admin,press_ink')->names('ink');
-        //Route::get('test/{plate}', [PressPlateController::class, 'delete']);
+        // Route::get('test/{plate}', [PressPlateController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'circulation'], function () {
