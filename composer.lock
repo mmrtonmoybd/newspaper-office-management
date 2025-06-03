@@ -4214,16 +4214,16 @@
         },
         {
             "name": "santigarcor/laratrust",
-            "version": "8.4.1",
+            "version": "8.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/santigarcor/laratrust.git",
-                "reference": "f0b90fca6b378906c3522f9f40ca1691c4a6fd84"
+                "reference": "33229272952f2cb61593b67a68aff43c99a0e4f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/f0b90fca6b378906c3522f9f40ca1691c4a6fd84",
-                "reference": "f0b90fca6b378906c3522f9f40ca1691c4a6fd84",
+                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/33229272952f2cb61593b67a68aff43c99a0e4f0",
+                "reference": "33229272952f2cb61593b67a68aff43c99a0e4f0",
                 "shasum": ""
             },
             "require": {
@@ -4277,7 +4277,7 @@
             ],
             "support": {
                 "issues": "https://github.com/santigarcor/laratrust/issues",
-                "source": "https://github.com/santigarcor/laratrust/tree/8.4.1"
+                "source": "https://github.com/santigarcor/laratrust/tree/8.5.0"
             },
             "funding": [
                 {
@@ -4285,7 +4285,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-31T14:02:58+00:00"
+            "time": "2025-06-02T14:29:05+00:00"
         },
         {
             "name": "sebastienheyd/active",
@@ -4360,16 +4360,16 @@
         },
         {
             "name": "sebastienheyd/boilerplate",
-            "version": "8.3.5",
+            "version": "8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastienheyd/boilerplate.git",
-                "reference": "5050106af0a07cb2ff87dc99245acddeb7776cb5"
+                "reference": "a43781d82a273d6378f6f82fd3a32885f179f1b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastienheyd/boilerplate/zipball/5050106af0a07cb2ff87dc99245acddeb7776cb5",
-                "reference": "5050106af0a07cb2ff87dc99245acddeb7776cb5",
+                "url": "https://api.github.com/repos/sebastienheyd/boilerplate/zipball/a43781d82a273d6378f6f82fd3a32885f179f1b5",
+                "reference": "a43781d82a273d6378f6f82fd3a32885f179f1b5",
                 "shasum": ""
             },
             "require": {
@@ -4440,9 +4440,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastienheyd/boilerplate/issues",
-                "source": "https://github.com/sebastienheyd/boilerplate/tree/8.3.5"
+                "source": "https://github.com/sebastienheyd/boilerplate/tree/8.4.0"
             },
-            "time": "2025-06-01T07:47:08+00:00"
+            "time": "2025-06-02T19:27:07+00:00"
         },
         {
             "name": "spatie/laravel-html",
