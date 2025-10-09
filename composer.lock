@@ -4217,16 +4217,16 @@
         },
         {
             "name": "santigarcor/laratrust",
-            "version": "8.5.0",
+            "version": "8.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/santigarcor/laratrust.git",
-                "reference": "33229272952f2cb61593b67a68aff43c99a0e4f0"
+                "reference": "f908f4c077cfe6d7879aa29981d2dc77bf8ff354"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/33229272952f2cb61593b67a68aff43c99a0e4f0",
-                "reference": "33229272952f2cb61593b67a68aff43c99a0e4f0",
+                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/f908f4c077cfe6d7879aa29981d2dc77bf8ff354",
+                "reference": "f908f4c077cfe6d7879aa29981d2dc77bf8ff354",
                 "shasum": ""
             },
             "require": {
@@ -4280,7 +4280,7 @@
             ],
             "support": {
                 "issues": "https://github.com/santigarcor/laratrust/issues",
-                "source": "https://github.com/santigarcor/laratrust/tree/8.5.0"
+                "source": "https://github.com/santigarcor/laratrust/tree/8.5.1"
             },
             "funding": [
                 {
@@ -4288,7 +4288,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-02T14:29:05+00:00"
+            "time": "2025-10-08T21:42:13+00:00"
         },
         {
             "name": "sebastienheyd/active",
