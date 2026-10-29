@@ -55,8 +55,8 @@ Built with Laravel 11 and [sebastienheyd/boilerplate](https://github.com/sebasti
 ### Installation
 
 ```bash
-git clone https://github.com/mmrtonmoybd/newspaper-dataEntry.git
-cd newspaper-dataEntry
+git clone https://github.com/mmrtonmoybd/newspaper-data-entry.git
+cd newspaper-data-entry
 
 composer install
 cp .env.example .env
