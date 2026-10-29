@@ -1,6 +1,6 @@
-# Newspaper Data Entry
+# Newspaper Office Management
 
-A back-office data entry system for a newspaper. Staff record advertisements, cash book income and expenses, press materials, and circulation in one place, with per-module permissions. The data entry screens are in Bangla.
+A back-office management system for a newspaper office. Staff record advertisements, cash book income and expenses, press materials, and circulation in one place, with per-module permissions. The data entry screens are in Bangla.
 
 Built with Laravel 11 and [sebastienheyd/boilerplate](https://github.com/sebastienheyd/boilerplate) (AdminLTE).
 
@@ -55,8 +55,8 @@ Built with Laravel 11 and [sebastienheyd/boilerplate](https://github.com/sebasti
 ### Installation
 
 ```bash
-git clone https://github.com/mmrtonmoybd/newspaper-data-entry.git
-cd newspaper-data-entry
+git clone https://github.com/mmrtonmoybd/newspaper-office-management.git
+cd newspaper-office-management
 
 composer install
 cp .env.example .env
